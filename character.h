@@ -6,7 +6,7 @@
 
 class Character
 {
-	static unsigned maxWeaponCount;
+	static const unsigned maxWeaponCount;
 
 protected:
 	std::string name;

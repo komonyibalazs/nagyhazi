@@ -14,6 +14,5 @@ public:
 	void setDamage(unsigned damage);
 	unsigned getDamage() const;
 	virtual void use() = 0;
-	virtual void print() const = 0;
 };
 
