@@ -1,9 +1,8 @@
 #include "character.h"
 
-Character::Character(std::string name) : name(name), hp(100), maxHp(100)
-{
-	inventory = Inventory();
-}
+Character::Character(std::string name, InventoryManager* inventoryManager)
+	: name(name), hp(100), maxHp(100), inventoryManager(inventoryManager)
+{}
 
 void Character::heal(int amount)
 {
@@ -52,25 +51,12 @@ void Character::regenerate()
 
 void Character::attack(Character& target)
 {
-    if (inventory.getSelectedWeaponIndex() >= inventory) {
-        std::cout << name << " has no weapon selected to attack!" << std::endl;
-        return;
-    }
-    Weapon* weapon = weapons[selectedWeaponIndex].get();
-    unsigned damage = weapon->getDamage();
-    Warrior* warriorTarget = dynamic_cast<Warrior*>(&target);
-    if (warriorTarget != nullptr)
-    {
-        if (warriorTarget->getShield() >= damage)
-        {
-            warriorTarget->heal(-damage);
-            damage = 0;
-        }
-        else
-        {
-            damage -= warriorTarget->getShield();
-            warriorTarget->shield = 0;
-        }
-    }
-    target.heal(-damage);
+	Weapon* weapon = inventoryManager->getSelectedWeapon();
+	if (!weapon) {
+		std::cout << name << " has no weapon selected to attack!" << std::endl;
+		return;
+	}
+
+	unsigned damage = weapon->getDamage();
+	target.heal(-static_cast<int>(damage));
 }

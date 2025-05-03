@@ -58,11 +58,10 @@ Weapon* Inventory::getSelectedWeapon() const
 		std::cout << "No weapon selected!" << std::endl;
 		return nullptr;
 	}
-	Weapon* weapon = weapons[selectedWeaponIndex].get();
-	return weapon;
+	return weapons[selectedWeaponIndex].get();
 }
 
-unsigned Inventory::getSelectedWeaponIndex() const
+unsigned Inventory::getSelectedIndex() const
 {
     return selectedWeaponIndex;
 }

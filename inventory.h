@@ -1,10 +1,9 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "weapon.h"
-#include "repairable.h"
+#include "inventoryManager.h"
 
-class Inventory
+class Inventory : public InventoryManager
 {
 private:
 	static const unsigned maxWeaponCount;
@@ -13,14 +12,17 @@ private:
 
 public:
 	Inventory();
-	virtual ~Inventory() = default;
+	~Inventory() override = default;
+
 	void selectNextWeapon();
 	void selectPreviousWeapon();
 	void takeWeapon(Weapon* weapon);
 	void dropSelected();
-	void repairSelected();
-	Weapon* getSelectedWeapon() const;
-	unsigned getSelectedWeaponIndex() const;
+
+	void repairSelected() override;
+	Weapon* getSelectedWeapon() const override;
+	unsigned getSelectedIndex() const override;
+
 	unsigned getMaxWeaponCount() const;
 
 };

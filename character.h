@@ -1,7 +1,6 @@
 #pragma once
 #include "inventory.h"
 #include "upgradeable.h"
-#include "warrior.h"
 class Character
 {
 	
@@ -10,13 +9,12 @@ protected:
 	std::string name;
 	unsigned hp;
 	unsigned maxHp;
-	Inventory inventory;
+	InventoryManager* inventoryManager;
 
 public:
-	Character(std::string name);
+	Character(std::string name, InventoryManager* inventoryManager);
 	virtual ~Character() = default;
 
-	virtual void heal(int amount);
 	virtual void regenerate();
 	
 	unsigned getHealth() const;
@@ -24,6 +22,7 @@ public:
 	std::string getName() const;
 
 	void attack(Character& target);
+	void heal(int amount);
 	bool isAlive() const;
 
 
