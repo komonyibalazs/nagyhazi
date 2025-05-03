@@ -8,10 +8,10 @@ protected:
 	unsigned damage;
 
 public:
-	Weapon(unsigned damage);
+	Weapon(std::string name, unsigned damage);
 	virtual ~Weapon() = default;
 
-	void setDamage(unsigned damage);
+	std::string getName() const;
 	unsigned getDamage() const;
 	virtual void use() = 0;
 };

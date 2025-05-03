@@ -4,11 +4,12 @@
 
 class Melee : public Weapon, public Repairable
 {
+	unsigned sharpness;
+
 public:
-	Melee(std::string name, unsigned damage);
+	Melee(std::string name, unsigned damage, unsigned durability);
 	~Melee();
 	void use() override;
 	void repair();
-	void print() const override;
 };
 

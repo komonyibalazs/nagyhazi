@@ -15,44 +15,59 @@ unsigned Warrior::getShield() const
 
 void Warrior::levelUp()
 {
-    level++;
-	xp = xp-maxXp;
-	maxXp += 100;
-	maxHp += 10;
-	shield += 10;
+	Upgradeable::levelUp();
+    hp *= 1.2;
+    maxShield *= 1.2;
+	shield = maxShield;
 }
 
 void Warrior::regenerate()
 {
-	if (hp < maxHp)
+	Character::regenerate();
+	if (shield < maxShield && shield+maxShield*0.25)
 	{
-		hp += (double)hp/(double)maxHp*0.25;
+		shield += maxShield*0.25;
 	}
-	if (shield < maxShield)
+    else
 	{
-		shield += (double)shield/(double)maxShield*0.25;
+		shield = maxShield;
 	}
 }
 
-void Warrior::attack(Character& target)
+void Warrior::heal(int amount)
 {
-	if (target.isAlive() && isAlive())
+	if (amount >= 0)
 	{
-		if (selectedWeaponIndex < weapons.size())
+		hp += amount;
+		if (hp > maxHp)
 		{
-			weapons[selectedWeaponIndex]->use();
-		}
-		else
-		{
-			std::cout << "No weapon selected!" << std::endl;
+			shield += hp-maxHp;
 		}
 	}
 	else
 	{
-		std::cout << "Enemy is already dead!" << std::endl;
+		shield += amount;
+		if (shield < 0)
+		{
+			hp += shield;
+		}
+	}
+	if (hp > maxHp)
+	{
+		hp = maxHp;
+	}
+	else if (hp < 0)
+	{
+		hp = 0;
+	}
+	if (shield > maxShield)
+	{
+		shield = maxShield;
+	}
+	else if (shield < 0)
+	{
+		shield = 0;
 	}
 }
 
-void Warrior::repairSelected()
-{
-}
+

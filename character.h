@@ -1,37 +1,31 @@
 #pragma once
-#include "weapon.h"
-#include <vector>
-#include <memory>
+#include "inventory.h"
 #include "upgradeable.h"
-
+#include "warrior.h"
 class Character
 {
-	static const unsigned maxWeaponCount;
+	
 
 protected:
 	std::string name;
 	unsigned hp;
 	unsigned maxHp;
-
-	std::vector<std::unique_ptr<Weapon>> weapons;
-	unsigned selectedWeaponIndex;
+	Inventory inventory;
 
 public:
 	Character(std::string name);
 	virtual ~Character() = default;
 
-	void heal(int amount);
+	virtual void heal(int amount);
+	virtual void regenerate();
 	
 	unsigned getHealth() const;
-	
-	void selectNextWeapon();
-	void selectPreviousWeapon();
-	void takeWeapon(Weapon* weapon);
-	void dropSelected();
+	unsigned getMaxHp() const;
+	std::string getName() const;
+
+	void attack(Character& target);
 	bool isAlive() const;
 
-	virtual void regenerate() = 0;
-	virtual void attack(Character& target) = 0;
-	virtual void repairSelected() = 0;
+
 };
 

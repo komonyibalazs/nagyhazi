@@ -7,8 +7,7 @@ class Magic : public Weapon
 
 public:
 	Magic(std::string name, unsigned damage, unsigned manaCost);
-	~Magic() override = default;
+	~Magic();
 	unsigned getManaCost() const;
-	void setManaCost(unsigned manaCost);
 	void use() override;
 };

@@ -11,7 +11,5 @@ public:
 	unsigned getMana() const;
 	void levelUp();
 	void regenerate();
-	void attack(Character& target);
-	void repairSelected();
 };
 

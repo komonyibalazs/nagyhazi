@@ -10,7 +10,6 @@ public:
 	unsigned getShield() const;
 	void levelUp();
 	void regenerate();
-	void attack(Character& target);
-	void repairSelected();
+	void heal(int amount);
 };
 

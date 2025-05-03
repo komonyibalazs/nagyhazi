@@ -12,6 +12,6 @@ public:
 	unsigned getExperience() const;
 	unsigned getMaxExperience() const;
 	void gainXp(unsigned gained);
-	virtual void levelUp() = 0;
+	virtual void levelUp();
 };
 

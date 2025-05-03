@@ -1,38 +1,76 @@
 #include "character.h"
 
-const unsigned Character::maxWeaponCount = 2;
-
-Character::Character(std::string name) : name(name), hp(100), maxHp(100), selectedWeaponIndex(0)
+Character::Character(std::string name) : name(name), hp(100), maxHp(100)
 {
-	weapons.reserve(maxWeaponCount);
+	inventory = Inventory();
 }
 
 void Character::heal(int amount)
 {
+	hp += amount;
+	if (hp > maxHp)
+	{
+		hp = maxHp;
+	}
+	else if (hp <= 0)
+	{
+		hp = 0;
+	}
 }
 
 unsigned Character::getHealth() const
 {
-	return 0;
+	return hp;
 }
 
-void Character::selectNextWeapon()
+unsigned Character::getMaxHp() const
 {
+    return maxHp;
 }
 
-void Character::selectPreviousWeapon()
+std::string Character::getName() const
 {
-}
-
-void Character::takeWeapon(Weapon* weapon)
-{
-}
-
-void Character::dropSelected()
-{
+	return name;
 }
 
 bool Character::isAlive() const
 {
-	return false;
+	return hp > 0;
+}
+
+void Character::regenerate()
+{
+	if (hp < maxHp && hp+maxHp*0.25 <maxHp)
+	{
+		hp += maxHp*0.25;
+	}
+	else
+	{
+		hp = maxHp;
+	}
+}
+
+void Character::attack(Character& target)
+{
+    if (inventory.getSelectedWeaponIndex() >= inventory) {
+        std::cout << name << " has no weapon selected to attack!" << std::endl;
+        return;
+    }
+    Weapon* weapon = weapons[selectedWeaponIndex].get();
+    unsigned damage = weapon->getDamage();
+    Warrior* warriorTarget = dynamic_cast<Warrior*>(&target);
+    if (warriorTarget != nullptr)
+    {
+        if (warriorTarget->getShield() >= damage)
+        {
+            warriorTarget->heal(-damage);
+            damage = 0;
+        }
+        else
+        {
+            damage -= warriorTarget->getShield();
+            warriorTarget->shield = 0;
+        }
+    }
+    target.heal(-damage);
 }
