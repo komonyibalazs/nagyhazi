@@ -1,11 +1,13 @@
 #include "warrior.h"
 
-Warrior::Warrior(std::string name) : Character(name), Upgradeable(), shield(100), maxShield(100)
+Warrior::Warrior(std::string name, const bool& isPlayer) : Character(name, isPlayer), Upgradeable(), shield(100), maxShield(100)
 {
+	inventory.takeWeapon(new Melee("Sword", 20, 5));
 }
 
 Warrior::~Warrior()
 {
+	inventory.clearWeapons();
 }
 
 unsigned Warrior::getShield() const

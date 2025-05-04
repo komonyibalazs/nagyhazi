@@ -1,10 +1,10 @@
 #include "character.h"
 
-Character::Character(std::string name) : hp(100), maxHp(100), name(name), inventory()
+Character::Character(std::string name, const bool isPlayer=false) : hp(100), maxHp(100), name(name), inventory(), isPlayer(isPlayer)
 {
 }
 
-void Character::heal(int amount)
+void Character::changeHealth(int amount)
 {
 	hp += amount;
 	if (hp > maxHp)
@@ -32,6 +32,11 @@ std::string Character::getName() const
 	return name;
 }
 
+Inventory& Character::getInventory()
+{
+	return inventory;
+}
+
 bool Character::isAlive() const
 {
 	return hp > 0;
@@ -52,12 +57,12 @@ void Character::regenerate()
 
 void Character::attack(Character& target)
 {
-	Weapon* weapon = inventory->getSelectedWeapon();
+	Weapon* weapon = inventory.getSelectedWeapon();
 	if (!weapon) {
 		std::cout << name << " has no weapon selected to attack!" << std::endl;
 		return;
 	}
-
+	weapon->use();
 	unsigned damage = weapon->getDamage();
-	target.heal(-static_cast<int>(damage));
+	target.changeHealth(-(int)damage);
 }

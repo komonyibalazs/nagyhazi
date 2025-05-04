@@ -11,14 +11,14 @@ Inventory::~Inventory()
 {
 }
 
-void Inventory::selectNextWeapon()
+void Inventory::selectWeapon(unsigned index)
 {
-
-}
-
-void Inventory::selectPreviousWeapon()
-{
-
+	if (index >= weapons.size()) {
+		std::cout << "Invalid weapon index!" << std::endl;
+		return;
+	}
+	selectedWeaponIndex = index;
+	std::cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << std::endl;
 }
 
 void Inventory::takeWeapon(Weapon* weapon)
@@ -54,6 +54,21 @@ void Inventory::repairSelected()
     repairableWeapon->repair();
 
     std::cout << weapon->getName() << " got repaired." << std::endl;
+}
+
+void Inventory::clearWeapons()
+{
+	for (auto& weapon : weapons) {
+		weapon.reset();
+	}
+	weapons.clear();
+	selectedWeaponIndex = 0;
+	std::cout << "All weapons cleared from inventory." << std::endl;
+}
+
+std::vector<std::unique_ptr<Weapon>>& Inventory::getWeapons()
+{
+	return weapons;
 }
 
 Weapon* Inventory::getSelectedWeapon() const

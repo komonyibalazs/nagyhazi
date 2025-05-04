@@ -12,6 +12,7 @@ private:
 	static bool flee(const Character& player);
 	static bool needHeal(Character& player);
 	static bool needRepair(Character& player); 
+	static bool changeWeapon(Character& player);
 	
 	static void displayCombatInfo(const Character& player, const Character& enemy);
 	static void displayVictoryMessage(const Character& player);

@@ -128,11 +128,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="archer.h" />
     <ClInclude Include="character.h" />
     <ClInclude Include="combat.h" />
     <ClInclude Include="inventory.h" />
     <ClInclude Include="magic.h" />
     <ClInclude Include="melee.h" />
+    <ClInclude Include="ranged.h" />
     <ClInclude Include="repairable.h" />
     <ClInclude Include="upgradeable.h" />
     <ClInclude Include="warrior.h" />
@@ -140,12 +142,14 @@
     <ClInclude Include="wizard.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="archer.cpp" />
     <ClCompile Include="character.cpp" />
     <ClCompile Include="combat.cpp" />
     <ClCompile Include="inventory.cpp" />
     <ClCompile Include="magic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="melee.cpp" />
+    <ClCompile Include="ranged.cpp" />
     <ClCompile Include="repairable.cpp" />
     <ClCompile Include="upgradeable.cpp" />
     <ClCompile Include="warrior.cpp" />

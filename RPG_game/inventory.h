@@ -15,16 +15,17 @@ public:
 	Inventory();
 	~Inventory();
 
-	void selectNextWeapon();
-	void selectPreviousWeapon();
+	void selectWeapon(unsigned index);
 	void takeWeapon(Weapon* weapon);
 	void dropSelected();
-
 	void repairSelected();
+	void clearWeapons();
+
+	std::vector<std::unique_ptr<Weapon>>& getWeapons();
 	Weapon* getSelectedWeapon() const;
 	unsigned getSelectedIndex() const;
-
 	unsigned getMaxWeaponCount() const;
+
 
 };
 

@@ -1,8 +1,7 @@
 #include "magic.h"
 
-Magic::Magic(std::string name, unsigned damage, unsigned manaCost)
-{
-}
+Magic::Magic(std::string name, unsigned damage, unsigned manaCost) : Weapon(name, damage), manaCost(manaCost)
+{}
 
 Magic::~Magic()
 {

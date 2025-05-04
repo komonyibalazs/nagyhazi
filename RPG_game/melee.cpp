@@ -7,15 +7,20 @@ Melee::~Melee()
 {
 }
 
+unsigned Melee::getDamage() const
+{
+	return damage*sharpness/100;
+}
+
 void Melee::use()
 {
 	if (!isBroken()) 
 	{
 		durability--;
-		damage *= sharpness/100;
+		unsigned trueDamage = damage*sharpness/100;
 		sharpness -= 5;
 		std::cout << name << " used successfully!" << std::endl;
-		std::cout << damage << " damage dealt with: " << name << std::endl;
+		std::cout << trueDamage << " damage dealt with: " << name << std::endl;
 	}
 	else 
 	{

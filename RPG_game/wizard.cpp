@@ -1,10 +1,12 @@
 #include "wizard.h"
 
-Wizard::Wizard(std::string name) : Character(name), Upgradeable(), mana(100), maxMana(100)
+Wizard::Wizard(std::string name, const bool& isPlayer) : Character(name, isPlayer), Upgradeable(), mana(100), maxMana(100)
 {
+	inventory.takeWeapon(new Magic("Wand", 30, 10));
 }
 Wizard::~Wizard()
 {
+	inventory.clearWeapons();
 }
 
 unsigned Wizard::getMana() const

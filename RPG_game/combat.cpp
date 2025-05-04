@@ -42,6 +42,8 @@ void Combat::playerTurn(Character& player, Character& enemy)
 		std::cout << "2. Heal" << std::endl;
 		std::cout << "3. Flee" << std::endl;
 		std::cout << "4. Repair" << std::endl;
+		std::cout << "5. Change weapon" << std::endl;
+		std::cout << "6. Display Info" << std::endl;
 		std::cout << "Select an action: ";
 		std::cin >> choice;
 		switch (choice)
@@ -63,13 +65,24 @@ void Combat::playerTurn(Character& player, Character& enemy)
 			break;
 		case 4:
 			if (needRepair(player))
-			{
-				
+			{			
+				player.getInventory().repairSelected();
 				std::cout << "Repair sucessful!" << std::endl;
-				;
 				return;
 			}
-
+			break;
+		case 5:
+			if(changeWeapon(player))
+			{
+				player.getInventory().selectWeapon(player.getInventory().getSelectedIndex());
+				std::cout << "Weapon changed!" << std::endl;
+				return;
+			}
+			std::cout << "You can't change weapons!" << std::endl;
+			break;
+		case 6:
+			std::cout << "Player: " << player.getName() << " | Health: " << player.getHealth() << "/" << player.getMaxHp() << std::endl;
+			std::cout << "Enemy: " << enemy.getName() << " | Health: " << enemy.getHealth() << "/" << enemy.getMaxHp() << std::endl;
 			break;
 		default:
 			std::cout << "Invalid choice!" << std::endl;
@@ -120,6 +133,14 @@ bool Combat::needHeal(Character& player)
 
 bool Combat::needRepair(Character& player)
 {	
+
+	return player.getInventory().getSelectedWeapon();
+}
+
+bool Combat::changeWeapon(Character& player)
+{
+	if(player.getInventory().getWeapons().size()<=1)
+		return false;
 	return true;
 }
 

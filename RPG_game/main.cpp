@@ -3,6 +3,8 @@
 #include "character.h"
 #include "wizard.h"
 #include "warrior.h"
+#include "archer.h"
+#include "combat.h"
 
 using namespace std;
 
@@ -33,12 +35,19 @@ int main() {
         cin >> name;
         player = make_unique<Wizard>(name);  
     }
-    else {
+    else if (choice == 3) {
+        string name;
+		cout << "Enter your Archer's name: ";
+		cin >> name;
+		player = make_unique<Archer>(name);
+	}
+	else
+    {
         cout << "Invalid choice. Exiting.\n";
         return 1;
     }
-
-    cout << "Still no enemy to fight — implement Enemy class next!\n";
+	Combat combat;
+	combat.start(*player, *player);
     return 0;
 }
 

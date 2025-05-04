@@ -1,0 +1,289 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\upgradeable.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\upgradeable.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\repairable.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\repairable.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\ranged.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\melee.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\magic.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\inventory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\archer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\archer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\combat.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\inventory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\magic.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\melee.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\ranged.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "upgradeable.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\upgradeable.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\upgradeable.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\upgradeable.cpp",
+              "RelativeToolTip": "RPG_game\\upgradeable.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:56.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "repairable.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\repairable.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\repairable.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\repairable.cpp",
+              "RelativeToolTip": "RPG_game\\repairable.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:55.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ranged.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\ranged.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.cpp",
+              "RelativeToolTip": "RPG_game\\ranged.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:51.038Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "melee.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\melee.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.cpp",
+              "RelativeToolTip": "RPG_game\\melee.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:47.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\main.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\main.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\main.cpp",
+              "RelativeToolTip": "RPG_game\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:46.174Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "magic.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\magic.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.cpp",
+              "RelativeToolTip": "RPG_game\\magic.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:41.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "inventory.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\inventory.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.cpp",
+              "RelativeToolTip": "RPG_game\\inventory.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:37.534Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "combat.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\combat.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
+              "RelativeToolTip": "RPG_game\\combat.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:36.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "character.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\character.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp",
+              "RelativeToolTip": "RPG_game\\character.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:34.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "archer.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\archer.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\archer.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\archer.cpp",
+              "RelativeToolTip": "RPG_game\\archer.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-04T19:29:28.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ranged.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.h",
+              "RelativeDocumentMoniker": "RPG_game\\ranged.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.h",
+              "RelativeToolTip": "RPG_game\\ranged.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T19:28:06.974Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "melee.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.h",
+              "RelativeDocumentMoniker": "RPG_game\\melee.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.h",
+              "RelativeToolTip": "RPG_game\\melee.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T19:28:01.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "magic.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.h",
+              "RelativeDocumentMoniker": "RPG_game\\magic.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.h",
+              "RelativeToolTip": "RPG_game\\magic.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T19:27:50.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "inventory.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.h",
+              "RelativeDocumentMoniker": "RPG_game\\inventory.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.h",
+              "RelativeToolTip": "RPG_game\\inventory.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T19:27:48.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "combat.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.h",
+              "RelativeDocumentMoniker": "RPG_game\\combat.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.h",
+              "RelativeToolTip": "RPG_game\\combat.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T19:27:47.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "character.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.h",
+              "RelativeDocumentMoniker": "RPG_game\\character.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.h",
+              "RelativeToolTip": "RPG_game\\character.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-04T19:27:41.015Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
