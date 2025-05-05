@@ -58,6 +58,7 @@ int main()
     chooseCharacter(player);
 	Wizard enemy("Fallen Wizard", false);
 	combat.start(*player, enemy);
+	cout << "Game Over!\n";
     return 0;
 }
 
