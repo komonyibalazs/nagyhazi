@@ -18,7 +18,7 @@ void printMenu(const string& name) {
     cout << "Choice: ";
 }
 
-void chooseCharacter(Character* player)
+void chooseCharacter(Character*& player)
 {
     while (true)
     {
@@ -59,6 +59,7 @@ int main()
 	Wizard enemy("Fallen Wizard", false);
 	combat.start(*player, enemy);
 	cout << "Game Over!\n";
+	delete player;
     return 0;
 }
 

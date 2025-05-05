@@ -127,9 +127,9 @@ bool Combat::needHeal(Character& player)
 {
 	if (player.getHealth() == player.getMaxHp())
 	{
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 bool Combat::needRepair(Character& player)
