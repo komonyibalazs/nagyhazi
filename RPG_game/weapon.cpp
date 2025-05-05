@@ -1,7 +1,8 @@
 #include "weapon.h"
 
 Weapon::Weapon(std::string name, unsigned damage) : name(name), damage(damage)
-{}
+{
+}
 
 std::string Weapon::getName() const
 {

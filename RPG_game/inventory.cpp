@@ -23,11 +23,30 @@ void Inventory::selectWeapon(unsigned index)
 
 void Inventory::takeWeapon(Weapon* weapon)
 {
+	if (weapons.size() >= maxWeaponCount) {
+		std::cout << "Inventory is full! Cannot take more weapons." << std::endl;
+		return;
+	}
+	if (weapon) {
+		weapons.push_back(std::unique_ptr<Weapon>(weapon));
+		std::cout << "Weapon taken: " << weapon->getName() << std::endl;
+	}
+	else 
+	{
+		std::cout << "Invalid weapon!" << std::endl;
+	}
 
 }
 
 void Inventory::dropSelected()
 {
+	if (weapons.empty() || selectedWeaponIndex >= weapons.size()) {
+		std::cout << "No weapon selected to drop!" << std::endl;
+		return;
+	}
+	std::cout << "Dropped weapon: " << weapons[selectedWeaponIndex]->getName() << std::endl;
+	weapons.erase(weapons.begin() + selectedWeaponIndex);
+	selectedWeaponIndex = 0;
 
 }
 

@@ -4,7 +4,7 @@
 
 class Melee : public Weapon, public Repairable
 {
-	unsigned sharpness;
+	double sharpness;
 
 public:
 	Melee(std::string name, unsigned damage, unsigned durability);

@@ -17,7 +17,12 @@ void Character::changeHealth(int amount)
 	}
 }
 
-unsigned Character::getHealth() const
+bool Character::isPlayerCharacter() const
+{
+	return isPlayer;
+}
+
+int Character::getHealth() const
 {
 	return hp;
 }

@@ -1,8 +1,8 @@
 #include "warrior.h"
 
-Warrior::Warrior(std::string name, const bool& isPlayer) : Character(name, isPlayer), Upgradeable(), shield(100), maxShield(100)
+Warrior::Warrior(std::string name, const bool isPlayer) : Character(name, isPlayer), Upgradeable(), shield(100), maxShield(100)
 {
-	inventory.takeWeapon(new Melee("Sword", 20, 5));
+	inventory.takeWeapon(new Melee("Sword", 20, 6));
 }
 
 Warrior::~Warrior()

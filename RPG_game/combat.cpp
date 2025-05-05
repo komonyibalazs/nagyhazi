@@ -37,6 +37,7 @@ void Combat::playerTurn(Character& player, Character& enemy)
 	int choice;
 	while (true)
 	{
+		std::cout << "-------------------------------------------" << std::endl;
 		std::cout << "Your turn!" << std::endl;
 		std::cout << "1. Attack" << std::endl;
 		std::cout << "2. Heal" << std::endl;
@@ -51,7 +52,7 @@ void Combat::playerTurn(Character& player, Character& enemy)
 		case 1:
 			displayPlayerAttackMessage(player, enemy);
 			player.attack(enemy);
-			break;
+			return;
 		case 2:
 			if(needHeal(player))	player.regenerate();
 			else std::cout << "You don't need to heal!" << std::endl;
@@ -94,7 +95,7 @@ void Combat::playerTurn(Character& player, Character& enemy)
 
 void Combat::enemyTurn(Character& enemy, Character& player)
 {
-	std::cout << "Enemy's turn!" << std::endl;
+	std::cout << "\nEnemy's turn!" << std::endl;
 	displayEnemyAttackMessage(enemy, player);
 	enemy.attack(player);
 }
@@ -106,11 +107,11 @@ bool Combat::flee(const Character& player)
 	{
 		std::cout << "Are you sure you want to flee? (yes/no): ";
 		std::cin >> choice;
-		if (choice == "yes" || choice == "Yes")
+		if (choice == "yes" || choice == "Yes" || choice == "YES")
 		{
 			return true;
 		}
-		else if (choice == "no" || choice == "No")
+		else if (choice == "no" || choice == "No" || choice == "NO")
 		{
 			std::cout << "You chose to stay and fight!" << std::endl;
 			return false;
@@ -133,9 +134,17 @@ bool Combat::needHeal(Character& player)
 
 bool Combat::needRepair(Character& player)
 {	
-
-	return player.getInventory().getSelectedWeapon();
+	Repairable* repairable = dynamic_cast<Repairable*>(player.getInventory().getSelectedWeapon());
+	if (repairable)
+	{
+		if (!repairable->isFullyRepaired())
+		{
+			return true;
+		}
+	}
+	return false;
 }
+
 
 bool Combat::changeWeapon(Character& player)
 {

@@ -7,7 +7,7 @@ class Character
 {
 protected:
 	std::string name;
-	unsigned hp;
+	int hp;
 	unsigned maxHp;
 	const bool isPlayer;
 	Inventory inventory;
@@ -20,7 +20,7 @@ public:
 	virtual void regenerate();
 	
 	bool isPlayerCharacter() const;
-	unsigned getHealth() const;
+	int getHealth() const;
 	unsigned getMaxHp() const;
 	std::string getName() const;
 	Inventory& getInventory();

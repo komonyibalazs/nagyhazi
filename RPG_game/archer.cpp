@@ -1,8 +1,8 @@
 #include "archer.h"
 
-Archer::Archer(const std::string& name, const bool& isPlayer) : Character(name, isPlayer) 
+Archer::Archer(const std::string& name, const bool isPlayer) : Character(name, isPlayer) 
 {
-	inventory.takeWeapon(new Ranged("Bow", 20, 3));
+	inventory.takeWeapon(new Ranged("Bow", 20, 4));
 }
 
 Archer::~Archer()
