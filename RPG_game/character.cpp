@@ -1,12 +1,12 @@
 #include "character.h"
 
-Character::Character(std::string name, const bool isPlayer=false) : hp(100), maxHp(100), name(name), inventory(), isPlayer(isPlayer)
+Character::Character(std::string name, const bool isPlayer = false) : hp(100), maxHp(100), name(name), inventory(), isPlayer(isPlayer)
 {
 }
 
 void Character::changeHealth(int amount)
 {
-	hp += amount;
+	int hp = this->hp+amount;
 	if (hp > maxHp)
 	{
 		hp = maxHp;
@@ -15,6 +15,7 @@ void Character::changeHealth(int amount)
 	{
 		hp = 0;
 	}
+	this->hp = hp;
 }
 
 bool Character::isPlayerCharacter() const
@@ -22,7 +23,7 @@ bool Character::isPlayerCharacter() const
 	return isPlayer;
 }
 
-int Character::getHealth() const
+unsigned Character::getHealth() const
 {
 	return hp;
 }

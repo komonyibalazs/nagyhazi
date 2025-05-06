@@ -133,6 +133,7 @@
     <ClInclude Include="combat.h" />
     <ClInclude Include="inventory.h" />
     <ClInclude Include="magic.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="melee.h" />
     <ClInclude Include="ranged.h" />
     <ClInclude Include="repairable.h" />

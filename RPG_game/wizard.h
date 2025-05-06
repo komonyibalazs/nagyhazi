@@ -8,10 +8,12 @@ class Wizard : public Character, public Upgradeable
 	unsigned maxMana;
 
 public:
-	Wizard(std::string name, const bool isPlayer);
+	Wizard(std::string name, const bool isPlayer = false);
 	~Wizard();
 	unsigned getMana() const;
+	void changeMana(int amount);
 	void levelUp();
 	void regenerate();
+	void attack(Character& target);
 };
 

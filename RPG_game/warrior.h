@@ -8,11 +8,11 @@ class Warrior : public Character, public Upgradeable
 	unsigned maxShield;
 
 public:
-	Warrior(std::string name, const bool isPlayer);
+	Warrior(std::string name, const bool isPlayer = false);
 	~Warrior();
-	unsigned getShield() const;
+	int getShield() const;
 	void levelUp();
 	void regenerate();
-	void heal(int amount);
+	void changeHealth(int amount);
 };
 

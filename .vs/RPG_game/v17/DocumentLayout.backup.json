@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\inventory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\wizard.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\wizard.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\warrior.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\warrior.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\wizard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\wizard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,28 +54,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "combat.cpp",
-              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
-              "RelativeDocumentMoniker": "RPG_game\\combat.cpp",
-              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
-              "RelativeToolTip": "RPG_game\\combat.cpp",
-              "ViewState": "AgIAAIsAAAAAAAAAAAAswJAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-05T15:35:45.466Z",
+              "DocumentIndex": 1,
+              "Title": "inventory.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.h",
+              "RelativeDocumentMoniker": "RPG_game\\inventory.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\inventory.h",
+              "RelativeToolTip": "RPG_game\\inventory.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-06T21:02:44.936Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\main.cpp",
               "RelativeDocumentMoniker": "RPG_game\\main.cpp",
               "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\main.cpp",
               "RelativeToolTip": "RPG_game\\main.cpp",
-              "ViewState": "AgIAACQAAAAAAAAAAAAUwDsAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-05T15:35:00.782Z",
+              "WhenOpened": "2025-05-06T20:41:05.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "wizard.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\wizard.h",
+              "RelativeDocumentMoniker": "RPG_game\\wizard.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\wizard.h",
+              "RelativeToolTip": "RPG_game\\wizard.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-06T13:42:43.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "character.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.h",
+              "RelativeDocumentMoniker": "RPG_game\\character.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.h",
+              "RelativeToolTip": "RPG_game\\character.h",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-06T13:19:56.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "wizard.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\wizard.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\wizard.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\wizard.cpp",
+              "RelativeToolTip": "RPG_game\\wizard.cpp",
+              "ViewState": "AgIAACcAAAAAAAAAAAAtwDcAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-06T13:41:54.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "character.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\character.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp",
+              "RelativeToolTip": "RPG_game\\character.cpp",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-06T13:40:10.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "warrior.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\warrior.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\warrior.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\warrior.cpp",
+              "RelativeToolTip": "RPG_game\\warrior.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-06T13:35:10.255Z",
               "EditorCaption": ""
             }
           ]

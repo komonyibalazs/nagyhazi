@@ -10,23 +10,26 @@ Warrior::~Warrior()
 	inventory.clearWeapons();
 }
 
-unsigned Warrior::getShield() const
+int Warrior::getShield() const
 {
     return shield;
 }
 
 void Warrior::levelUp()
 {
+	if (xp >= maxXp)
+	{
+		hp *= 1.2;
+		maxShield *= 1.2;
+		shield = maxShield;
+	}
 	Upgradeable::levelUp();
-    hp *= 1.2;
-    maxShield *= 1.2;
-	shield = maxShield;
 }
 
 void Warrior::regenerate()
 {
 	Character::regenerate();
-	if (shield < maxShield && shield+maxShield*0.25)
+	if (shield < maxShield && shield+maxShield*0.25<=maxShield)
 	{
 		shield += maxShield*0.25;
 	}
@@ -36,39 +39,22 @@ void Warrior::regenerate()
 	}
 }
 
-void Warrior::heal(int amount)
+void Warrior::changeHealth(int amount)
 {
-	if (amount >= 0)
+	int fullHp = hp + shield + amount;
+	if (fullHp < maxHp)
 	{
-		hp += amount;
-		if (hp > maxHp)
-		{
-			shield += hp-maxHp;
-		}
+		hp = fullHp;
+		shield = 0;
 	}
-	else
-	{
-		shield += amount;
-		if (shield < 0)
-		{
-			hp += shield;
-		}
-	}
-	if (hp > maxHp)
+	else if(fullHp >= maxHp)
 	{
 		hp = maxHp;
+		shield = fullHp - maxHp;
 	}
-	else if (hp < 0)
+	if (fullHp < 0)
 	{
 		hp = 0;
-	}
-	if (shield > maxShield)
-	{
-		shield = maxShield;
-	}
-	else if (shield < 0)
-	{
-		shield = 0;
 	}
 }
 

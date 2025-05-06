@@ -1,6 +1,6 @@
 #include "weapon.h"
 
-Weapon::Weapon(std::string name, unsigned damage) : name(name), damage(damage)
+Weapon::Weapon(std::string name, int damage) : name(name), damage(damage)
 {
 }
 

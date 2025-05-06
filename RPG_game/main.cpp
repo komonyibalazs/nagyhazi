@@ -5,6 +5,7 @@
 #include "warrior.h"
 #include "archer.h"
 #include "combat.h"
+#include "main.h"
 
 using namespace std;
 
@@ -50,16 +51,23 @@ void chooseCharacter(Character*& player)
     }
 }
 
+void testCharacters()
+{  
+}
+
+
+
+void testWeapons()
+{
+}
+
 int main() 
 {
-    Character* player = nullptr;
-	Combat combat;
-	cout << "Welcome to the RPG game!\n";
-    chooseCharacter(player);
-	Wizard enemy("Fallen Wizard", false);
-	combat.start(*player, enemy);
-	cout << "Game Over!\n";
-	delete player;
+	//testCharacters();
+	testWeapons();
+	
+	
+	
     return 0;
 }
 
