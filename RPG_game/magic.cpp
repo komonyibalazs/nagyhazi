@@ -14,6 +14,5 @@ unsigned Magic::getManaCost() const
 
 void Magic::use()
 {
-	std::cout << "Casting " << name << " for " << damage << " damage!" << std::endl;
-	std::cout << "Mana cost: " << manaCost << std::endl;
+	std::cout << "Using magic: " << getName() << " with damage: " << getDamage() << " and mana cost: " << getManaCost() << std::endl;
 }

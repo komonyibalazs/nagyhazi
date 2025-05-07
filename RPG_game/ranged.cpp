@@ -5,7 +5,7 @@ Ranged::Ranged(std::string name, unsigned damage, unsigned maxAmmo) : Weapon(nam
 
 void Ranged::use()
 {
-	if (ammo > 0)
+	if (!isOutOfAmmo())
 	{
 		std::cout << "Using " << getName() << " with damage: " << getDamage() << std::endl;
 		ammo--;
@@ -24,6 +24,11 @@ unsigned Ranged::getAmmo() const
 unsigned Ranged::getMaxAmmo() const
 {
 	return maxAmmo;
+}
+
+bool Ranged::isOutOfAmmo() const
+{
+	return ammo==0;
 }
 
 void Ranged::reload()

@@ -51,23 +51,16 @@ void chooseCharacter(Character*& player)
     }
 }
 
-void testCharacters()
-{  
-}
-
-
-
-void testWeapons()
-{
-}
-
 int main() 
 {
-	//testCharacters();
-	testWeapons();
-	
-	
-	
-    return 0;
+	cout << "Welcome to the RPG Game!\n";
+	Character* player = nullptr;
+	chooseCharacter(player);
+	Warrior enemy("Enemy", false);
+	Combat::start(*player, enemy);
+	if (player) {
+		delete player;
+	}
+	return 0;
 }
 

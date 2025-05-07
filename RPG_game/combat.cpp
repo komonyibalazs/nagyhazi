@@ -174,7 +174,8 @@ void Combat::displayDefeatMessage(const Character& player)
 {
 	std::cout << player.getName() << " has been defeated!" << std::endl;
 	std::cout << "Fight Over!" << std::endl;
-	std::cout << "You died!" << std::endl;
+	if(!player.isAlive())
+		std::cout << "You died!" << std::endl;
 	std::cout << "Press any key to exit." << std::endl;
 	std::cin.get();
 	exit(0);

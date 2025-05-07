@@ -68,7 +68,7 @@ void Character::attack(Character& target)
 		std::cout << name << " has no weapon selected to attack!" << std::endl;
 		return;
 	}
-	weapon->use();
 	unsigned damage = weapon->getDamage();
 	target.changeHealth(-(int)damage);
+	weapon->use();
 }

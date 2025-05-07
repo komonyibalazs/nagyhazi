@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AmmoConsuming" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAIAAAAAAAAAAAAAAAAAAAAAAIAAQAAAAAAAAACAA=</HashCode>
+      <FileName>ammo_consuming.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Archer" Collapsed="true">
+    <Position X="3.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>archer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAABACAAAAAAQAAAAAAAAAAAAAAEIACCMABEAAEAKAA=</HashCode>
+      <FileName>character.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Combat" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAgAEAAAkCCAAABAgAAEAAAABAAAAAAAQAQA=</HashCode>
+      <FileName>combat.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAgAAIAACABIAIAAAAAAABAABCAAAAAAEkABAAA=</HashCode>
+      <FileName>inventory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Magic" Collapsed="true">
+    <Position X="2.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAACAAAAAAAAAAAAAAAAACCBAAAAAAAAAA=</HashCode>
+      <FileName>magic.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManaConsuming" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>mana_consuming.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Melee" Collapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAACAAAAAQAAAIABAAABAAQAAFAAAAAQAAAE=</HashCode>
+      <FileName>melee.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ranged" Collapsed="true">
+    <Position X="1.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAIAAAAAAACAAAAAAAAAAAAAAIAAQABAAAAAAgAIA=</HashCode>
+      <FileName>ranged.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Repairable" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIABAAAAAAQAAAAACAAQAAAA=</HashCode>
+      <FileName>repairable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Upgradeable" Collapsed="true">
+    <Position X="3.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABQAAAAAAAAAQAAIAEAAAABAgEAAQAAAAAAAEAAAAA=</HashCode>
+      <FileName>upgradeable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Warrior" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACABAAAAAAAAAAABAAEAAAAAAAAEIQAAAQAAAAAAAAA=</HashCode>
+      <FileName>warrior.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Weapon" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAACAAAAAAAgAAAAAAAAAAAAAAEAAgABAAEAAAAAAA=</HashCode>
+      <FileName>weapon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wizard" Collapsed="true">
+    <Position X="3.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAgABAAAAAAAAAAAAAAAAAAAQCAAAIAICAAACA=</HashCode>
+      <FileName>wizard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

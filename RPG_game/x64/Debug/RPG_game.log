@@ -1,3 +1,4 @@
-﻿  main.cpp
-C:\Users\Win11\Documents\GitHub\nagyhazi\RPG_game\main.cpp(150,9): warning C4101: 'combat': unreferenced local variable
+﻿  combat.cpp
+  main.cpp
+  Generating Code...
   RPG_game.vcxproj -> C:\Users\Win11\Documents\GitHub\nagyhazi\x64\Debug\RPG_game.exe
