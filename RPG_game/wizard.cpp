@@ -1,12 +1,12 @@
 #include "wizard.h"
 
-Wizard::Wizard(std::string name, const bool isPlayer) : Character(name, isPlayer), Upgradeable(), mana(100), maxMana(100)
+Wizard::Wizard(std::string name) : Character(name), mana(100), maxMana(100)
 {
-	inventory.takeWeapon(new Magic("Wand", 35, 20));
+	takeWeapon(new Magic("Wand", 35, 20));
 }
 Wizard::~Wizard()
 {
-	inventory.clearWeapons();
+	clearWeapons();
 }
 
 unsigned Wizard::getMana() const
@@ -34,7 +34,7 @@ void Wizard::levelUp()
 		maxMana *= 1.1;
 		mana = maxMana;
 	}
-Upgradeable::levelUp();
+Character::levelUp();
 }
 
 void Wizard::regenerate()
@@ -52,7 +52,7 @@ void Wizard::regenerate()
 
 void Wizard::attack(Character& target)
 {
-	Magic* magicWeapon = (Magic*)inventory.getSelectedWeapon();
+	Magic* magicWeapon = (Magic*)getSelectedWeapon();
 	changeMana(-(int)magicWeapon->getManaCost());
 	Character::attack(target);
 }

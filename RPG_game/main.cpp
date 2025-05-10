@@ -32,15 +32,15 @@ void chooseCharacter(Character*& player)
         switch (choice)
         {
 		case 1:
-			player = new Warrior(name, true);
+			player = new Warrior(name);
 			cout << "You have chosen the Warrior!\n";
 			return;
 		case 2:
-			player = new Wizard(name, true);
+			player = new Wizard(name);
 			cout << "You have chosen the Wizard!\n";
 			return;
 		case 3:
-			player = new Archer(name, true);
+			player = new Archer(name);
 			cout << "You have chosen the Archer!\n";
 			return;
 		default:
@@ -56,7 +56,7 @@ int main()
 	cout << "Welcome to the RPG Game!\n";
 	Character* player = nullptr;
 	chooseCharacter(player);
-	Warrior enemy("Enemy", false);
+	Warrior enemy("Enemy");
 	Combat::start(*player, enemy);
 	if (player) {
 		delete player;

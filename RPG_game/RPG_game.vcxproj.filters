@@ -36,13 +36,7 @@
     <ClInclude Include="repairable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="upgradeable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="combat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inventory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="archer.h">
@@ -65,9 +59,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="upgradeable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wizard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,9 +78,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="magic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="inventory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="archer.cpp">

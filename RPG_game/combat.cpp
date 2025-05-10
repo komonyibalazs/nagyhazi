@@ -14,6 +14,8 @@ void Combat::start(Character& player, Character& enemy)
 		}
 		if (enemy.getHealth() <= 0)
 		{
+			player.gainXp(player.getMaxExperience()*0.5);
+			std::cout << player.getName() << " has gained" <<player.getMaxExperience()*0.5 << "experience!" << std::endl;
 			displayVictoryMessage(player);
 			break;
 		}
@@ -67,16 +69,32 @@ void Combat::playerTurn(Character& player, Character& enemy)
 		case 4:
 			if (needRepair(player))
 			{			
-				player.getInventory().repairSelected();
+				player.repairSelected();
 				std::cout << "Repair sucessful!" << std::endl;
 				return;
 			}
 			break;
 		case 5:
-			if(changeWeapon(player))
+			if (changeWeapon(player))
 			{
-				player.getInventory().selectWeapon(player.getInventory().getSelectedIndex());
+				std::cout << "You have " << player.getWeapons().size() << " weapons." << std::endl;
+				std::cout << "Current weapon: " << player.getSelectedWeapon()->getName() << std::endl;
+				std::cout << "Select a weapon slot (1-" << player.getWeapons().size() << "): ";
+				int index;
+				std::cin >> index;
+				index--;
+				if (index < 0 || index >= player.getWeapons().size())
+				{
+					std::cout << "Invalid weapon slot!" << std::endl;
+					break;
+				}
+				player.selectWeapon(index);
 				std::cout << "Weapon changed!" << std::endl;
+				return;
+			}
+			else
+			{
+				std::cout << "You can't change your weapons!" << std::endl;
 				return;
 			}
 			std::cout << "You can't change weapons!" << std::endl;
@@ -134,7 +152,7 @@ bool Combat::needHeal(Character& player)
 
 bool Combat::needRepair(Character& player)
 {	
-	Repairable* repairable = dynamic_cast<Repairable*>(player.getInventory().getSelectedWeapon());
+	Repairable* repairable = dynamic_cast<Repairable*>(player.getSelectedWeapon());
 	if (repairable)
 	{
 		if (!repairable->isFullyRepaired())
@@ -148,7 +166,7 @@ bool Combat::needRepair(Character& player)
 
 bool Combat::changeWeapon(Character& player)
 {
-	if(player.getInventory().getWeapons().size()<=1)
+	if(player.getWeapons().size()<=1)
 		return false;
 	return true;
 }

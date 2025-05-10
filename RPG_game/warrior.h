@@ -2,13 +2,13 @@
 #include "character.h"
 #include "melee.h"
 
-class Warrior : public Character, public Upgradeable
+class Warrior : public Character
 {
 	unsigned shield;
 	unsigned maxShield;
 
 public:
-	Warrior(std::string name, const bool isPlayer = false);
+	Warrior(std::string name);
 	~Warrior();
 	int getShield() const;
 	void levelUp();

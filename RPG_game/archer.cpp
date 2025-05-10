@@ -1,18 +1,18 @@
 #include "archer.h"
 
-Archer::Archer(const std::string& name, const bool isPlayer) : Character(name, isPlayer)
+Archer::Archer(const std::string& name) : Character(name)
 {
-	inventory.takeWeapon(new Ranged("Bow", 20, 4));
+	takeWeapon(new Ranged("Bow", 20, 4));
 }
 
 Archer::~Archer()
 {
-	inventory.clearWeapons();
+	clearWeapons();
 }
 
 void Archer::regenerate()
 {
 	Character::regenerate();
-	Ranged* weapon = (Ranged*)(inventory.getSelectedWeapon());
-	weapon->reload();
+	Ranged* weapon = (Ranged*)(getSelectedWeapon());
+	if(weapon) weapon->reload();
 }

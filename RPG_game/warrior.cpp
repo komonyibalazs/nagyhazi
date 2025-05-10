@@ -1,13 +1,13 @@
 #include "warrior.h"
 
-Warrior::Warrior(std::string name, const bool isPlayer) : Character(name, isPlayer), Upgradeable(), shield(100), maxShield(100)
+Warrior::Warrior(std::string name) : Character(name), shield(100), maxShield(100)
 {
-	inventory.takeWeapon(new Melee("Sword", 20, 6));
+	takeWeapon(new Melee("Sword", 20, 6));
 }
 
 Warrior::~Warrior()
 {
-	inventory.clearWeapons();
+	clearWeapons();
 }
 
 int Warrior::getShield() const
@@ -23,7 +23,7 @@ void Warrior::levelUp()
 		maxShield *= 1.2;
 		shield = maxShield;
 	}
-	Upgradeable::levelUp();
+	Character::levelUp();
 }
 
 void Warrior::regenerate()

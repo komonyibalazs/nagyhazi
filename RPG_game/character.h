@@ -1,7 +1,10 @@
 #pragma once
 #include <iostream>
-#include "inventory.h"
-#include "upgradeable.h"
+#include <vector>
+#include <memory>
+
+#include "weapon.h"
+#include "repairable.h"
 
 class Character
 {
@@ -9,24 +12,45 @@ protected:
 	std::string name;
 	unsigned hp;
 	unsigned maxHp;
-	const bool isPlayer;
-	Inventory inventory;
+
+	unsigned level;
+	unsigned xp;
+	unsigned maxXp;
+
+	static const unsigned maxWeaponCount;
+	std::vector<std::unique_ptr<Weapon>> weapons;
+	unsigned selectedWeaponIndex;
 
 
 public:
-	Character(std::string name, const bool isPlayer);
+	Character(std::string name);
 	virtual ~Character() = default;
 
 	virtual void regenerate();
-	
-	bool isPlayerCharacter() const;
+	virtual void attack(Character& target);
+
 	unsigned getHealth() const;
 	unsigned getMaxHp() const;
 	std::string getName() const;
-	Inventory& getInventory();
-
-	virtual void attack(Character& target);
+	
 	void changeHealth(int amount);
 	bool isAlive() const;
+
+	unsigned getLevel() const;
+	unsigned getExperience() const;
+	unsigned getMaxExperience() const;
+	void gainXp(unsigned gained);
+	virtual void levelUp();
+
+	void selectWeapon(unsigned index);
+	void takeWeapon(Weapon* weapon);
+	void dropSelected();
+	void repairSelected();
+	void clearWeapons();
+
+	const std::vector<std::unique_ptr<Weapon>>& getWeapons() const;
+	Weapon* getSelectedWeapon() const;
+	unsigned getSelectedIndex() const;
+	unsigned getMaxWeaponCount() const;
 };
 

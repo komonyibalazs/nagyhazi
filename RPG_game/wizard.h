@@ -2,13 +2,13 @@
 #include "character.h"
 #include "magic.h"
 
-class Wizard : public Character, public Upgradeable
+class Wizard : public Character
 {
 	unsigned mana;
 	unsigned maxMana;
 
 public:
-	Wizard(std::string name, const bool isPlayer = false);
+	Wizard(std::string name);
 	~Wizard();
 	unsigned getMana() const;
 	void changeMana(int amount);
