@@ -24,6 +24,7 @@ protected:
 
 public:
 	Character(std::string name);
+	Character(std::string name, unsigned level);
 	virtual ~Character() = default;
 
 	virtual void regenerate();
@@ -52,5 +53,9 @@ public:
 	Weapon* getSelectedWeapon() const;
 	unsigned getSelectedIndex() const;
 	unsigned getMaxWeaponCount() const;
+
+	void replaceWeapon(int index, Weapon* newWeapon);
+	void displayWeapons() const;
+	bool checkLevelUp() const;
 };
 

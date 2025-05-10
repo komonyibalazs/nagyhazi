@@ -1,35 +1,184 @@
 #include "combat.h"
 
-void Combat::start(Character& player, Character& enemy)
+using namespace std;
+
+void Combat::start(Character& player)
 {
-	std::cout << "An evil " << enemy.getName() << " appears!" << std::endl;
-	std::cout << "Fight!" << std::endl;
+	srand(static_cast<unsigned>(time(0))); // Seed a random generator
+
+	while (true)
+	{
+		// Generate a random enemy whose level is equal to or below the player's level
+		Character* enemy = generateRandomEnemy(player.getLevel());
+		
+		cout << "An evil " << enemy->getName() << " (Level " << enemy->getLevel() << ") has appeared!" << endl;
+
+		// Pre-combat menu
+		cout << "1. Fight the enemy" << endl;
+		cout << "2. Skip this enemy" << endl;
+		cout << "Choice: ";
+		int choice;
+		std::cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			cout << "You chose to fight the enemy!" << endl;
+			fight(player, *enemy); // Start combat
+			if (player.getHealth() <= 0)
+			{
+				cout << "Game Over! You have been defeated." << endl;
+				delete enemy; // Clean up memory
+				return;
+			}
+			break;
+		case 2:
+			cout << "You chose to skip this enemy." << endl;
+			delete enemy; // Clean up memory
+			continue;
+		default:
+			cout << "Invalid choice. Please try again." << endl;
+			continue;
+		}
+
+		// Check for level-up rewards
+		if (player.checkLevelUp())
+		{
+			manageLevelUpRewards(player);
+		}
+
+		// Check if the player wants to continue playing
+		cout << "Do you want to continue your adventure? (yes/no): ";
+		string response;
+		cin >> response;
+		if (response == "no")
+		{
+			cout << "Thanks for playing!" << endl;
+			break;
+		}
+	}
+}
+
+Character* Combat::generateRandomEnemy(int playerLevel)
+{
+	int enemyLevel = rand() % playerLevel + 1; // Enemy level between 1 and player's level
+	int enemyType = rand() % 3; // Random enemy type
+	string enemyName = "Enemy"; // Default name
+	switch (enemyType)
+	{
+	case 0:
+		enemyName = "Fallen Warrior";
+		return new Warrior(enemyName, enemyLevel);
+	case 1:
+		enemyName = "Dark Wizard";
+		return new Wizard(enemyName, enemyLevel);
+	case 2:
+		enemyName = "Shadow Archer";
+		return new Archer(enemyName, enemyLevel);
+	default:
+		enemyName = "Unknown Enemy";
+		return new Warrior(enemyName, enemyLevel);
+	}
+}
+
+void Combat::manageLevelUpRewards(Character& player)
+{
+	
+		cout << "Congratulations! You've reached level " << player.getLevel() << " and found a new weapon!" << endl;
+		Weapon* newWeapon = nullptr;
+		if (dynamic_cast<Warrior*>(&player))
+		{
+			newWeapon = new Melee("Sword", 20 + (player.getLevel() - 1) * 10, 6 + player.getLevel() - 1);
+		}
+		else if (dynamic_cast<Wizard*>(&player))
+		{
+			newWeapon = new Magic("Staff", 20 + (player.getLevel() - 1) * 10, 20 + (player.getLevel() - 1) * 10);
+		}
+		else if (dynamic_cast<Archer*>(&player))
+		{
+			newWeapon = new Ranged("Bow", 20 + (player.getLevel() - 1) * 10, 4 + player.getLevel() - 1);
+		}
+
+		if (newWeapon == nullptr)
+		{
+			cout << "Error: Unable to determine weapon type for this character." << endl;
+			return;
+		}
+
+		cout << "New weapon: " << newWeapon->getName() << endl;
+		cout << "Weapon damage: " << newWeapon->getDamage() << endl;
+		while (true)
+		{
+			cout << "Do you want to add this weapon to your inventory? (yes/no): ";
+			string response;
+			cin >> response;
+			if (response == "no")
+			{
+				cout << "You chose not to add the new weapon." << endl;
+				delete newWeapon; // Clean up memory
+				return;
+			}
+			else if (response == "yes")
+			{
+				if (player.getWeapons().size() < player.getMaxWeaponCount())
+				{
+					player.takeWeapon(newWeapon);
+					cout << "The new weapon has been added to your inventory." << endl;
+				}
+				else
+				{
+					cout << "Your weapon slots are full. Choose a weapon to replace: " << endl;
+					player.displayWeapons();
+					cout << "Enter the slot number (1-" << player.getWeapons().size() << ") to replace: ";
+					int slot;
+					cin >> slot;
+					slot--; // Convert to zero-based index
+					if (slot >= 0 && slot < player.getWeapons().size())
+					{
+						player.replaceWeapon(slot, newWeapon);
+						cout << "The new weapon has replaced the old one in slot " << (slot + 1) << "." << endl;
+					}
+					else
+					{
+						cout << "Invalid choice. The new weapon has been discarded." << endl;
+						delete newWeapon;
+					}
+				}
+				return;
+			}
+			else
+			{
+				cout << "Invalid choice. Please enter 'yes' or 'no'." << endl;
+				continue;
+			}
+		}
+}
+
+void Combat::fight(Character& player, Character& enemy)
+{
+	cout << "Fight!" << endl;
+
 	while (true)
 	{
 		displayCombatInfo(player, enemy);
+
 		if (player.getHealth() <= 0)
 		{
 			displayDefeatMessage(player);
 			break;
 		}
+
 		if (enemy.getHealth() <= 0)
 		{
-			player.gainXp(player.getMaxExperience()*0.5);
-			std::cout << player.getName() << " has gained" <<player.getMaxExperience()*0.5 << "experience!" << std::endl;
+			player.gainXp(enemy.getMaxExperience()*0.5);
 			displayVictoryMessage(player);
 			break;
 		}
+
 		playerTurn(player, enemy);
-		if (enemy.getHealth() <= 0)
+		if (enemy.getHealth() > 0)
 		{
-			displayVictoryMessage(player);
-			break;
-		}
-		enemyTurn(enemy, player);
-		if (player.getHealth() <= 0)
-		{
-			displayDefeatMessage(player);
-			break;
+			enemyTurn(enemy, player);
 		}
 	}
 }
@@ -39,16 +188,16 @@ void Combat::playerTurn(Character& player, Character& enemy)
 	int choice;
 	while (true)
 	{
-		std::cout << "-------------------------------------------" << std::endl;
-		std::cout << "Your turn!" << std::endl;
-		std::cout << "1. Attack" << std::endl;
-		std::cout << "2. Heal" << std::endl;
-		std::cout << "3. Flee" << std::endl;
-		std::cout << "4. Repair" << std::endl;
-		std::cout << "5. Change weapon" << std::endl;
-		std::cout << "6. Display Info" << std::endl;
-		std::cout << "Select an action: ";
-		std::cin >> choice;
+		cout << "-------------------------------------------" << endl;
+		cout << "Your turn!" << endl;
+		cout << "1. Attack" << endl;
+		cout << "2. Heal" << endl;
+		cout << "3. Flee" << endl;
+		cout << "4. Repair" << endl;
+		cout << "5. Change weapon" << endl;
+		cout << "6. Display Info" << endl;
+		cout << "Select an action: ";
+		cin >> choice;
 		switch (choice)
 		{
 		case 1:
@@ -57,7 +206,7 @@ void Combat::playerTurn(Character& player, Character& enemy)
 			return;
 		case 2:
 			if(needHeal(player))	player.regenerate();
-			else std::cout << "You don't need to heal!" << std::endl;
+			else cout << "You don't need to heal!" << endl;
 			break;
 		case 3:
 			if (flee(player))
@@ -70,42 +219,42 @@ void Combat::playerTurn(Character& player, Character& enemy)
 			if (needRepair(player))
 			{			
 				player.repairSelected();
-				std::cout << "Repair sucessful!" << std::endl;
+				cout << "Repair sucessful!" << endl;
 				return;
 			}
 			break;
 		case 5:
 			if (changeWeapon(player))
 			{
-				std::cout << "You have " << player.getWeapons().size() << " weapons." << std::endl;
-				std::cout << "Current weapon: " << player.getSelectedWeapon()->getName() << std::endl;
-				std::cout << "Select a weapon slot (1-" << player.getWeapons().size() << "): ";
+				cout << "You have " << player.getWeapons().size() << " weapons." << endl;
+				cout << "Current weapon: " << player.getSelectedWeapon()->getName() << endl;
+				cout << "Select a weapon slot (1-" << player.getWeapons().size() << "): ";
 				int index;
-				std::cin >> index;
+				cin >> index;
 				index--;
 				if (index < 0 || index >= player.getWeapons().size())
 				{
-					std::cout << "Invalid weapon slot!" << std::endl;
+					cout << "Invalid weapon slot!" << endl;
 					break;
 				}
 				player.selectWeapon(index);
-				std::cout << "Weapon changed!" << std::endl;
+				cout << "Weapon changed!" << endl;
 				return;
 			}
 			else
 			{
-				std::cout << "You can't change your weapons!" << std::endl;
-				return;
+				cout << "You can't change your weapons!" << endl;
+				break;
 			}
-			std::cout << "You can't change weapons!" << std::endl;
+			cout << "You can't change weapons!" << endl;
 			break;
 		case 6:
-			std::cout << "Player: " << player.getName() << " | Health: " << player.getHealth() << "/" << player.getMaxHp() << std::endl;
-			std::cout << "Enemy: " << enemy.getName() << " | Health: " << enemy.getHealth() << "/" << enemy.getMaxHp() << std::endl;
+			cout << "Player: " << player.getName() << " | Health: " << player.getHealth() << "/" << player.getMaxHp() << endl;
+			cout << "Enemy: " << enemy.getName() << " | Health: " << enemy.getHealth() << "/" << enemy.getMaxHp() << endl;
 			break;
 		default:
-			std::cout << "Invalid choice!" << std::endl;
-			std::cout << "Please select a valid action." << std::endl;
+			cout << "Invalid choice!" << endl;
+			cout << "Please select a valid action." << endl;
 			break;
 		}
 	}
@@ -113,30 +262,30 @@ void Combat::playerTurn(Character& player, Character& enemy)
 
 void Combat::enemyTurn(Character& enemy, Character& player)
 {
-	std::cout << "\nEnemy's turn!" << std::endl;
+	cout << "\nEnemy's turn!" << endl;
 	displayEnemyAttackMessage(enemy, player);
 	enemy.attack(player);
 }
 
 bool Combat::flee(const Character& player)
 {
-	std::string choice;
+	string choice;
 	while (true)
 	{
-		std::cout << "Are you sure you want to flee? (yes/no): ";
-		std::cin >> choice;
-		if (choice == "yes" || choice == "Yes" || choice == "YES")
+		cout << "Are you sure you want to flee? (yes/no): ";
+		cin >> choice;
+		if (choice == "yes")
 		{
 			return true;
 		}
-		else if (choice == "no" || choice == "No" || choice == "NO")
+		else if (choice == "no")
 		{
-			std::cout << "You chose to stay and fight!" << std::endl;
+			cout << "You chose to stay and fight!" << endl;
 			return false;
 		}
 		else
 		{
-			std::cout << "Invalid choice! Please enter 'yes' or 'no'." << std::endl;
+			cout << "Invalid choice! Please enter 'yes' or 'no'." << endl;
 		}
 	}
 }
@@ -173,44 +322,40 @@ bool Combat::changeWeapon(Character& player)
 
 void Combat::displayCombatInfo(const Character& player, const Character& enemy)
 {
-	std::cout << "Player: " << player.getName() << " | Health: " << player.getHealth() << "/" << player.getMaxHp() << std::endl;
-	std::cout << "Enemy: " << enemy.getName() << " | Health: " << enemy.getHealth() << "/" << enemy.getMaxHp() << std::endl;
-	std::cout << "-------------------------------------------" << std::endl;
+	cout << "Player: " << player.getName() << " | Health: " << player.getHealth() << "/" << player.getMaxHp() << endl;
+	cout << "Enemy: " << enemy.getName() << " | Health: " << enemy.getHealth() << "/" << enemy.getMaxHp() << endl;
+	cout << "-------------------------------------------" << endl;
 }
 
 void Combat::displayVictoryMessage(const Character& player)
 {
-	std::cout << player.getName() << " has defeated the enemy!" << std::endl;
-	std::cout << "Fight Over!" << std::endl;
-	std::cout << "You won!" << std::endl;
-	std::cout << "Press any key to exit." << std::endl;
-	std::cin.get();
-	exit(0);
+	cout << player.getName() << " has defeated the enemy!" << endl;
+	cout << "Fight Over!" << endl;
+	cout << "You won!" << endl; 
+	return;
 }
 
 void Combat::displayDefeatMessage(const Character& player)
 {
-	std::cout << player.getName() << " has been defeated!" << std::endl;
-	std::cout << "Fight Over!" << std::endl;
+	cout << player.getName() << " has been defeated!" << endl;
+	cout << "Fight Over!" << endl;
 	if(!player.isAlive())
-		std::cout << "You died!" << std::endl;
-	std::cout << "Press any key to exit." << std::endl;
-	std::cin.get();
-	exit(0);
+		cout << "You died!" << endl;
+	return;
 }
 
 void Combat::displayEnemyAttackMessage(const Character& enemy, const Character& player)
 {
-	std::cout << enemy.getName() << " attacks " << player.getName() << "!" << std::endl;
+	cout << enemy.getName() << " attacks " << player.getName() << "!" << endl;
 }
 
 void Combat::displayPlayerAttackMessage(const Character& player, const Character& enemy)
 {
-	std::cout << player.getName() << " attacks " << enemy.getName() << "!" << std::endl;
+	cout << player.getName() << " attacks " << enemy.getName() << "!" << endl;
 }
 
 void Combat::displayFleeMessage(const Character& player)
 {
-	std::cout << player.getName() << " has fled from the battle!" << std::endl;
+	cout << player.getName() << " has fled from the battle!" << endl;
 	displayDefeatMessage(player);
 }

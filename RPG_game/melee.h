@@ -9,7 +9,7 @@ class Melee : public Weapon, public Repairable
 	unsigned maxDurability;
 
 public:
-	Melee(std::string name, unsigned damage, unsigned durability);
+	Melee(std::string name, unsigned damage=20, unsigned durability=6);
 	~Melee();
 	unsigned getSharpness() const;
 	

@@ -51,13 +51,18 @@ void chooseCharacter(Character*& player)
     }
 }
 
-int main() 
+
+/*
+TEENDÕK: enemy generálás, combat.h függvények implementálása, jutalom fegyverek generálása + játék vége megoldása
+*/
+
+
+int main()
 {
 	cout << "Welcome to the RPG Game!\n";
 	Character* player = nullptr;
 	chooseCharacter(player);
-	Warrior enemy("Enemy");
-	Combat::start(*player, enemy);
+	Combat::start(*player);
 	if (player) {
 		delete player;
 	}

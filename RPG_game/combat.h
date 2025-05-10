@@ -1,11 +1,21 @@
 #pragma once
 #include "character.h"
+#include "warrior.h"
+#include "wizard.h"
+#include "archer.h"
+#include <string>
+#include <cstdlib> // rand(), srand()
+#include <ctime>   // time()
 
 class Combat {
 public:
-    static void start(Character& player, Character& enemy);
+    static void start(Character& player);
 
 private:
+	static void fight(Character& player, Character& enemy);
+	static Character* generateRandomEnemy(int playerLevel);
+	static void manageLevelUpRewards(Character& player);
+
     static void playerTurn(Character& player, Character& enemy);
     static void enemyTurn(Character& enemy, Character& player);
 

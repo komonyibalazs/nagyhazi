@@ -1,9 +1,19 @@
 #include "wizard.h"
 
-Wizard::Wizard(std::string name) : Character(name), mana(100), maxMana(100)
+using namespace std;
+
+Wizard::Wizard(string name) : Character(name), mana(100), maxMana(100)
 {
-	takeWeapon(new Magic("Wand", 35, 20));
+	takeWeapon(new Magic("Wand"));
 }
+
+Wizard::Wizard(string name, unsigned level) : Character(name, level)
+{
+	this->maxMana = 100 + (level - 1) * 50;
+	this->mana = maxMana;
+	takeWeapon(new Magic("Wand", 20+(level-1)*10, 20+(level-1)*10));
+}
+
 Wizard::~Wizard()
 {
 	clearWeapons();
@@ -30,8 +40,9 @@ void Wizard::levelUp()
 {
 	if (xp >= maxXp)
 	{
-		hp *= 1.2;
-		maxMana *= 1.1;
+		maxHp = 100 + (level - 1) * 50;
+		hp = maxHp;
+		maxMana *= 100 + (level-1) * 50;
 		mana = maxMana;
 	}
 Character::levelUp();

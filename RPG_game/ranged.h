@@ -8,7 +8,7 @@ class Ranged : public Weapon, public AmmoConsuming
 	unsigned maxAmmo;
 
 public:
-	Ranged(std::string name, unsigned damage, unsigned maxAmmo);
+	Ranged(std::string name, unsigned damage=20, unsigned maxAmmo=4);
 	~Ranged() override = default;
 	void use() override;
 

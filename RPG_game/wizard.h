@@ -9,6 +9,7 @@ class Wizard : public Character
 
 public:
 	Wizard(std::string name);
+	Wizard(std::string name, unsigned level);
 	~Wizard();
 	unsigned getMana() const;
 	void changeMana(int amount);

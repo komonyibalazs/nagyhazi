@@ -9,6 +9,7 @@ class Warrior : public Character
 
 public:
 	Warrior(std::string name);
+	Warrior(std::string name, unsigned level);
 	~Warrior();
 	int getShield() const;
 	void levelUp();

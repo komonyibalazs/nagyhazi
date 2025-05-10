@@ -1,8 +1,17 @@
 #include "warrior.h"
 
-Warrior::Warrior(std::string name) : Character(name), shield(100), maxShield(100)
+using namespace std;
+
+Warrior::Warrior(string name) : Character(name), shield(100), maxShield(100)
 {
-	takeWeapon(new Melee("Sword", 20, 6));
+	takeWeapon(new Melee("Sword"));
+}
+
+Warrior::Warrior(string name, unsigned level) : Character(name, level), shield(100), maxShield(100)
+{
+	this->maxShield = 100 + (level - 1) * 50;
+	this->shield = maxShield;
+	takeWeapon(new Melee("Sword", 20+(level-1)*10, 6+level-1));
 }
 
 Warrior::~Warrior()
@@ -19,8 +28,9 @@ void Warrior::levelUp()
 {
 	if (xp >= maxXp)
 	{
-		hp *= 1.2;
-		maxShield *= 1.2;
+		maxHp = 100 + (level - 1) * 50;
+		hp = maxHp;
+		maxShield = 100 + (level - 1) * 50;
 		shield = maxShield;
 	}
 	Character::levelUp();

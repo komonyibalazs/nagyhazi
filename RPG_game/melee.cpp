@@ -1,6 +1,8 @@
 #include "melee.h"
 
-Melee::Melee(std::string name, unsigned damage, unsigned durability)
+using namespace std;
+
+Melee::Melee(string name, unsigned damage, unsigned durability)
 	: Weapon(name, damage), durability(durability), maxDurability(durability), sharpness(100.0)
 {}
 
@@ -25,12 +27,12 @@ void Melee::use()
 		durability--;
 		unsigned trueDamage = damage*sharpness/100.0;
 		sharpness -= 5;
-		std::cout << name << " used successfully!" << std::endl;
-		std::cout << trueDamage << " damage dealt with: " << name << std::endl;
+		cout << name << " used successfully!" << endl;
+		cout << trueDamage << " damage dealt with: " << name << endl;
 	}
 	else 
 	{
-		std::cout << name << " is broken and cannot be used!" << std::endl;
+		cout << name << " is broken and cannot be used!" << endl;
 	}
 }
 
@@ -55,10 +57,10 @@ void Melee::repair()
 	if (!isFullyRepaired())
 	{
 		durability = maxDurability;
-		std::cout << name << " repaired successfully!" << std::endl;
+		cout << name << " repaired successfully!" << endl;
 	}
 	else
 	{
-		std::cout << name << " is not broken and does not need repair!" << std::endl;
+		cout << name << " is not broken and does not need repair!" << endl;
 	}
 }

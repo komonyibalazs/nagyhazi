@@ -1,10 +1,21 @@
 #include "character.h"
 
+using namespace std;
+
 const unsigned Character::maxWeaponCount = 3;
 
-Character::Character(std::string name) : 
+Character::Character(string name) : 
 	name(name), hp(100), maxHp(100), level(1), xp(0), maxXp(100), selectedWeaponIndex(0)
 {
+	weapons.reserve(maxWeaponCount);
+}
+
+Character::Character(string name, unsigned level) :
+	name(name), level(level), xp(0), selectedWeaponIndex(0)
+{
+	this->maxHp = 100 + (level-1) * 50;
+	this->hp = maxHp;
+	this->maxXp = 100 + (level-1) * 20;
 	weapons.reserve(maxWeaponCount);
 }
 
@@ -76,43 +87,43 @@ void Character::levelUp()
 	{
 		level++;
 		xp -= maxXp;
-		maxXp *= 1.1;
+		maxXp = 100 + (level-1)*20;
 	}
 }
 
 void Character::selectWeapon(unsigned index)
 {
 	if (index >= weapons.size()) {
-		std::cout << "Invalid weapon index!" << std::endl;
+		cout << "Invalid weapon index!" << endl;
 		return;
 	}
 	selectedWeaponIndex = index;
-	std::cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << std::endl;
+	cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
 }
 
 void Character::takeWeapon(Weapon* weapon)
 {
 	if (weapons.size() >= maxWeaponCount) {
-		std::cout << "Inventory is full! Cannot take more weapons." << std::endl;
+		cout << "Inventory is full! Cannot take more weapons." << endl;
 		return;
 	}
 	if (weapon) {
-		weapons.push_back(std::unique_ptr<Weapon>(weapon));
-		std::cout << "Weapon taken: " << weapon->getName() << std::endl;
+		weapons.push_back(unique_ptr<Weapon>(weapon));
+		cout << "Weapon taken: " << weapon->getName() << endl;
 	}
 	else
 	{
-		std::cout << "Invalid weapon!" << std::endl;
+		cout << "Invalid weapon!" << endl;
 	}
 }
 
 void Character::dropSelected()
 {
 	if (weapons.empty() || selectedWeaponIndex >= weapons.size()) {
-		std::cout << "No weapon selected to drop!" << std::endl;
+		cout << "No weapon selected to drop!" << endl;
 		return;
 	}
-	std::cout << "Dropped weapon: " << weapons[selectedWeaponIndex]->getName() << std::endl;
+	cout << "Dropped weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
 	weapons.erase(weapons.begin() + selectedWeaponIndex);
 	selectedWeaponIndex = 0;
 }
@@ -120,7 +131,7 @@ void Character::dropSelected()
 void Character::repairSelected()
 {
 	if (weapons.empty() || selectedWeaponIndex >= weapons.size()) {
-		std::cout << "No weapon selected to repair!" << std::endl;
+		cout << "No weapon selected to repair!" << endl;
 		return;
 	}
 
@@ -128,18 +139,18 @@ void Character::repairSelected()
 
 	Repairable* repairableWeapon = dynamic_cast<Repairable*>(weapon);
 	if (!repairableWeapon) {
-		std::cout << "There is no need to repair this weapon!" << std::endl;
+		cout << "There is no need to repair this weapon!" << endl;
 		return;
 	}
 
 	if (repairableWeapon->isFullyRepaired()) {
-		std::cout << "This weapon is already fully repaired!" << std::endl;
+		cout << "This weapon is already fully repaired!" << endl;
 		return;
 	}
 
 	repairableWeapon->repair();
 
-	std::cout << weapon->getName() << " got repaired." << std::endl;
+	cout << weapon->getName() << " got repaired." << endl;
 }
 
 void Character::clearWeapons()
@@ -149,10 +160,10 @@ void Character::clearWeapons()
 	}
 	weapons.clear();
 	selectedWeaponIndex = 0;
-	std::cout << "All weapons cleared from inventory." << std::endl;
+	cout << "All weapons cleared from inventory." << endl;
 }
 
-const std::vector<std::unique_ptr<Weapon>>& Character::getWeapons() const
+const vector<unique_ptr<Weapon>>& Character::getWeapons() const
 {
 	return weapons;
 }
@@ -160,7 +171,7 @@ const std::vector<std::unique_ptr<Weapon>>& Character::getWeapons() const
 Weapon* Character::getSelectedWeapon() const
 {
 	if (weapons.empty()) {
-		std::cout << "No weapon selected!" << std::endl;
+		cout << "No weapon selected!" << endl;
 		return nullptr;
 	}
 	return weapons[selectedWeaponIndex].get();
@@ -176,6 +187,39 @@ unsigned Character::getMaxWeaponCount() const
 	return maxWeaponCount;
 }
 
+void Character::replaceWeapon(int index, Weapon* newWeapon)
+{
+	if (index < 0 || index >= weapons.size()) {
+		cout << "Invalid weapon index!" << endl;
+		return;
+	}
+	if (newWeapon) {
+		weapons[index].reset(newWeapon);
+		cout << "Replaced weapon at index " << index << " with " << newWeapon->getName() << endl;
+	}
+	else
+	{
+		cout << "Invalid weapon!" << endl;
+	}
+}
+
+void Character::displayWeapons() const
+{
+	if (weapons.empty()) {
+		cout << "No weapons in inventory!" << endl;
+		return;
+	}
+	cout << "Weapons in inventory:" << endl;
+	for (size_t i = 0; i < weapons.size(); ++i) {
+		cout << i + 1 << ". " << weapons[i]->getName() << endl;
+	}
+	cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
+}
+
+bool Character::checkLevelUp() const
+{
+	return level % 5 == 0;
+}
 
 void Character::regenerate()
 {
@@ -193,11 +237,11 @@ void Character::attack(Character& target)
 {
 	Weapon* weapon = getSelectedWeapon();
 	if (!weapon) {
-		std::cout << name << " has no weapon selected to attack!" << std::endl;
+		cout << name << " has no weapon selected to attack!" << endl;
 		return;
 	}
 	if (!target.isAlive()) {
-		std::cout << target.getName() << " is already dead!" << std::endl;
+		cout << target.getName() << " is already dead!" << endl;
 		return;
 	}
 	unsigned damage = weapon->getDamage();
