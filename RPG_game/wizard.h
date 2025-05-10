@@ -16,5 +16,6 @@ public:
 	void levelUp();
 	void regenerate();
 	void attack(Character& target);
+	void wonTheBattle() override;
 };
 

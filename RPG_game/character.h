@@ -4,6 +4,12 @@
 #include <memory>
 
 #include "weapon.h"
+#include "melee.h"
+#include "magic.h"
+#include "ranged.h"
+#include "warrior.h"
+#include "archer.h"
+#include "wizard.h"
 #include "repairable.h"
 
 class Character
@@ -41,7 +47,9 @@ public:
 	unsigned getExperience() const;
 	unsigned getMaxExperience() const;
 	void gainXp(unsigned gained);
+	
 	virtual void levelUp();
+	virtual void wonTheBattle();
 
 	void selectWeapon(unsigned index);
 	void takeWeapon(Weapon* weapon);

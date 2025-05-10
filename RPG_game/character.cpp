@@ -53,6 +53,11 @@ bool Character::isAlive() const
 	return hp > 0;
 }
 
+void Character::wonTheBattle()
+{
+	hp = maxHp;
+}
+
 unsigned Character::getLevel() const
 {
 	return level;

@@ -171,6 +171,7 @@ void Combat::fight(Character& player, Character& enemy)
 		if (enemy.getHealth() <= 0)
 		{
 			player.gainXp(enemy.getMaxExperience()*0.5);
+			player.changeHealth(player.getMaxHp());
 			displayVictoryMessage(player);
 			break;
 		}
@@ -250,7 +251,11 @@ void Combat::playerTurn(Character& player, Character& enemy)
 			break;
 		case 6:
 			cout << "Player: " << player.getName() << " | Health: " << player.getHealth() << "/" << player.getMaxHp() << endl;
+			cout << "Your level: " << player.getLevel() << " | Experience: " << player.getExperience() << "/" << player.getMaxExperience() << endl;
+			cout << "Your weapon: " << player.getSelectedWeapon()->getName() << ", damage: " << player.getSelectedWeapon()->getDamage() << endl;
 			cout << "Enemy: " << enemy.getName() << " | Health: " << enemy.getHealth() << "/" << enemy.getMaxHp() << endl;
+			cout << "Enemy level: " << enemy.getLevel() << endl;
+			cout << "Enemy weapon: " << enemy.getSelectedWeapon()->getName() << ", damage: " << enemy.getSelectedWeapon()->getDamage() << endl;
 			break;
 		default:
 			cout << "Invalid choice!" << endl;

@@ -15,5 +15,6 @@ public:
 	void levelUp();
 	void regenerate();
 	void changeHealth(int amount);
+	void wonTheBattle() override;
 };
 
