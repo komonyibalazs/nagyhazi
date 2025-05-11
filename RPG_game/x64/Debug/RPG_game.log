@@ -1,3 +1,5 @@
-﻿  character.cpp
-C:\Users\Win11\Documents\GitHub\nagyhazi\RPG_game\character.cpp(263,14): warning C4244: '+=': conversion from 'double' to 'unsigned int', possible loss of data
+﻿  combat.cpp
+C:\Users\Win11\Documents\GitHub\nagyhazi\RPG_game\combat.cpp(206,42): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+  main.cpp
+  Generating Code...
   RPG_game.vcxproj -> C:\Users\Win11\Documents\GitHub\nagyhazi\x64\Debug\RPG_game.exe

@@ -15,6 +15,7 @@ private:
 
 	static bool quitGame();
 	static void wander(Character& player);
+	static void watchEnemy(Character& player, Character* enemy);
 	static void fight(Character& player, Character& enemy);
 	static Character* generateRandomEnemy(int playerLevel);
 	static void manageLevelUpRewards(Character& player);

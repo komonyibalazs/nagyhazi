@@ -414,7 +414,7 @@ void Combat::displayInventory(const Character& player)
 
 void Combat::displayCharacterInfo(Character& player)
 {
-	cout << "Your character info:" << endl;
+	cout << "Your character:" << endl;
 	cout << "Name: " << player.getName() << endl;
 	cout << "Health: " << player.getHealth() << "/" << player.getMaxHp() << endl;
 	cout << "Level: " << player.getLevel() << endl;
@@ -423,6 +423,7 @@ void Combat::displayCharacterInfo(Character& player)
 		Wizard* wizard = dynamic_cast<Wizard*>(&player);
 		if (wizard)
 		{
+			cout << "Class: wizard" << endl;
 			cout << "Mana: " << wizard->getMana() << "/" << wizard->getMaxMana() << endl;
 		}
 	}
@@ -430,7 +431,15 @@ void Combat::displayCharacterInfo(Character& player)
 		Warrior* warrior = dynamic_cast<Warrior*>(&player);
 		if (warrior)
 		{
+			cout << "Class: warrior" << endl;
 			cout << "Shield: " << warrior->getShield() << "/" << warrior->getMaxShield() << endl;
+		}
+	}
+	{
+		Archer* archer = dynamic_cast<Archer*>(&player);
+		if (archer)
+		{
+			cout << "Class: archer" << endl;
 		}
 	}
 	cout << "Current weapon: " << player.getSelectedWeapon()->getName() << endl;
@@ -438,7 +447,7 @@ void Combat::displayCharacterInfo(Character& player)
 
 void Combat::displayWeaponInfo(const Character& player)
 {
-	cout << "Your weapon info:" << endl;
+	cout << "Your current weapon:" << endl;
 	cout << "Name: " << player.getSelectedWeapon()->getName() << endl;
 	cout << "Damage: " << player.getSelectedWeapon()->getDamage() << endl;
 	{
@@ -522,10 +531,8 @@ void Combat::wander(Character& player)
 		cout << "An evil " << enemy->getName() << " (Level " << enemy->getLevel() << ") has appeared!" << endl;
 
 		// Pre-combat menu
-		cout << "1. Fight the enemy" << endl;
-		cout << "2. Skip this enemy" << endl;
-		cout << "3. Check enemy info" << endl;
-		cout << "4. Quit game" << endl;
+		cout << "1. Watch enemy" << endl;
+		cout << "2. Quit game" << endl;
 		cout << "Choice: ";
 		int choice;
 		std::cin >> choice;
@@ -533,23 +540,11 @@ void Combat::wander(Character& player)
 		switch (choice)
 		{
 		case 1:
-			cout << "You chose to fight the enemy!" << endl;
-			fight(player, *enemy);
-			if (!player.isAlive())
-			{
-				cout << "Game Over! You have been defeated." << endl;
-				delete enemy;
-				return;
-			}
+			cout << "You chose to watch the enemy!" << endl;
+			displayEnemyInfo(*enemy);
+			watchEnemy(player, enemy);
 			break;
 		case 2:
-			cout << "You chose to skip this enemy." << endl;
-			delete enemy;
-			continue;
-		case 3:
-			displayEnemyInfo(*enemy);
-			break;
-		case 4:
 			if(quitGame())
 			{
 				cout << "Exiting the game..." << endl;
@@ -571,6 +566,48 @@ void Combat::wander(Character& player)
 
 		// Check if the player wants to continue playing
 
+	}
+}
+
+void Combat::watchEnemy(Character& player, Character* enemy)
+{
+	while (true)
+	{
+		cout << "1. Fight the enemy" << endl;
+		cout << "2. Go away" << endl;
+		cout << "3. Quit game" << endl;
+		cout << "Choice: ";
+		int choice;
+		cin >> choice;
+		cout << endl;
+		switch (choice)
+		{
+		case 1:
+			cout << "You chose to fight the enemy!" << endl;
+			fight(player, *enemy);
+			if (!player.isAlive())
+			{
+				cout << "Game Over! You have been defeated." << endl;
+				delete enemy;
+				return;
+			}
+			break;
+		case 2:
+			cout << "You chose wander around a little bit more." << endl;
+			delete enemy;
+			return;
+		case 3:
+			if (quitGame())
+			{
+				cout << "Exiting the game..." << endl;
+				delete enemy;
+				exit(0);
+			}
+			break;
+		default:
+			cout << "Invalid choice. Please try again." << endl;
+			continue;
+		}
 	}
 }
 
