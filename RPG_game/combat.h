@@ -5,13 +5,11 @@ class Combat {
 public:
     // Harci folyamat indítása
     static void start(Character& player);
-
 private:
     // Harci kör kezelése
     static void enemyTurn(Character& enemy, Character& player);
 
     // Ellenség generálása
-    static Character* generateRandomEnemy(int playerLevel);
 
     // Harci döntések
     static bool flee(Character& player);
@@ -21,13 +19,11 @@ private:
 
     // Segédmetódusok a harc során
     static void displayCombatInfo(const Character& player, const Character& enemy);
-    static void displayEnemyInfo(Character& enemy);
     static void displayVictoryMessage(const Character& player);
     static void displayDefeatMessage(const Character& player);
     static void displayFleeMessage(const Character& player);
 
     // Harci menü opciók
-    static void watchEnemy(Character& player, Character* enemy);
     static void fight(Character& player, Character& enemy);
     static void playerTurn(Character& player, Character& enemy);
 

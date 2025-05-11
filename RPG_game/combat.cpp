@@ -52,25 +52,7 @@ void Combat::start(Character& player) {
     }
 }
 
-void Combat::watchEnemy(Character& player, Character* enemy) {
-    cout << "\nYou chose to take a closer look at the enemy!" << endl;
-    displayEnemyInfo(*enemy);
 
-    MenuManager::displayLookMenu();
-    int choice = InputHandler::getIntInput("Choice: ", 1, 3);
-
-    if (choice == 1) {
-        fight(player, *enemy);
-    }
-    else if (choice == 2) {
-        cout << "\nYou chose to avoid the enemy." << endl;
-    }
-    else {
-        cout << "\nReturning to main menu." << endl;
-    }
-
-    delete enemy;
-}
 
 void Combat::fight(Character& player, Character& enemy) {
     cout << "The battle begins!" << endl;
@@ -299,34 +281,7 @@ void Combat::enemyTurn(Character& enemy, Character& player)
     enemy.attack(player);
 }
 
-void Combat::displayEnemyInfo(Character& enemy)
-{
-    cout << "Enemy:" << endl;
-    cout << "Name: " << enemy.getName() << endl;
-    cout << "Level: " << enemy.getLevel() << endl;
-    cout << "Health: " << enemy.getHealth() << "/" << enemy.getMaxHp() << endl;
-    if(auto* wizard = dynamic_cast<Wizard*>(&enemy))
-    {
-        cout << "Mana: " << wizard->getMana() << "/" << wizard->getMaxMana() << endl;
-    }
-    if(auto* warrior = dynamic_cast<Warrior*>(&enemy))
-    {
-        cout << "Shield: " << warrior->getShield() << "/" << warrior->getMaxShield() << endl;
-    }
-    cout << "Weapon: " << enemy.getSelectedWeapon()->getName() << endl;
-    if(auto* melee = dynamic_cast<Melee*>(enemy.getSelectedWeapon()))
-    {
-        cout << "Durability: " << melee->getDurability() << "/" << melee->getMaxDurability() << endl;
-    }
-    if(auto* magic = dynamic_cast<Magic*>(enemy.getSelectedWeapon()))
-    {
-        cout << "Mana cost: " << magic->getManaCost() << endl;
-    }
-    if(auto* ranged = dynamic_cast<Ranged*>(enemy.getSelectedWeapon()))
-    {
-        cout << "Ammo: " << ranged->getAmmo() << "/" << ranged->getMaxAmmo() << endl;
-    }
-}
+
 
 void Combat::displayCombatInfo(const Character& player, const Character& enemy) {
     cout << "Player: " << player.getName() << " | Health: " << player.getHealth() << "/" << player.getMaxHp() << endl;
@@ -347,27 +302,7 @@ void Combat::displayFleeMessage(const Character& player)
     displayDefeatMessage(player);
 }
 
-Character* Combat::generateRandomEnemy(int playerLevel)
-{
-    int enemyLevel = rand() % playerLevel + 1; // Enemy level between 1 and player's level
-    int enemyType = rand() % 3; // Random enemy type
-    string enemyName = "Enemy"; // Default name
-    switch (enemyType)
-    {
-    case 0:
-        enemyName = "Fallen Warrior";
-        return new Warrior(enemyName, enemyLevel);
-    case 1:
-        enemyName = "Dark Wizard";
-        return new Wizard(enemyName, enemyLevel);
-    case 2:
-        enemyName = "Shadow Archer";
-        return new Archer(enemyName, enemyLevel);
-    default:
-        enemyName = "Unknown Enemy";
-        return new Warrior(enemyName, enemyLevel);
-    }
-}
+
 
 bool Combat::flee(Character& player) {
     return InputHandler::getYesNoInput("Do you want to flee the battle?");
