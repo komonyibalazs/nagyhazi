@@ -4,7 +4,7 @@
 using namespace std;
 
 void MenuManager::displayMainMenu() {
-    cout << "\nMAIN MENU" << endl;
+    cout << "MAIN MENU" << endl;
     cout << "1. Wander in the wilderness" << endl;
     cout << "2. Check your inventory" << endl;
     cout << "3. Check your character info" << endl;
@@ -13,15 +13,16 @@ void MenuManager::displayMainMenu() {
 }
 
 void MenuManager::displayCharacterSelectionMenu(const string& playerName) {
-    cout << "\nWelcome " << playerName << "!" << endl;
-    cout << "\nChoose your character class:" << endl;
+    cout << "Welcome " << playerName << "!" << endl;
+    cout << endl;
+    cout << "Choose your character class:" << endl;
     cout << "1. Warrior" << endl;
     cout << "2. Wizard" << endl;
     cout << "3. Archer" << endl;
 }
 
 void MenuManager::displayCombatMenu() {
-    cout << "\nCOMBAT MENU" << endl;
+    cout << "Your turn!" << endl;
     cout << "1. Attack" << endl;
     cout << "2. Heal" << endl;
     cout << "3. Flee" << endl;
@@ -31,7 +32,7 @@ void MenuManager::displayCombatMenu() {
 }
 
 void MenuManager::displayPreCombatMenu() {
-    cout << "\nPRE-COMBAT MENU" << endl;
+    cout << "PRE-COMBAT MENU" << endl;
     cout << "1. Take a closer look" << endl;
     cout << "2. Back to menu" << endl;
     cout << "3. Quit game" << endl;
@@ -39,7 +40,6 @@ void MenuManager::displayPreCombatMenu() {
 
 void MenuManager::displayLookMenu()
 {
-    cout << endl;
     cout << "1. Fight the enemy" << endl;
     cout << "2. Go deeper" << endl;
     cout << "3. Return" << endl;
@@ -47,11 +47,11 @@ void MenuManager::displayLookMenu()
 }
 
 void MenuManager::displayInventoryMenu() {
-    cout << "\nYour inventory:" << endl;
+    cout << "Your inventory:" << endl;
 }
 
 void MenuManager::displayCharacterInfoMenu() {
-    cout << "\nCHARACTER INFO MENU" << endl;
+    cout << "CHARACTER INFO MENU" << endl;
     cout << "Choose an option:" << endl;
     cout << "1. Display Character Info" << endl;
     cout << "2. Display Weapon Info" << endl;

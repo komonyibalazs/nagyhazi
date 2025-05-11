@@ -13,6 +13,7 @@ public:
 	~Warrior();
 	unsigned getShield() const;
 	unsigned getMaxShield() const;
+	void setShield(unsigned shield);
 	void levelUp();
 	void regenerate();
 	void changeHealth(int amount);

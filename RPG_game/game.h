@@ -6,6 +6,9 @@ class Game {
 public:
     // A játék elindítása
     static void start();
+    static void displayCharacterInfo(Character* player);
+    static void displayWeaponInfo(const Character& player);
+    static void displayEnemyInfo(Character& enemy);
 
 private:
     // Játékos nevének bekérése
@@ -18,9 +21,6 @@ private:
     static void wander(Character* player);
 
     //displayInfo
-    static void displayCharacterInfo(Character* player);
-    static void displayWeaponInfo(const Character& player);
-    static void displayEnemyInfo(Character& enemy);
     // Játék vége
     static void end(Character*& player);
 };

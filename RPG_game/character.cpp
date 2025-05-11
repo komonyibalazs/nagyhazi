@@ -247,6 +247,7 @@ void Character::displayWeapons() const
 		cout << i + 1 << ". " << weapons[i]->getName() << endl;
 	}
 	cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << " (" << selectedWeaponIndex + 1 << ".)" << endl;
+	cout << endl;
 }
 
 bool Character::checkLevelUp() const

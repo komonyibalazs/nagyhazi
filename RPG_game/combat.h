@@ -3,13 +3,18 @@
 
 class Combat {
 public:
-    // Harci folyamat indítása
-    static void start(Character& player);
+    // Harc elindítása a játékos és az ellenség között
+    static void start(Character& player, Character& enemy);
+
 private:
-    // Harci kör kezelése
+    // Harci körök kezelése
+    static void playerTurn(Character& player, Character& enemy);
     static void enemyTurn(Character& enemy, Character& player);
 
-    // Ellenség generálása
+    // Segédmetódusok a harc során
+    static void displayCombatInfo(const Character& player, const Character& enemy);
+    static void displayVictoryMessage(const Character& player);
+    static void displayDefeatMessage(const Character& player);
 
     // Harci döntések
     static bool flee(Character& player);
@@ -17,20 +22,6 @@ private:
     static bool needRepair(Character& player);
     static bool changeWeapon(Character& player);
 
-    // Segédmetódusok a harc során
-    static void displayCombatInfo(const Character& player, const Character& enemy);
-    static void displayVictoryMessage(const Character& player);
-    static void displayDefeatMessage(const Character& player);
-    static void displayFleeMessage(const Character& player);
-
-    // Harci menü opciók
-    static void fight(Character& player, Character& enemy);
-    static void playerTurn(Character& player, Character& enemy);
-
-
     // Szintlépés utáni jutalmak kezelése
     static void manageLevelUpRewards(Character& player);
-
-    // Kilépés megerõsítése
-    static bool quitGame();
 };

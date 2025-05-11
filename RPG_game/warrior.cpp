@@ -29,6 +29,11 @@ unsigned Warrior::getMaxShield() const
 	return maxShield;
 }
 
+void Warrior::setShield(unsigned shield)
+{
+	this->shield = shield;
+}
+
 void Warrior::levelUp()
 {
 	if (xp >= maxXp)
