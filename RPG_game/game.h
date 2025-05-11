@@ -1,14 +1,21 @@
 #pragma once
-#include <iostream>
-#include "combat.h"
+#include <string>
 #include "character.h"
-class Game
-{
-private:
-	static void chooseCharacter(Character*& player);
-	static void printMenu(const std::string& name);
-	static void end(Character*& player);
-public:
-	static void start();
-};
 
+class Game {
+public:
+    // A játék elindítása
+    static void start();
+
+private:
+    // Játékos nevének bekérése
+    static std::string getPlayerName();
+
+    // Karakter kiválasztása
+    static void chooseCharacter(Character*& player, const std::string& playerName);
+    //displayInfo
+    static void displayCharacterInfo(Character* player);
+    static void displayWeaponInfo(const Character& player);
+    // Játék vége
+    static void end(Character*& player);
+};

@@ -1,43 +1,40 @@
 #pragma once
 #include "character.h"
-#include "warrior.h"
-#include "wizard.h"
-#include "archer.h"
-#include <string>
-#include <cstdlib> // rand(), srand()
-#include <ctime>   // time()
 
 class Combat {
 public:
+    // Harci folyamat indítása
     static void start(Character& player);
 
 private:
-
-	static void wander(Character& player);
-	static void watchEnemy(Character& player, Character* enemy);
-	static void fight(Character& player, Character& enemy);
-	static Character* generateRandomEnemy(int playerLevel);
-	static void manageLevelUpRewards(Character& player);
-
-    static void playerTurn(Character& player, Character& enemy);
+    // Harci kör kezelése
     static void enemyTurn(Character& enemy, Character& player);
 
-	static bool quitGame();
-	static bool flee(const Character& player);
-	static bool needHeal(Character& player);
-	static bool needRepair(Character& player); 
-	static bool changeWeapon(Character& player);
-	
-	static void displayCombatInfo(const Character& player, const Character& enemy);
-	static void displayVictoryMessage(const Character& player);
-	static void displayDefeatMessage(const Character& player);
-	static void displayFleeMessage(const Character& player);
-	static void displayEnemyAttackMessage(const Character& enemy, const Character& player);
-	static void displayPlayerAttackMessage(const Character& player, const Character& enemy);
-	
-	static void displayMenu();
-	static void displayInventory(const Character& player);
-	static void displayCharacterInfo(Character& player);
-	static void displayWeaponInfo(const Character& player);
-	static void displayEnemyInfo(Character& enemy);
+    // Ellenség generálása
+    static Character* generateRandomEnemy(int playerLevel);
+
+    // Harci döntések
+    static bool flee(Character& player);
+    static bool needHeal(Character& player);
+    static bool needRepair(Character& player);
+    static bool changeWeapon(Character& player);
+
+    // Segédmetódusok a harc során
+    static void displayCombatInfo(const Character& player, const Character& enemy);
+    static void displayEnemyInfo(Character& enemy);
+    static void displayVictoryMessage(const Character& player);
+    static void displayDefeatMessage(const Character& player);
+    static void displayFleeMessage(const Character& player);
+
+    // Harci menü opciók
+    static void watchEnemy(Character& player, Character* enemy);
+    static void fight(Character& player, Character& enemy);
+    static void playerTurn(Character& player, Character& enemy);
+
+
+    // Szintlépés utáni jutalmak kezelése
+    static void manageLevelUpRewards(Character& player);
+
+    // Kilépés megerõsítése
+    static bool quitGame();
 };

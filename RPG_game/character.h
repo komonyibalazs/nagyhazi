@@ -7,7 +7,6 @@
 #include "melee.h"
 #include "magic.h"
 #include "ranged.h"
-#include "repairable.h"
 
 class Character
 {

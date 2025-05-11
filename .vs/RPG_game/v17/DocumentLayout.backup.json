@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\melee.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\magic.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\ranged.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\menu_manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\menu_manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\combat.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,54 +42,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "melee.h",
-              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.h",
-              "RelativeDocumentMoniker": "RPG_game\\melee.h",
-              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\melee.h",
-              "RelativeToolTip": "RPG_game\\melee.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAVAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "game.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\game.h",
+              "RelativeDocumentMoniker": "RPG_game\\game.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\game.h",
+              "RelativeToolTip": "RPG_game\\game.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-11T16:52:00.766Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "magic.h",
-              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.h",
-              "RelativeDocumentMoniker": "RPG_game\\magic.h",
-              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\magic.h",
-              "RelativeToolTip": "RPG_game\\magic.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-11T16:51:11.568Z",
+              "WhenOpened": "2025-05-11T19:37:05.774Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ranged.h",
-              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.h",
-              "RelativeDocumentMoniker": "RPG_game\\ranged.h",
-              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\ranged.h",
-              "RelativeToolTip": "RPG_game\\ranged.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
+              "Title": "combat.h",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.h",
+              "RelativeDocumentMoniker": "RPG_game\\combat.h",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.h",
+              "RelativeToolTip": "RPG_game\\combat.h",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-11T16:50:17.209Z",
+              "WhenOpened": "2025-05-11T18:54:05.249Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "menu_manager.cpp",
+              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\menu_manager.cpp",
+              "RelativeDocumentMoniker": "RPG_game\\menu_manager.cpp",
+              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\menu_manager.cpp",
+              "RelativeToolTip": "RPG_game\\menu_manager.cpp",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-11T19:00:06.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "combat.cpp",
               "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
               "RelativeDocumentMoniker": "RPG_game\\combat.cpp",
               "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
               "RelativeToolTip": "RPG_game\\combat.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4CAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACcAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-11T14:34:13.817Z",
+              "WhenOpened": "2025-05-11T18:02:09.558Z",
               "EditorCaption": ""
             }
           ]

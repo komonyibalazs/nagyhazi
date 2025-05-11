@@ -172,7 +172,7 @@ void Character::repairSelected()
 
 	Weapon* weapon = weapons[selectedWeaponIndex].get();
 
-	Repairable* repairableWeapon = dynamic_cast<Repairable*>(weapon);
+	Melee* repairableWeapon = dynamic_cast<Melee*>(weapon);
 	if (!repairableWeapon) {
 		cout << "There is no need to repair this weapon!" << endl;
 		return;
@@ -243,7 +243,6 @@ void Character::displayWeapons() const
 		cout << "No weapons in inventory!" << endl;
 		return;
 	}
-	cout << "Weapons in inventory:" << endl;
 	for (size_t i = 0; i < weapons.size(); ++i) {
 		cout << i + 1 << ". " << weapons[i]->getName() << endl;
 	}

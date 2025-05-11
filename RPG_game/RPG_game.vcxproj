@@ -132,8 +132,10 @@
     <ClInclude Include="character.h" />
     <ClInclude Include="combat.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="input_handler.h" />
     <ClInclude Include="magic.h" />
     <ClInclude Include="melee.h" />
+    <ClInclude Include="menu_manager.h" />
     <ClInclude Include="ranged.h" />
     <ClInclude Include="warrior.h" />
     <ClInclude Include="weapon.h" />
@@ -144,13 +146,18 @@
     <ClCompile Include="character.cpp" />
     <ClCompile Include="combat.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="input_handler.cpp" />
     <ClCompile Include="magic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="melee.cpp" />
+    <ClCompile Include="menu_manager.cpp" />
     <ClCompile Include="ranged.cpp" />
     <ClCompile Include="warrior.cpp" />
     <ClCompile Include="weapon.cpp" />
     <ClCompile Include="wizard.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

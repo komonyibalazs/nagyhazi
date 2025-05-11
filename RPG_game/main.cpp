@@ -4,11 +4,6 @@
 
 using namespace std;
 
-/*
-TEENDÕK: yes/no kérdés legyen y/n is ne csak yes/no
-*/
-
-
 int main()
 {
 	Game::start();
