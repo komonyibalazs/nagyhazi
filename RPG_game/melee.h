@@ -17,6 +17,7 @@ public:
 	void use() override;
 	
 	unsigned getDurability() const override;
+	unsigned getMaxDurability() const;
 	bool isBroken() const override;
 	bool isFullyRepaired() const override;
 	void repair() override;

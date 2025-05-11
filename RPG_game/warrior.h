@@ -11,7 +11,8 @@ public:
 	Warrior(std::string name);
 	Warrior(std::string name, unsigned level);
 	~Warrior();
-	int getShield() const;
+	unsigned getShield() const;
+	unsigned getMaxShield() const;
 	void levelUp();
 	void regenerate();
 	void changeHealth(int amount);

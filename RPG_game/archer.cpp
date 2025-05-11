@@ -28,7 +28,7 @@ void Archer::levelUp()
 {
 	if (xp >= maxXp)
 	{
-		maxHp = 100 + (level - 1) * 50;
+		maxHp = 100 + level * 50;
 		hp = maxHp;
 	}
 	Character::levelUp();

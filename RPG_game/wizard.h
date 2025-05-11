@@ -12,6 +12,7 @@ public:
 	Wizard(std::string name, unsigned level);
 	~Wizard();
 	unsigned getMana() const;
+	unsigned getMaxMana() const;
 	void changeMana(int amount);
 	void levelUp();
 	void regenerate();

@@ -12,6 +12,9 @@ public:
     static void start(Character& player);
 
 private:
+
+	static bool quitGame();
+	static void wander(Character& player);
 	static void fight(Character& player, Character& enemy);
 	static Character* generateRandomEnemy(int playerLevel);
 	static void manageLevelUpRewards(Character& player);
@@ -30,4 +33,10 @@ private:
 	static void displayFleeMessage(const Character& player);
 	static void displayEnemyAttackMessage(const Character& enemy, const Character& player);
 	static void displayPlayerAttackMessage(const Character& player, const Character& enemy);
+	
+	static void displayMenu();
+	static void displayInventory(const Character& player);
+	static void displayCharacterInfo(Character& player);
+	static void displayWeaponInfo(const Character& player);
+	static void displayEnemyInfo(Character& enemy);
 };

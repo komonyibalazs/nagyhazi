@@ -24,6 +24,11 @@ unsigned Wizard::getMana() const
 	return mana;
 }
 
+unsigned Wizard::getMaxMana() const
+{
+	return maxMana;
+}
+
 void Wizard::changeMana(int amount)
 {
 	int mana = this->mana;
@@ -40,12 +45,12 @@ void Wizard::levelUp()
 {
 	if (xp >= maxXp)
 	{
-		maxHp = 100 + (level - 1) * 50;
+		maxHp = 100 + level * 50;
 		hp = maxHp;
-		maxMana *= 100 + (level-1) * 50;
+		maxMana *= 100 + level * 50;
 		mana = maxMana;
 	}
-Character::levelUp();
+	Character::levelUp();
 }
 
 void Wizard::regenerate()
@@ -64,7 +69,13 @@ void Wizard::regenerate()
 void Wizard::attack(Character& target)
 {
 	Magic* magicWeapon = (Magic*)getSelectedWeapon();
-	changeMana(-(int)magicWeapon->getManaCost());
+	if(magicWeapon) changeMana(-(int)magicWeapon->getManaCost());
 	Character::attack(target);
+}
+
+void Wizard::wonTheBattle()
+{
+	mana = maxMana;
+	Character::wonTheBattle();
 }
 

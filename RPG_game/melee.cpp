@@ -41,6 +41,11 @@ unsigned Melee::getDurability() const
 	return durability;
 }
 
+unsigned Melee::getMaxDurability() const
+{
+	return maxDurability;
+}
+
 bool Melee::isBroken() const
 {
 	return durability==0;

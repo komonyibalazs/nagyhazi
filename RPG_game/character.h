@@ -7,9 +7,6 @@
 #include "melee.h"
 #include "magic.h"
 #include "ranged.h"
-#include "warrior.h"
-#include "archer.h"
-#include "wizard.h"
 #include "repairable.h"
 
 class Character
@@ -27,7 +24,8 @@ protected:
 	std::vector<std::unique_ptr<Weapon>> weapons;
 	unsigned selectedWeaponIndex;
 
-
+	bool gotReward = false;
+	bool isFleeing = false;
 public:
 	Character(std::string name);
 	Character(std::string name, unsigned level);
@@ -50,6 +48,10 @@ public:
 	
 	virtual void levelUp();
 	virtual void wonTheBattle();
+	void setReward(bool gotReward);
+	bool wasRewarded() const;
+	void setFleeing(bool isFleeing);
+	bool getFleeing() const;
 
 	void selectWeapon(unsigned index);
 	void takeWeapon(Weapon* weapon);

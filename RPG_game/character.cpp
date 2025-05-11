@@ -56,6 +56,36 @@ bool Character::isAlive() const
 void Character::wonTheBattle()
 {
 	hp = maxHp;
+	Ranged* rangedWeapon = dynamic_cast<Ranged*>(getSelectedWeapon());
+	if (rangedWeapon) {
+		rangedWeapon->reload();
+	}
+	Melee* meleeWeapon = dynamic_cast<Melee*>(getSelectedWeapon());
+	if (meleeWeapon) {
+		meleeWeapon->repair();
+	}
+
+}
+
+void Character::setReward(bool gotReward)
+{
+	this->gotReward = gotReward;
+}
+
+
+bool Character::wasRewarded() const
+{
+	return gotReward;
+}
+
+void Character::setFleeing(bool isFleeing)
+{
+	this->isFleeing = isFleeing;
+}
+
+bool Character::getFleeing() const
+{
+	return isFleeing;
 }
 
 unsigned Character::getLevel() const
@@ -90,6 +120,7 @@ void Character::levelUp()
 {
 	if (xp >= maxXp)
 	{
+		gotReward = false;
 		level++;
 		xp -= maxXp;
 		maxXp = 100 + (level-1)*20;
@@ -114,7 +145,6 @@ void Character::takeWeapon(Weapon* weapon)
 	}
 	if (weapon) {
 		weapons.push_back(unique_ptr<Weapon>(weapon));
-		cout << "Weapon taken: " << weapon->getName() << endl;
 	}
 	else
 	{
@@ -165,7 +195,6 @@ void Character::clearWeapons()
 	}
 	weapons.clear();
 	selectedWeaponIndex = 0;
-	cout << "All weapons cleared from inventory." << endl;
 }
 
 const vector<unique_ptr<Weapon>>& Character::getWeapons() const
@@ -200,7 +229,7 @@ void Character::replaceWeapon(int index, Weapon* newWeapon)
 	}
 	if (newWeapon) {
 		weapons[index].reset(newWeapon);
-		cout << "Replaced weapon at index " << index << " with " << newWeapon->getName() << endl;
+		cout << "Replaced weapon at slot " << index+1 << " with " << newWeapon->getName() << endl;
 	}
 	else
 	{
@@ -218,12 +247,13 @@ void Character::displayWeapons() const
 	for (size_t i = 0; i < weapons.size(); ++i) {
 		cout << i + 1 << ". " << weapons[i]->getName() << endl;
 	}
-	cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
+	cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << " (" << selectedWeaponIndex + 1 << ".)" << endl;
 }
 
 bool Character::checkLevelUp() const
 {
-	return level % 5 == 0;
+	if(!gotReward) return level % 2 == 0;
+	return false;
 }
 
 void Character::regenerate()

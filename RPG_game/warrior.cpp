@@ -19,18 +19,23 @@ Warrior::~Warrior()
 	clearWeapons();
 }
 
-int Warrior::getShield() const
+unsigned Warrior::getShield() const
 {
     return shield;
+}
+
+unsigned Warrior::getMaxShield() const
+{
+	return maxShield;
 }
 
 void Warrior::levelUp()
 {
 	if (xp >= maxXp)
 	{
-		maxHp = 100 + (level - 1) * 50;
+		maxHp = 100 + level * 50;
 		hp = maxHp;
-		maxShield = 100 + (level - 1) * 50;
+		maxShield = 100 + level * 50;
 		shield = maxShield;
 	}
 	Character::levelUp();
@@ -66,6 +71,12 @@ void Warrior::changeHealth(int amount)
 	{
 		hp = 0;
 	}
+}
+
+void Warrior::wonTheBattle()
+{
+	shield = maxShield;
+	Character::wonTheBattle();
 }
 
 
