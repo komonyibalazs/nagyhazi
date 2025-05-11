@@ -29,7 +29,6 @@ void Combat::start(Character& player)
 		case 5:
 			if (quitGame())
 			{
-				cout << "Exiting the game..." << endl;
 				return;
 			}
 			break;
@@ -267,7 +266,7 @@ void Combat::playerTurn(Character& player, Character& enemy)
 			if (changeWeapon(player))
 			{
 				cout << "You have " << player.getWeapons().size() << " weapons." << endl;
-				cout << "Current weapon: " << player.getSelectedWeapon()->getName() << endl;
+				cout << "Current weapon: " << player.getSelectedWeapon()->getName() << "in this slot: " << player.getSelectedIndex()+1 << endl;
 				cout << "Select a weapon slot (1-" << player.getWeapons().size() << "): ";
 				int index;
 				cin >> index;
@@ -289,8 +288,11 @@ void Combat::playerTurn(Character& player, Character& enemy)
 			cout << "You can't change weapons!" << endl;
 			break;
 		case 6:
+			cout << endl;
 			displayCharacterInfo(player);
+			cout << endl;
 			displayWeaponInfo(player);
+			cout << endl;
 			displayEnemyInfo(enemy);
 			break;
 		default:
@@ -315,11 +317,11 @@ bool Combat::flee(const Character& player)
 	{
 		cout << "Are you sure you want to flee? (yes/no): ";
 		cin >> choice;
-		if (choice == "yes")
+		if (choice == "yes" || choice == "y")
 		{
 			return true;
 		}
-		else if (choice == "no")
+		else if (choice == "no" || choice == "n")
 		{
 			cout << "You chose to stay and fight!" << endl;
 			return false;
@@ -352,7 +354,6 @@ bool Combat::needRepair(Character& player)
 	}
 	return false;
 }
-
 
 bool Combat::changeWeapon(Character& player)
 {
@@ -475,7 +476,7 @@ void Combat::displayWeaponInfo(const Character& player)
 
 void Combat::displayEnemyInfo(Character& enemy)
 {
-	cout << "Enemy info:" << endl;
+	cout << "Enemy:" << endl;
 	cout << "Name: " << enemy.getName() << endl;
 	cout << "Level: " << enemy.getLevel() << endl;
 	cout << "Health: " << enemy.getHealth() << "/" << enemy.getMaxHp() << endl;
@@ -532,7 +533,8 @@ void Combat::wander(Character& player)
 
 		// Pre-combat menu
 		cout << "1. Watch enemy" << endl;
-		cout << "2. Quit game" << endl;
+		cout << "2. Back to menu" << endl;
+		cout << "3. Quit game" << endl;
 		cout << "Choice: ";
 		int choice;
 		std::cin >> choice;
@@ -545,11 +547,14 @@ void Combat::wander(Character& player)
 			watchEnemy(player, enemy);
 			break;
 		case 2:
+		{
+			return;
+		}
+		case 3:
 			if(quitGame())
 			{
-				cout << "Exiting the game..." << endl;
 				delete enemy;
-				return;
+				exit(0);
 			}
 			break;
 		default:
@@ -573,8 +578,10 @@ void Combat::watchEnemy(Character& player, Character* enemy)
 {
 	while (true)
 	{
+		cout << endl;
 		cout << "1. Fight the enemy" << endl;
-		cout << "2. Go away" << endl;
+		cout << "2. Go deeper" << endl;
+		cout << "3. Return" << endl;
 		cout << "3. Quit game" << endl;
 		cout << "Choice: ";
 		int choice;
@@ -597,9 +604,12 @@ void Combat::watchEnemy(Character& player, Character* enemy)
 			delete enemy;
 			return;
 		case 3:
+			delete enemy;
+			Combat::start(player);
+			break;
+		case 4:
 			if (quitGame())
 			{
-				cout << "Exiting the game..." << endl;
 				delete enemy;
 				exit(0);
 			}
@@ -618,12 +628,12 @@ bool Combat::quitGame()
 	{
 		string response;
 		cin >> response;
-		if (response == "no")
+		if (response == "no" || response == "n")
 		{
 			cout << "Continuing your adventure..." << endl;
 			return false;
 		}
-		else if (response == "yes")
+		else if (response == "yes" || response == "y")
 		{
 			cout << "Thanks for playing!" << endl;
 			return true;

@@ -1,8 +1,7 @@
 #pragma once
 #include "weapon.h"
-#include "repairable.h"
 
-class Melee : public Weapon, public Repairable
+class Melee : public Weapon
 {
 	double sharpness;
 	unsigned durability;
@@ -16,11 +15,11 @@ public:
 	unsigned getDamage() const override;
 	void use() override;
 	
-	unsigned getDurability() const override;
+	unsigned getDurability() const;
 	unsigned getMaxDurability() const;
-	bool isBroken() const override;
-	bool isFullyRepaired() const override;
-	void repair() override;
+	bool isBroken() const;
+	bool isFullyRepaired() const;
+	void repair();
 	
 };
 

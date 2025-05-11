@@ -33,9 +33,6 @@
     <ClInclude Include="warrior.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="repairable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="combat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -45,13 +42,7 @@
     <ClInclude Include="ranged.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mana_consuming.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ammo_consuming.h">
+    <ClInclude Include="game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,9 +77,8 @@
     <ClCompile Include="ranged.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram11.cd" />
-    <None Include="ClassDiagram1.cd" />
+    <ClCompile Include="game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

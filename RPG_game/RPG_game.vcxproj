@@ -128,16 +128,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ammo_consuming.h" />
     <ClInclude Include="archer.h" />
     <ClInclude Include="character.h" />
     <ClInclude Include="combat.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="magic.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="mana_consuming.h" />
     <ClInclude Include="melee.h" />
     <ClInclude Include="ranged.h" />
-    <ClInclude Include="repairable.h" />
     <ClInclude Include="warrior.h" />
     <ClInclude Include="weapon.h" />
     <ClInclude Include="wizard.h" />
@@ -146,6 +143,7 @@
     <ClCompile Include="archer.cpp" />
     <ClCompile Include="character.cpp" />
     <ClCompile Include="combat.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="magic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="melee.cpp" />
@@ -153,10 +151,6 @@
     <ClCompile Include="warrior.cpp" />
     <ClCompile Include="weapon.cpp" />
     <ClCompile Include="wizard.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram11.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

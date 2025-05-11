@@ -1,8 +1,7 @@
 #pragma once
 #include "weapon.h"
-#include "ammo_consuming.h"
 
-class Ranged : public Weapon, public AmmoConsuming
+class Ranged : public Weapon
 {
 	unsigned ammo;
 	unsigned maxAmmo;
@@ -12,9 +11,9 @@ public:
 	~Ranged() override = default;
 	void use() override;
 
-	unsigned getAmmo() const override;
-	unsigned getMaxAmmo() const override;
-	bool isOutOfAmmo() const override;
-	void reload() override;
+	unsigned getAmmo() const ;
+	unsigned getMaxAmmo() const;
+	bool isOutOfAmmo() const;
+	void reload();
 };
 

@@ -13,7 +13,6 @@ public:
 
 private:
 
-	static bool quitGame();
 	static void wander(Character& player);
 	static void watchEnemy(Character& player, Character* enemy);
 	static void fight(Character& player, Character& enemy);
@@ -23,6 +22,7 @@ private:
     static void playerTurn(Character& player, Character& enemy);
     static void enemyTurn(Character& enemy, Character& player);
 
+	static bool quitGame();
 	static bool flee(const Character& player);
 	static bool needHeal(Character& player);
 	static bool needRepair(Character& player); 
