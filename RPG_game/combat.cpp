@@ -18,20 +18,19 @@ void Combat::start(Character& player, Character& enemy) {
         // Ellenõrizzük, hogy a játékos vagy az ellenség meghalt-e
         if (!player.isAlive()) {
             displayDefeatMessage(player);
-            break;
+            return;
         }
 
         if (!enemy.isAlive()) {
-            displayVictoryMessage(player);
-			player.changeHealth(player.getMaxHp()); // Játékos gyógyítása
-			if (auto* wizard = dynamic_cast<Wizard*>(&player)) wizard->changeMana(wizard->getMaxMana()); // Varázsló mana gyógyítása
-			if (auto* warrior = dynamic_cast<Warrior*>(&player)) warrior->setShield(warrior->getMaxShield()); // Harcos pajzs gyógyítása
-            player.gainXp(enemy.getLevel() * 10); // XP növelés az ellenség szintjének függvényében
-            if(player.checkLevelUp())
-                manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
+            player.wonTheBattle(enemy);
+            displayVictoryMessage(player, enemy);
             getchar();
 			system("cls");
-            break;
+            if (player.checkLevelUp())
+            {
+                manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
+            }
+            return;
         }
 
         // Játékos köre
@@ -44,7 +43,6 @@ void Combat::start(Character& player, Character& enemy) {
         if (enemy.isAlive()) {
 			system("cls");
             enemyTurn(enemy, player);
-            cout << "(Press Enter to continue...)" << endl;
             getchar();
 			system("cls");
         }
@@ -62,16 +60,17 @@ void Combat::playerTurn(Character& player, Character& enemy) {
         case 1: // Támadás
 			system("cls");
             player.attack(enemy);
-            cout << "(Press Enter to continue...)" << endl;
             getchar();
             return;
 
-        case 2: // Gyógyítás
+		case 2: // Gyógyítás és mana visszatöltés (wizard esetén)
 			system("cls");
             if (needHeal(player)) {
                 player.regenerate();
                 cout << "You healed yourself!" << endl;
                 getchar();
+				system("cls");
+                return;
             }
             else {
                 cout << "You don't need to heal!" << endl;
@@ -80,7 +79,24 @@ void Combat::playerTurn(Character& player, Character& enemy) {
 			system("cls");
             break;
 
-        case 3: // Menekülés
+
+        case 3: // Fegyver javítása
+			system("cls");
+            if (needRepair(player)) {
+                player.repairSelected();
+                cout << "Your weapon has been repaired!" << endl;
+                getchar();
+				system("cls");
+                return;
+            }
+            else {
+                cout << "Your weapon doesn't need repairs!" << endl;
+                getchar();
+			    system("cls");
+                break;
+            }
+
+        case 4: // Menekülés
 			system("cls");
             if (flee(player)) {
 				system("cls");
@@ -89,20 +105,6 @@ void Combat::playerTurn(Character& player, Character& enemy) {
 				system("cls");
 				player.setFleeing(true);
                 return;
-            }
-			system("cls");
-            break;
-
-        case 4: // Fegyver javítása
-			system("cls");
-            if (needRepair(player)) {
-                player.repairSelected();
-                cout << "Your weapon has been repaired!" << endl;
-                getchar();
-            }
-            else {
-                cout << "Your weapon doesn't need repairs!" << endl;
-				getchar();
             }
 			system("cls");
             break;
@@ -141,6 +143,22 @@ void Combat::playerTurn(Character& player, Character& enemy) {
 
 void Combat::enemyTurn(Character& enemy, Character& player) {
     cout << "Enemy's turn!" << endl;
+    if(auto* weapon = dynamic_cast<Melee*>(enemy.getSelectedWeapon()))
+	{
+		if (weapon->isBroken())
+		{
+            weapon->repair();
+            return;
+		}
+	}
+	else if (auto* weapon = dynamic_cast<Ranged*>(enemy.getSelectedWeapon()))
+	{
+		if (weapon->isOutOfAmmo())
+		{
+            weapon->reload();
+			return;
+		}
+	}
     enemy.attack(player);
 }
 
@@ -150,8 +168,10 @@ void Combat::displayCombatInfo(const Character& player, const Character& enemy) 
     cout << endl;
 }
 
-void Combat::displayVictoryMessage(const Character& player) {
+void Combat::displayVictoryMessage(const Character& player, const Character& enemy) {
     cout << "You have won the battle, " << player.getName() << "!" << endl;
+    cout << endl;
+	cout << "+" << enemy.getLevel()*50 << " experience points" << endl;
     cout << endl;
 }
 
@@ -164,8 +184,20 @@ bool Combat::flee(Character& player) {
     return InputHandler::getYesNoInput("Do you want to flee the battle?");
 }
 
-bool Combat::needHeal(Character& player) {
-    return player.getHealth() < player.getMaxHp();
+bool Combat::needHeal(Character& player) 
+{
+	if (auto* warrior = dynamic_cast<Warrior*>(&player))
+	{
+		return player.getHealth() < player.getMaxHp() || warrior->getShield() < warrior->getMaxShield();
+	}
+	else if (auto* wizard = dynamic_cast<Wizard*>(&player))
+	{
+		return player.getHealth() < player.getMaxHp() || wizard->getMana() < wizard->getMaxMana();
+	}
+	else if (auto* archer = dynamic_cast<Archer*>(&player))
+	{
+		return player.getHealth() < player.getMaxHp();
+	}
 }
 
 bool Combat::needRepair(Character& player)
@@ -174,6 +206,10 @@ bool Combat::needRepair(Character& player)
     {
         return !melee->isFullyRepaired();
     }
+	else if (auto* ranged = dynamic_cast<Ranged*>(player.getSelectedWeapon()))
+	{
+		return ranged->getAmmo()<ranged->getMaxAmmo();
+	}
     return false;
 }
 
@@ -185,6 +221,8 @@ void Combat::manageLevelUpRewards(Character& player)
 {
 	system("cls");
     cout << "Congratulations! You've reached level " << player.getLevel() << " and found a new weapon!" << endl;
+    cout << endl;
+	player.setReward(true);
     Weapon* newWeapon = nullptr;
     string name = "Weapon";
     if (dynamic_cast<Warrior*>(&player))
@@ -259,6 +297,7 @@ void Combat::manageLevelUpRewards(Character& player)
 
     cout << "New weapon: " << newWeapon->getName() << endl;
     cout << "Weapon damage: " << newWeapon->getDamage() << endl;
+    cout << endl;
     while (true)
     {
         if (InputHandler::getYesNoInput("Do you want to add this weapon to your inventory?"))
@@ -297,10 +336,9 @@ void Combat::manageLevelUpRewards(Character& player)
         {
 			system("cls");
             cout << "You chose not to add the new weapon." << endl;
-            getchar();
+            cout << endl;
             delete newWeapon; // Clean up memory
             return;
         }
-		system("cls");
     }
 }

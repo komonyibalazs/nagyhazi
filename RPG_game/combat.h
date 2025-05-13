@@ -13,7 +13,7 @@ private:
 
     // Segédmetódusok a harc során
     static void displayCombatInfo(const Character& player, const Character& enemy);
-    static void displayVictoryMessage(const Character& player);
+    static void displayVictoryMessage(const Character& player, const Character& enemy);
     static void displayDefeatMessage(const Character& player);
 
     // Harci döntések

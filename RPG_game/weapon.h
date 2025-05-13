@@ -13,7 +13,7 @@ public:
 
 	std::string getName() const;
 
-	virtual unsigned getDamage() const;
+	unsigned getDamage() const;
 	virtual void use() = 0;
 };
 

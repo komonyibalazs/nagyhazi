@@ -17,6 +17,6 @@ public:
 	void levelUp();
 	void regenerate();
 	void changeHealth(int amount);
-	void wonTheBattle() override;
+	void wonTheBattle(const Character&) override;
 };
 

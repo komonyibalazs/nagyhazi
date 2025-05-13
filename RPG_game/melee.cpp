@@ -3,21 +3,11 @@
 using namespace std;
 
 Melee::Melee(string name, unsigned damage, unsigned durability)
-	: Weapon(name, damage), durability(durability), maxDurability(durability), sharpness(100.0)
+	: Weapon(name, damage), durability(durability), maxDurability(durability)
 {}
 
 Melee::~Melee()
 {
-}
-
-unsigned Melee::getSharpness() const
-{
-	return sharpness;
-}
-
-unsigned Melee::getDamage() const
-{
-	return damage*sharpness/100.0;
 }
 
 void Melee::use()
@@ -25,10 +15,7 @@ void Melee::use()
 	if (!isBroken()) 
 	{
 		durability--;
-		unsigned trueDamage = damage*sharpness/100.0;
-		sharpness -= 5;
-		cout << name << " used successfully!" << endl;
-		cout << trueDamage << " damage dealt with: " << name << endl;
+		cout << "Using " << getName() << " with damage: " << getDamage() << endl;
 	}
 	else 
 	{
@@ -58,14 +45,12 @@ bool Melee::isFullyRepaired() const
 
 void Melee::repair()
 {
-	sharpness = 100.0;
 	if (!isFullyRepaired())
 	{
 		durability = maxDurability;
-		cout << name << " repaired successfully!" << endl;
 	}
 	else
 	{
-		cout << name << " is not broken and does not need repair!" << endl;
+		cout << name << " does not need any repair!" << endl;
 	}
 }

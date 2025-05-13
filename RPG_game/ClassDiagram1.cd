@@ -1,80 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Archer" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Archer">
+    <Position X="11.75" Y="9.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAABBAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAEAAAAA=</HashCode>
       <FileName>archer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Character" Collapsed="true">
-    <Position X="2.75" Y="3.5" Width="1.5" />
+  <Class Name="Character">
+    <Position X="15.5" Y="5.5" Width="3.75" />
     <TypeIdentifier>
       <HashCode>EABRACqBAIAECQAIAIkAAAABoBFEJSCAMABEEGEBKAA=</HashCode>
       <FileName>character.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Combat" Collapsed="true">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="Combat">
+    <Position X="23.5" Y="4" Width="5.25" />
     <TypeIdentifier>
-      <HashCode>AABAAAAIAgAEAgAkjCAIADAgAAECAAABAAAABAAQCUA=</HashCode>
+      <HashCode>AAAAAAAIAgAEAAAkACAAAAAgAAEAAAABAAAAAAAQAQA=</HashCode>
       <FileName>combat.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Game" Collapsed="true">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+  <Class Name="Game">
+    <Position X="23.5" Y="0.5" Width="4.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAAgAAAAgAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>gAACAQACAAAAAgAgAAAIACAAAAACAAAAAAAABAAACAA=</HashCode>
       <FileName>game.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Magic" Collapsed="true">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+  <Class Name="InputHandler">
+    <Position X="19" Y="3.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>EAAACAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>input_handler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Magic">
+    <Position X="5.25" Y="3.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAACAAAAAAAAAAAAAAAAACCBAAAAAAAAAA=</HashCode>
       <FileName>magic.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Melee" Collapsed="true">
-    <Position X="2.75" Y="1.75" Width="1.5" />
+  <Class Name="Melee">
+    <Position X="9.5" Y="3.5" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAACAAAAAQAAAIABAAABAAQAAFAAAAAQAAAE=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAIABAAABAAQAAFAAAAAQAAAE=</HashCode>
       <FileName>melee.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Ranged" Collapsed="true">
-    <Position X="5" Y="1.75" Width="1.5" />
+  <Class Name="MenuManager">
+    <Position X="19" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAABAEAAAAAAAAgAAAAQAAAhQAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>menu_manager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ranged">
+    <Position X="0.5" Y="3.5" Width="4.25" />
     <TypeIdentifier>
       <HashCode>ACAAIAAAAAAACAAAAAAAAAAAAAAIAAQABAAAAAAgAIA=</HashCode>
       <FileName>ranged.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Warrior" Collapsed="true">
-    <Position X="5" Y="4.75" Width="1.5" />
+  <Class Name="Warrior">
+    <Position X="20" Y="10.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>ACABACAAAAAAQAABAAEAAAAAAAAEIQAAAQAAAAAAAAA=</HashCode>
+      <HashCode>ACABACAAAAAAQBABAAEAAAAAAAAEIQAAAQAAAAAAAAA=</HashCode>
       <FileName>warrior.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Weapon" Collapsed="true">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+  <Class Name="Weapon">
+    <Position X="6" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>BAAACAAAAAAAgAAAAAAAAAAAAAAEAAgABAAEAAAAAAA=</HashCode>
       <FileName>weapon.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Wizard" Collapsed="true">
-    <Position X="2.75" Y="4.75" Width="1.5" />
+  <Class Name="Wizard">
+    <Position X="20" Y="6.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAABACAgABAAAAAAAAAAAAAAAAAAAQCAAAIAICgAACA=</HashCode>
       <FileName>wizard.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MenuManager" Collapsed="true">
-    <Position X="7.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAAAAAAgAAAAQAAABQAAAAAAAAAACAAAAA=</HashCode>
-      <FileName>menu_manager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

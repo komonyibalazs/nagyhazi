@@ -46,7 +46,7 @@ public:
 	void gainXp(unsigned gained);
 	
 	virtual void levelUp();
-	virtual void wonTheBattle();
+	virtual void wonTheBattle(const Character&);
 	void setReward(bool gotReward);
 	bool wasRewarded() const;
 	void setFleeing(bool isFleeing);

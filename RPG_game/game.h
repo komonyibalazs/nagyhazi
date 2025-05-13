@@ -17,10 +17,11 @@ private:
     // Funkciók
     static void chooseCharacter(Character*& player, const std::string& playerName);
     static Character* generateRandomEnemy(int playerLevel);
-    static void watchEnemy(Character& player, Character* enemy);
     static void wander(Character* player);
+    static void watchEnemy(Character& player, Character* enemy);
+	static void chooseInformation(Character*& player);
+	static void managePlayerRepair(Character*& player);
 
-    //displayInfo
     // Játék vége
-    static void end(Character*& player);
+    static void end(Character* player);
 };

@@ -49,9 +49,9 @@ void Warrior::levelUp()
 void Warrior::regenerate()
 {
 	Character::regenerate();
-	if (shield < maxShield && shield+maxShield*0.25<=maxShield)
+	if (shield < maxShield && shield+maxShield*0.5 <= maxShield)
 	{
-		shield += maxShield*0.25;
+		shield += maxShield*0.5;
 	}
     else
 	{
@@ -78,10 +78,10 @@ void Warrior::changeHealth(int amount)
 	}
 }
 
-void Warrior::wonTheBattle()
+void Warrior::wonTheBattle(const Character& enemy)
 {
 	shield = maxShield;
-	Character::wonTheBattle();
+	Character::wonTheBattle(enemy);
 }
 
 

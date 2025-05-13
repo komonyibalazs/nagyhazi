@@ -4,12 +4,11 @@
 using namespace std;
 
 void MenuManager::displayMainMenu() {
-    cout << "MAIN MENU" << endl;
+    cout << "BASE" << endl;
     cout << "1. Wander in the wilderness" << endl;
-    cout << "2. Check your inventory" << endl;
-    cout << "3. Check your character info" << endl;
-    cout << "4. Check your weapon info" << endl;
-    cout << "5. Quit game" << endl;
+	cout << "2  Reload, repair and regenerate" << endl;
+    cout << "3. Check your character information" << endl;
+    cout << "4. Quit game" << endl;
 }
 
 void MenuManager::displayCharacterSelectionMenu(const string& playerName) {
@@ -24,26 +23,25 @@ void MenuManager::displayCharacterSelectionMenu(const string& playerName) {
 void MenuManager::displayCombatMenu() {
     cout << "Your turn!" << endl;
     cout << "1. Attack" << endl;
-    cout << "2. Heal" << endl;
-    cout << "3. Flee" << endl;
-    cout << "4. Repair" << endl;
+    cout << "2. Regenerate" << endl;
+    cout << "3. Repair or reload" << endl;
+    cout << "4. Flee" << endl;
     cout << "5. Change weapon" << endl;
     cout << "6. Display Info" << endl;
 }
 
 void MenuManager::displayPreCombatMenu() {
-    cout << "PRE-COMBAT MENU" << endl;
+    cout << "DEEP DARK" << endl;
     cout << "1. Take a closer look" << endl;
-    cout << "2. Back to menu" << endl;
-    cout << "3. Quit game" << endl;
+	cout << "2. Check your character information" << endl;
+    cout << "3. Back to menu" << endl;
 }
 
 void MenuManager::displayLookMenu()
 {
-    cout << "1. Fight the enemy" << endl;
+	cout << "DEEP DARK" << endl;
+    cout << "1. Fight!" << endl;
     cout << "2. Go deeper" << endl;
-    cout << "3. Return" << endl;
-    cout << "3. Quit game" << endl;
 }
 
 void MenuManager::displayInventoryMenu() {
@@ -51,11 +49,12 @@ void MenuManager::displayInventoryMenu() {
 }
 
 void MenuManager::displayCharacterInfoMenu() {
-    cout << "CHARACTER INFO MENU" << endl;
+    cout << "INFO" << endl;
     cout << "Choose an option:" << endl;
-    cout << "1. Display Character Info" << endl;
-    cout << "2. Display Weapon Info" << endl;
-    cout << "3. Return to Main Menu" << endl;
+    cout << "1. Check character" << endl;
+    cout << "2. Check weapon" << endl;
+	cout << "3. Display inventory" << endl;
+    cout << "4. Back" << endl;
 }
 
 void MenuManager::displayQuitConfirmation() {

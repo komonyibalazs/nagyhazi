@@ -16,5 +16,5 @@ unsigned Magic::getManaCost() const
 
 void Magic::use()
 {
-	cout << "Using magic: " << getName() << " with damage: " << getDamage() << " and mana cost: " << getManaCost() << endl;
+	cout << "Using " << getName() << " with damage: " << getDamage() << " and mana cost: " << getManaCost() << endl;
 }

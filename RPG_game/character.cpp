@@ -15,7 +15,7 @@ Character::Character(string name, unsigned level) :
 {
 	this->maxHp = 100 + (level-1) * 50;
 	this->hp = maxHp;
-	this->maxXp = 100 + (level-1) * 20;
+	this->maxXp = level*100;
 	weapons.reserve(maxWeaponCount);
 }
 
@@ -53,8 +53,9 @@ bool Character::isAlive() const
 	return hp > 0;
 }
 
-void Character::wonTheBattle()
+void Character::wonTheBattle(const Character& enemy)
 {
+	gainXp(enemy.getLevel()*50);
 	hp = maxHp;
 	Ranged* rangedWeapon = dynamic_cast<Ranged*>(getSelectedWeapon());
 	if (rangedWeapon) {
@@ -64,7 +65,6 @@ void Character::wonTheBattle()
 	if (meleeWeapon) {
 		meleeWeapon->repair();
 	}
-
 }
 
 void Character::setReward(bool gotReward)
@@ -106,14 +106,7 @@ unsigned Character::getMaxExperience() const
 void Character::gainXp(unsigned gained)
 {
 	xp += gained;
-	if (xp >= maxXp)
-	{
-		levelUp();
-	}
-	else if (xp < 0)
-	{
-		xp = 0;
-	}
+	levelUp();
 }
 
 void Character::levelUp()
@@ -123,7 +116,7 @@ void Character::levelUp()
 		gotReward = false;
 		level++;
 		xp -= maxXp;
-		maxXp = 100 + (level-1)*20;
+		maxXp = level*100;
 	}
 }
 
@@ -184,8 +177,6 @@ void Character::repairSelected()
 	}
 
 	repairableWeapon->repair();
-
-	cout << weapon->getName() << " got repaired." << endl;
 }
 
 void Character::clearWeapons()
@@ -258,9 +249,9 @@ bool Character::checkLevelUp() const
 
 void Character::regenerate()
 {
-	if (hp < maxHp && hp+maxHp*0.25 <maxHp)
+	if (hp < maxHp && hp+maxHp*0.5 <maxHp)
 	{
-		hp += maxHp*0.25;
+		hp += maxHp*0.5;
 	}
 	else
 	{
@@ -275,9 +266,21 @@ void Character::attack(Character& target)
 		cout << name << " has no weapon selected to attack!" << endl;
 		return;
 	}
-	if (!target.isAlive()) {
-		cout << target.getName() << " is already dead!" << endl;
-		return;
+	if (auto rangedWeapon = dynamic_cast<Ranged*>(weapon))
+	{
+		if (rangedWeapon->isOutOfAmmo())
+		{
+			cout << "Out of ammo!" << endl;
+			return;
+		}
+	}
+	else if (auto meleeWeapon = dynamic_cast<Melee*>(weapon))
+	{
+		if (meleeWeapon->isBroken())
+		{
+			cout << "Weapon is broken!" << endl;
+			return;
+		}
 	}
 	unsigned damage = weapon->getDamage();
 	target.changeHealth(-(int)damage);

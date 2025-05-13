@@ -38,7 +38,6 @@ void Ranged::reload()
 	if (ammo < maxAmmo)
 	{
 		ammo = maxAmmo;
-		cout << "Reloading " << getName() << " to max ammo: " << maxAmmo <<endl;
 	}
 	else
 	{

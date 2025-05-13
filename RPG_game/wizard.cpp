@@ -56,9 +56,9 @@ void Wizard::levelUp()
 void Wizard::regenerate()
 {
 	Character::regenerate();
-	if (mana < maxMana && mana+maxMana*0.25 < maxMana)
+	if (mana < maxMana && mana+maxMana*0.5 < maxMana)
 	{
-		mana += maxMana*0.25;
+		mana += maxMana*0.5;
 	}
 	else
 	{
@@ -73,9 +73,9 @@ void Wizard::attack(Character& target)
 	Character::attack(target);
 }
 
-void Wizard::wonTheBattle()
+void Wizard::wonTheBattle(const Character& enemy)
 {
 	mana = maxMana;
-	Character::wonTheBattle();
+	Character::wonTheBattle(enemy);
 }
 

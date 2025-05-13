@@ -17,6 +17,6 @@ public:
 	void levelUp();
 	void regenerate();
 	void attack(Character& target);
-	void wonTheBattle() override;
+	void wonTheBattle(const Character&) override;
 };
 
