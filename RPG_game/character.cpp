@@ -57,12 +57,12 @@ void Character::wonTheBattle(const Character& enemy)
 {
 	gainXp(enemy.getLevel()*50);
 	hp = maxHp;
-	Ranged* rangedWeapon = dynamic_cast<Ranged*>(getSelectedWeapon());
-	if (rangedWeapon) {
+	if(auto* rangedWeapon = dynamic_cast<Ranged*>(getSelectedWeapon()))
+	{
 		rangedWeapon->reload();
 	}
-	Melee* meleeWeapon = dynamic_cast<Melee*>(getSelectedWeapon());
-	if (meleeWeapon) {
+	if (auto* meleeWeapon = dynamic_cast<Melee*>(getSelectedWeapon()))
+	{
 		meleeWeapon->repair();
 	}
 }
@@ -122,66 +122,130 @@ void Character::levelUp()
 
 void Character::selectWeapon(unsigned index)
 {
-	if (index >= weapons.size()) {
-		cout << "Invalid weapon index!" << endl;
-		return;
+	try
+	{
+
+		if (index >= weapons.size()) {
+			throw out_of_range("Invalid weapon index!");
+		}
+		selectedWeaponIndex = index;
+		cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
 	}
-	selectedWeaponIndex = index;
-	cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
+	catch (const out_of_range& e)
+	{
+		cout << e.what() << endl;
+	}
+	catch (...)
+	{
+		cout << "An unknown error occurred." << endl;
+	}
 }
 
 void Character::takeWeapon(Weapon* weapon)
 {
-	if (weapons.size() >= maxWeaponCount) {
-		cout << "Inventory is full! Cannot take more weapons." << endl;
-		return;
-	}
-	if (weapon) {
-		weapons.push_back(unique_ptr<Weapon>(weapon));
-	}
-	else
+	try 
 	{
-		cout << "Invalid weapon!" << endl;
+		if (!weapon) {
+			throw invalid_argument("Invalid weapon!");
+		}
+		if (weapons.size() >= maxWeaponCount) {
+			throw overflow_error("Weapon vector is bigger than the maximum weapon count!");
+		}
+		if (weapons.size() == maxWeaponCount) 
+		{
+			cout << "Inventory is full! Cannot take more weapons." << endl;
+		}
+		else 
+			weapons.push_back(unique_ptr<Weapon>(weapon));
+	}
+	catch (const invalid_argument & e)
+	{
+		cout << e.what() << endl;
+	}
+	catch (const overflow_error& e)
+	{
+		cout << e.what() << endl;
+	}
+	catch (...)
+	{
+		cout << "An unknown error occurred." << endl;
 	}
 }
 
 void Character::dropSelected()
 {
-	if (weapons.empty() || selectedWeaponIndex >= weapons.size()) {
-		cout << "No weapon selected to drop!" << endl;
-		return;
+	try 
+	{
+		if (selectedWeaponIndex >= weapons.size()) 
+		{
+			throw out_of_range("Invalid weapon index!");
+		}
+		if (weapons.empty())
+		{
+			cout << "No weapon selected to drop!" << endl;
+			return;
+		}
+		cout << "Dropped weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
+		weapons.erase(weapons.begin() + selectedWeaponIndex);
+		selectedWeaponIndex = 0;
 	}
-	cout << "Dropped weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
-	weapons.erase(weapons.begin() + selectedWeaponIndex);
-	selectedWeaponIndex = 0;
+	catch (const out_of_range& e)
+	{
+		cout << e.what() << endl;
+	}
+	catch (...)
+	{
+		cout << "An unknown error occurred." << endl;
+	}
 }
 
 void Character::repairSelected()
 {
-	if (weapons.empty() || selectedWeaponIndex >= weapons.size()) {
-		cout << "No weapon selected to repair!" << endl;
-		return;
+	try 
+	{
+		if (selectedWeaponIndex >= weapons.size())
+		{
+			throw out_of_range("Invalid weapon index!");
+		}
+		if (weapons.empty())
+		{
+			cout << "No weapon selected to repair!" << endl;
+			return;
+		}
+
+		Weapon* weapon = weapons[selectedWeaponIndex].get();
+		if (!weapon) 
+		{
+			cout << "No weapon selected!" << endl;
+			return;
+		}
+		Melee* repairableWeapon = dynamic_cast<Melee*>(weapon);
+		if (!repairableWeapon) {
+			cout << "There is no need to repair this weapon!" << endl;
+			return;
+		}
+
+		if (repairableWeapon->isFullyRepaired()) {
+			cout << "This weapon is already fully repaired!" << endl;
+			return;
+		}
+
+		repairableWeapon->repair();
 	}
-
-	Weapon* weapon = weapons[selectedWeaponIndex].get();
-
-	Melee* repairableWeapon = dynamic_cast<Melee*>(weapon);
-	if (!repairableWeapon) {
-		cout << "There is no need to repair this weapon!" << endl;
-		return;
+	catch (const out_of_range& e)
+	{
+		cout << e.what() << endl;
 	}
-
-	if (repairableWeapon->isFullyRepaired()) {
-		cout << "This weapon is already fully repaired!" << endl;
-		return;
+	catch (...)
+	{
+		cout << "An unknown error occurred." << endl;
 	}
-
-	repairableWeapon->repair();
 }
 
 void Character::clearWeapons()
 {
-	for (auto& weapon : weapons) {
+	for(auto& weapon : weapons)
+	{
 		weapon.reset();
 	}
 	weapons.clear();
@@ -214,17 +278,26 @@ unsigned Character::getMaxWeaponCount() const
 
 void Character::replaceWeapon(int index, Weapon* newWeapon)
 {
-	if (index < 0 || index >= weapons.size()) {
-		cout << "Invalid weapon index!" << endl;
-		return;
-	}
-	if (newWeapon) {
+	try {
+		if (index < 0 || index >= weapons.size()) {
+			throw out_of_range("Invalid weapon index!");
+		}
+		if (!newWeapon) 
+		{
+			throw invalid_argument("Invalid weapon!");
+		}
 		weapons[index].reset(newWeapon);
-		cout << "Replaced weapon at slot " << index+1 << " with " << newWeapon->getName() << endl;
+		cout << "Replaced weapon at slot " << index + 1 << " with " << newWeapon->getName() << endl;
 	}
-	else
+	catch (const out_of_range& e) {
+		cout << e.what() << endl;
+	}
+	catch (const invalid_argument& e) {
+		cout << e.what() << endl;
+	}
+	catch (...)
 	{
-		cout << "Invalid weapon!" << endl;
+		cout << "An unknown error occurred." << endl;
 	}
 }
 
@@ -262,7 +335,8 @@ void Character::regenerate()
 void Character::attack(Character& target)
 {
 	Weapon* weapon = getSelectedWeapon();
-	if (!weapon) {
+	if (!weapon) 
+	{
 		cout << name << " has no weapon selected to attack!" << endl;
 		return;
 	}
