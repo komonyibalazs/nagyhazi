@@ -47,7 +47,7 @@ void Wizard::levelUp()
 	{
 		maxHp = 100 + level * 50;
 		hp = maxHp;
-		maxMana *= 100 + level * 50;
+		maxMana = 100 + level * 50;
 		mana = maxMana;
 	}
 	Character::levelUp();

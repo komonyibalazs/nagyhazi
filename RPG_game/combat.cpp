@@ -18,7 +18,10 @@ void Combat::start(Character& player, Character& enemy) {
         // Ellenõrizzük, hogy a játékos vagy az ellenség meghalt-e
         if (!player.isAlive()) {
             displayDefeatMessage(player);
-            return;
+            delete& enemy;
+			getchar();
+			system("cls");
+            Game::handleDefeat(&player);
         }
 
         if (!enemy.isAlive()) {
@@ -54,7 +57,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
     while (true) {
         displayCombatInfo(player, enemy);
         MenuManager::displayCombatMenu();
-        int choice = InputHandler::getIntInput("Select action: ", 1, 6);
+        int choice = InputHandler::getIntInput("Select action: ", 1, 7);
 
         switch (choice) {
         case 1: // Támadás
@@ -63,7 +66,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             getchar();
             return;
 
-		case 2: // Gyógyítás és mana visszatöltés (wizard esetén)
+        case 2: // "Heal shield (warrior) és mana regen (wizard)"
 			system("cls");
             if (needHeal(player)) {
                 player.regenerate();
@@ -80,7 +83,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             break;
 
 
-        case 3: // Fegyver javítása
+        case 3: // "Repair or reload"
 			system("cls");
             if (needRepair(player)) {
                 player.repairSelected();
@@ -96,7 +99,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
                 break;
             }
 
-        case 4: // Menekülés
+        case 4: // "Flee"
 			system("cls");
             if (flee(player)) {
 				system("cls");
@@ -109,14 +112,13 @@ void Combat::playerTurn(Character& player, Character& enemy) {
 			system("cls");
             break;
 
-        case 5: // Fegyver csere
+        case 5: // "Change weapon"
 			system("cls");
             if (changeWeapon(player)) {
                 cout << "Choose a new weapon:" << endl;
                 player.displayWeapons();
                 int index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
                 player.selectWeapon(--index);
-                cout << "Weapon changed!" << endl;
                 getchar();
             }
             else {
@@ -126,7 +128,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
 			system("cls");
             break;
 
-        case 6:
+		case 6: // "Display info"
 			system("cls");
 			cout << "---------------------------------" << endl;
             cout << endl;
@@ -137,6 +139,9 @@ void Combat::playerTurn(Character& player, Character& enemy) {
 			getchar();
 			system("cls");
             break;
+
+        case 7: // "Skip turn"
+            return;
         }
     }
 }
@@ -148,6 +153,7 @@ void Combat::enemyTurn(Character& enemy, Character& player) {
 		if (weapon->isBroken())
 		{
             weapon->repair();
+			cout << "Enemy repaired their weapon!" << endl;
             return;
 		}
 	}
@@ -156,6 +162,8 @@ void Combat::enemyTurn(Character& enemy, Character& player) {
 		if (weapon->isOutOfAmmo())
 		{
             weapon->reload();
+			cout << "Enemy reloaded their weapon!" << endl;
+			cout << endl;
 			return;
 		}
 	}

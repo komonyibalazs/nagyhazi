@@ -233,7 +233,6 @@ void Game::changeWeapon(Character& player)
             player.displayWeapons();
             int index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
             player.selectWeapon(--index);
-            cout << "Weapon changed!" << endl;
             getchar();
         }
         else
@@ -375,6 +374,27 @@ void Game::displayEnemyInfo(Character& enemy)
         cout << "Ammo: " << ranged->getAmmo() << "/" << ranged->getMaxAmmo() << endl;
     }
 	cout << endl;
+}
+
+void Game::handleDefeat(Character* player) {
+    while (true) 
+    {
+        
+        MenuManager::displayDefeatMenu();
+        int choice = InputHandler::getIntInput("Choice: ", 1, 2);
+        switch (choice) 
+        {
+        case 1: // Új karakter létrehozása és játék újraindítása
+            delete player; // Eltávolítjuk a korábbi játékost
+			system("cls");
+            Game::start();       // Új játék indítása
+            return;
+
+        case 2: // Kilépés
+            end(player);   // Játék vége funkció meghívása
+            exit(0);       // Program bezárása
+        }
+    }
 }
 
 void Game::end(Character* player) {

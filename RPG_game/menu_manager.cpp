@@ -29,6 +29,7 @@ void MenuManager::displayCombatMenu() {
     cout << "4. Flee" << endl;
     cout << "5. Change weapon" << endl;
     cout << "6. Display Info" << endl;
+    cout << "7. Skip trun" << endl;
 }
 
 void MenuManager::displayPreCombatMenu() {
@@ -64,4 +65,10 @@ void MenuManager::displayQuitConfirmation() {
 
 void MenuManager::displayInvalidChoice() {
     cout << "Invalid choice. Please try again." << endl;
+}
+
+void MenuManager::displayDefeatMenu() {
+    cout << "What would you like to do?" << endl;
+    cout << "1. Start again" << endl;
+    cout << "2. Quit the game" << endl;
 }

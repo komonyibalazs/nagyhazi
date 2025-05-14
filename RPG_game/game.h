@@ -10,6 +10,7 @@ public:
     static void displayCharacterInfo(Character& player);
     static void displayWeaponInfo(const Character& player);
     static void displayEnemyInfo(Character& enemy);
+	static void handleDefeat(Character* player);
 
 private:
     // Játékos nevének bekérése
@@ -21,7 +22,7 @@ private:
 	// Deep Dark pre-combat
     static void wander(Character& player);
     static void watchEnemy(Character& player, Character& enemy);
-	// Karakter információk
+	// Karakter funkciók
     static void chooseInformation(Character& player);
 	static void managePlayerRepair(Character*& player);
 	static void changeWeapon(Character& player);

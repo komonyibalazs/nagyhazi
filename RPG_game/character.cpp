@@ -129,6 +129,7 @@ void Character::selectWeapon(unsigned index)
 			throw out_of_range("Invalid weapon index!");
 		}
 		selectedWeaponIndex = index;
+		system("cls");
 		cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
 	}
 	catch (const out_of_range& e)
@@ -256,7 +257,6 @@ void Character::replaceWeapon(int index, Weapon* newWeapon)
 			throw invalid_argument("Invalid weapon!");
 		}
 		weapons[index].reset(newWeapon);
-		cout << "Replaced weapon at slot " << index + 1 << " with " << newWeapon->getName() << endl;
 	}
 	catch (const out_of_range& e) {
 		cout << e.what() << endl;

@@ -29,5 +29,7 @@ public:
 
     // Érvénytelen választás hibaüzenet
     static void displayInvalidChoice();
+
+    static void displayDefeatMenu();
 };
 
