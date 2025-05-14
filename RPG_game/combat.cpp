@@ -130,7 +130,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
 			system("cls");
 			cout << "---------------------------------" << endl;
             cout << endl;
-			Game::displayCharacterInfo(&player);
+			Game::displayCharacterInfo(player);
 			Game::displayWeaponInfo(player);
 			Game::displayEnemyInfo(enemy);
 			cout << "---------------------------------" << endl;
@@ -313,22 +313,11 @@ void Combat::manageLevelUpRewards(Character& player)
             {
                 cout << "Your weapon slots are full. Choose a weapon to replace: " << endl;
                 player.displayWeapons();
-                cout << "Enter the slot number (1-" << player.getWeapons().size() << ") to replace: ";
-                int slot;
-                cin >> slot;
-                slot--; // Convert to zero-based index
-                if (slot >= 0 && slot < player.getWeapons().size())
-                {
-                    player.replaceWeapon(slot, newWeapon);
-                    cout << "The new weapon has replaced the old one in slot " << (slot + 1) << "." << endl;
-                    cout << endl;
-                }
-                else
-                {
-                    cout << "Invalid choice. The new weapon has been discarded." << endl;
-                    delete newWeapon;
-                    cout << endl;
-                }
+                cout << endl;
+                int slot = InputHandler::getIntInput("Enter the slot number (1-" + to_string(player.getWeapons().size()) + ") to replace: ", 1, player.getWeapons().size());
+                player.replaceWeapon(slot-1, newWeapon);
+                cout << "The new weapon has replaced the old one in slot " << slot << "." << endl;
+                cout << endl;
             }
             return;
         }

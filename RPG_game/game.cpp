@@ -19,25 +19,30 @@ void Game::start() {
     while (true) {
         // Fõmenü megjelenítése
         MenuManager::displayMainMenu();
-        int choice = InputHandler::getIntInput("Choice: ", 1, 4);
+        int choice = InputHandler::getIntInput("Choice: ", 1, 5);
 
         switch (choice) {
         case 1: // "Wander in the wilderness"
 			system("cls");
-            wander(player);
+            wander(*player);
             break;
 
         case 2: // "Reload/repair or regenerate"
 			system("cls");
 			managePlayerRepair(player);
             break;
-
-        case 3: // "Check your info"
-			system("cls");
-            chooseInformation(player);
+        case 3: // "Change weapon"
+            system("cls");
+            changeWeapon(*player);
             break;
 
-        case 4: // "Quit game"
+
+        case 4: // "Check your info"
+			system("cls");
+            chooseInformation(*player);
+            break;
+
+        case 5: // "Quit game"
 			system("cls");
             if (InputHandler::getYesNoInput("Are you sure you want to quit?")) 
             {
@@ -86,10 +91,10 @@ void Game::chooseCharacter(Character*& player, const string& playerName) {
     }
 }
 
-void Game::wander(Character* player) {
+void Game::wander(Character& player) {
     // Generáljunk egy random ellenséget
     // Pre-combat menu
-    Character* enemy = generateRandomEnemy(player->getLevel());
+    Character* enemy = generateRandomEnemy(player.getLevel());
     while (true)
     {
         cout << "You are wandering in the wilderness..." << endl;
@@ -101,9 +106,9 @@ void Game::wander(Character* player) {
         switch (preCombatChoice) {
         case 1: // "Take a closer look"
             system("cls");
-            watchEnemy(*player, enemy);
+            watchEnemy(player, *enemy);
             delete enemy;
-            enemy = generateRandomEnemy(player->getLevel());
+            enemy = generateRandomEnemy(player.getLevel());
             continue;
 		
         case 2: // "Check your character information"
@@ -119,7 +124,7 @@ void Game::wander(Character* player) {
     }
 }
 
-void Game::chooseInformation(Character*& player)
+void Game::chooseInformation(Character& player)
 {
 	while (true) {
 		MenuManager::displayCharacterInfoMenu();
@@ -131,12 +136,12 @@ void Game::chooseInformation(Character*& player)
 			break;
 		case 2: // "Check weapon"
 			system("cls");
-			displayWeaponInfo(*player);
+			displayWeaponInfo(player);
 			break;
 		case 3: // "Display inventory"
 			system("cls");
 			MenuManager::displayInventoryMenu();
-			player->displayWeapons(); // Fegyverek megjelenítése
+			player.displayWeapons(); // Fegyverek megjelenítése
 			break;
 		case 4: // "Back to menu"
 			system("cls");
@@ -148,7 +153,7 @@ void Game::chooseInformation(Character*& player)
 
 void Game::managePlayerRepair(Character*& player)
 {
-	if (auto* melee = dynamic_cast<Melee*>(player->getSelectedWeapon()))
+	if (auto melee = dynamic_cast<Melee*>(player->getSelectedWeapon()))
 	{
 		if (!melee->isFullyRepaired())
 		{
@@ -210,17 +215,62 @@ void Game::managePlayerRepair(Character*& player)
 	system("cls");
 }
 
-void Game::watchEnemy(Character& player, Character* enemy) {
+void Game::changeWeapon(Character& player)
+{
+    try
+    {
+        if (player.getSelectedIndex() >= player.getMaxWeaponCount())
+        {
+            throw out_of_range("Invalid weapon index.");
+        }
+        if (player.getWeapons().size() < 0)
+        {
+            throw invalid_argument("Weapons size is less than 0.");
+        }
+        if (player.getWeapons().size() > 1)
+        {
+            cout << "Choose a new weapon:" << endl;
+            player.displayWeapons();
+            int index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
+            player.selectWeapon(--index);
+            cout << "Weapon changed!" << endl;
+            getchar();
+        }
+        else
+        {
+            cout << "You cannot change weapons right now!" << endl;
+            getchar();
+        }
+        system("cls");
+    }
+    catch (const out_of_range& e)
+    {
+        cout << "Error: " << e.what() << endl;
+        system("cls");
+    }
+    catch (const invalid_argument& e)
+    {
+        cout << "Error: " << e.what() << endl;
+        system("cls");
+    }
+    catch (...)
+    {
+        cout << "An unknown error occurred." << endl;
+        system("cls");
+    }
+}
+
+void Game::watchEnemy(Character& player, Character& enemy) {
     cout << "You chose to take a closer look at the enemy!" << endl;
     cout << endl;
-    displayEnemyInfo(*enemy);
+    displayEnemyInfo(enemy);
     MenuManager::displayLookMenu();
     int choice = InputHandler::getIntInput("Choice: ", 1, 2);
 
     switch (choice) {
 	case 1: // "Fight the enemy"
 		system("cls");
-        Combat::start(player, *enemy);
+        Combat::start(player, enemy);
         break;
 	case 2: // "Go deeper"
         system("cls");
@@ -252,28 +302,28 @@ Character* Game::generateRandomEnemy(int playerLevel)
     }
 }
 
-void Game::displayCharacterInfo(Character* player) {
+void Game::displayCharacterInfo(Character& player) {
     cout << "Your character:" << endl;
-    cout << "Name: " << player->getName() << endl;
-    cout << "Health: " << player->getHealth() << "/" << player->getMaxHp() << endl;
-    cout << "Level: " << player->getLevel() << endl;
-    cout << "Experience: " << player->getExperience() << "/" << player->getMaxExperience() << endl;
+    cout << "Name: " << player.getName() << endl;
+    cout << "Health: " << player.getHealth() << "/" << player.getMaxHp() << endl;
+    cout << "Level: " << player.getLevel() << endl;
+    cout << "Experience: " << player.getExperience() << "/" << player.getMaxExperience() << endl;
 
-    if (auto* wizard = dynamic_cast<Wizard*>(player)) {
+    if (auto* wizard = dynamic_cast<Wizard*>(&player)) {
         cout << "Class: Wizard" << endl;
         cout << "Mana: " << wizard->getMana() << "/" << wizard->getMaxMana() << endl;
     }
-    else if (auto* warrior = dynamic_cast<Warrior*>(player)) {
+    else if (auto* warrior = dynamic_cast<Warrior*>(&player)) {
         cout << "Class: Warrior" << endl;
         cout << "Shield: " << warrior->getShield() << "/" << warrior->getMaxShield() << endl;
     }
-    else if (auto* archer = dynamic_cast<Archer*>(player)) {
+    else if (auto* archer = dynamic_cast<Archer*>(&player)) {
         cout << "Class: Archer" << endl;
     }
 
-    if (player->getSelectedWeapon()) {
-        cout << "Current weapon: " << player->getSelectedWeapon()->getName() << endl;
-        cout << "Damage: " << player->getSelectedWeapon()->getDamage() << endl;
+    if (player.getSelectedWeapon()) {
+        cout << "Current weapon: " << player.getSelectedWeapon()->getName() << endl;
+        cout << "Damage: " << player.getSelectedWeapon()->getDamage() << endl;
     }
     else {
         cout << "No weapon selected!" << endl;
@@ -330,7 +380,8 @@ void Game::displayEnemyInfo(Character& enemy)
 void Game::end(Character* player) {
 	system("cls");
     cout << "Game Over. Thank you for playing!" << endl;
-    if (player) {
+    if (player) 
+    {
         delete player;
         player = nullptr;
     }

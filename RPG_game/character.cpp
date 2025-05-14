@@ -172,33 +172,6 @@ void Character::takeWeapon(Weapon* weapon)
 	}
 }
 
-void Character::dropSelected()
-{
-	try 
-	{
-		if (selectedWeaponIndex >= weapons.size()) 
-		{
-			throw out_of_range("Invalid weapon index!");
-		}
-		if (weapons.empty())
-		{
-			cout << "No weapon selected to drop!" << endl;
-			return;
-		}
-		cout << "Dropped weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
-		weapons.erase(weapons.begin() + selectedWeaponIndex);
-		selectedWeaponIndex = 0;
-	}
-	catch (const out_of_range& e)
-	{
-		cout << e.what() << endl;
-	}
-	catch (...)
-	{
-		cout << "An unknown error occurred." << endl;
-	}
-}
-
 void Character::repairSelected()
 {
 	try 
@@ -244,10 +217,6 @@ void Character::repairSelected()
 
 void Character::clearWeapons()
 {
-	for(auto& weapon : weapons)
-	{
-		weapon.reset();
-	}
 	weapons.clear();
 	selectedWeaponIndex = 0;
 }

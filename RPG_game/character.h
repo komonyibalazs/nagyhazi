@@ -46,6 +46,7 @@ public:
 	void gainXp(unsigned gained);
 	
 	virtual void levelUp();
+	bool checkLevelUp() const;
 	virtual void wonTheBattle(const Character&);
 	void setReward(bool gotReward);
 	bool wasRewarded() const;
@@ -54,17 +55,15 @@ public:
 
 	void selectWeapon(unsigned index);
 	void takeWeapon(Weapon* weapon);
-	void dropSelected();
-	void repairSelected();
+	void replaceWeapon(int index, Weapon* newWeapon);
 	void clearWeapons();
+	void repairSelected();
+	void displayWeapons() const;
 
 	const std::vector<std::unique_ptr<Weapon>>& getWeapons() const;
 	Weapon* getSelectedWeapon() const;
 	unsigned getSelectedIndex() const;
 	unsigned getMaxWeaponCount() const;
 
-	void replaceWeapon(int index, Weapon* newWeapon);
-	void displayWeapons() const;
-	bool checkLevelUp() const;
 };
 

@@ -7,8 +7,9 @@ void MenuManager::displayMainMenu() {
     cout << "BASE" << endl;
     cout << "1. Wander in the wilderness" << endl;
 	cout << "2  Reload, repair and regenerate" << endl;
-    cout << "3. Check your character information" << endl;
-    cout << "4. Quit game" << endl;
+	cout << "3. Change weapon" << endl;
+    cout << "4. Check your character information" << endl;
+    cout << "5. Quit game" << endl;
 }
 
 void MenuManager::displayCharacterSelectionMenu(const string& playerName) {
