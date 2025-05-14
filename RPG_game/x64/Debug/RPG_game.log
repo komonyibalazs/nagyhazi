@@ -1,7 +1,1 @@
-﻿  combat.cpp
-C:\Users\Win11\Documents\GitHub\nagyhazi\RPG_game\combat.cpp(120,106): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Win11\Documents\GitHub\nagyhazi\RPG_game\combat.cpp(325,169): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  menu_manager.cpp
-  Generating Code...
-C:\Users\Win11\Documents\GitHub\nagyhazi\RPG_game\combat.cpp(209,1): warning C4715: 'Combat::needHeal': not all control paths return a value
-  RPG_game.vcxproj -> C:\Users\Win11\Documents\GitHub\nagyhazi\x64\Debug\RPG_game.exe
+﻿

@@ -376,7 +376,7 @@ void Game::displayEnemyInfo(Character& enemy)
 	cout << endl;
 }
 
-void Game::handleDefeat(Character* player) {
+void Game::handleGameOver(Character* player) {
     while (true) 
     {
         

@@ -19,20 +19,29 @@ void Combat::start(Character& player, Character& enemy) {
         if (!player.isAlive()) {
             displayDefeatMessage(player);
             delete& enemy;
-			getchar();
+            (void)getchar();
 			system("cls");
-            Game::handleDefeat(&player);
+            Game::handleGameOver(&player);
         }
 
         if (!enemy.isAlive()) {
             player.wonTheBattle(enemy);
             displayVictoryMessage(player, enemy);
-            getchar();
+            (void)getchar();
 			system("cls");
+            if (player.getLevel() == 20)
+			{
+                cout << "Congratulations, you have completed the game, there are no enemies left in the wilderness!";
+                delete& enemy;
+                Game::handleGameOver(&player);
+                
+            }
             if (player.checkLevelUp())
             {
                 manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
             }
+            delete& enemy;
+            Game::wander(player);
             return;
         }
 
@@ -46,7 +55,7 @@ void Combat::start(Character& player, Character& enemy) {
         if (enemy.isAlive()) {
 			system("cls");
             enemyTurn(enemy, player);
-            getchar();
+            (void)getchar();
 			system("cls");
         }
     }
@@ -63,7 +72,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
         case 1: // Támadás
 			system("cls");
             player.attack(enemy);
-            getchar();
+            (void)getchar();
             return;
 
         case 2: // "Heal shield (warrior) és mana regen (wizard)"
@@ -71,13 +80,13 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             if (needHeal(player)) {
                 player.regenerate();
                 cout << "You healed yourself!" << endl;
-                getchar();
+                (void)getchar();
 				system("cls");
                 return;
             }
             else {
                 cout << "You don't need to heal!" << endl;
-                getchar();
+                (void)getchar();
             }
 			system("cls");
             break;
@@ -88,13 +97,13 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             if (needRepair(player)) {
                 player.repairSelected();
                 cout << "Your weapon has been repaired!" << endl;
-                getchar();
+                (void)getchar();
 				system("cls");
                 return;
             }
             else {
                 cout << "Your weapon doesn't need repairs!" << endl;
-                getchar();
+                (void)getchar();
 			    system("cls");
                 break;
             }
@@ -104,7 +113,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             if (flee(player)) {
 				system("cls");
                 cout << player.getName() << " fled from the battle!" << endl;
-                getchar();
+                (void)getchar();
 				system("cls");
 				player.setFleeing(true);
                 return;
@@ -117,13 +126,13 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             if (changeWeapon(player)) {
                 cout << "Choose a new weapon:" << endl;
                 player.displayWeapons();
-                int index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
-                player.selectWeapon(--index);
-                getchar();
+                size_t index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
+                player.selectWeapon((unsigned)--index);
+                (void)getchar();
             }
             else {
                 cout << "You cannot change weapons right now!" << endl;
-                getchar();
+                (void)getchar();
             }
 			system("cls");
             break;
@@ -136,7 +145,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
 			Game::displayWeaponInfo(player);
 			Game::displayEnemyInfo(enemy);
 			cout << "---------------------------------" << endl;
-			getchar();
+            (void)getchar();
 			system("cls");
             break;
 
@@ -194,18 +203,18 @@ bool Combat::flee(Character& player) {
 
 bool Combat::needHeal(Character& player) 
 {
-	if (auto* warrior = dynamic_cast<Warrior*>(&player))
-	{
-		return player.getHealth() < player.getMaxHp() || warrior->getShield() < warrior->getMaxShield();
-	}
-	else if (auto* wizard = dynamic_cast<Wizard*>(&player))
-	{
-		return player.getHealth() < player.getMaxHp() || wizard->getMana() < wizard->getMaxMana();
-	}
-	else if (auto* archer = dynamic_cast<Archer*>(&player))
-	{
-		return player.getHealth() < player.getMaxHp();
-	}
+    if (auto* warrior = dynamic_cast<Warrior*>(&player))
+    {
+        return player.getHealth() < player.getMaxHp() || warrior->getShield() < warrior->getMaxShield();
+    }
+    else if (auto* wizard = dynamic_cast<Wizard*>(&player))
+    {
+        return player.getHealth() < player.getMaxHp() || wizard->getMana() < wizard->getMaxMana();
+    }
+    else if (auto* archer = dynamic_cast<Archer*>(&player))
+    {
+        return player.getHealth() < player.getMaxHp();
+    }
 }
 
 bool Combat::needRepair(Character& player)
@@ -322,8 +331,8 @@ void Combat::manageLevelUpRewards(Character& player)
                 cout << "Your weapon slots are full. Choose a weapon to replace: " << endl;
                 player.displayWeapons();
                 cout << endl;
-                int slot = InputHandler::getIntInput("Enter the slot number (1-" + to_string(player.getWeapons().size()) + ") to replace: ", 1, player.getWeapons().size());
-                player.replaceWeapon(slot-1, newWeapon);
+                size_t slot = InputHandler::getIntInput("Enter the slot number (1-" + to_string(player.getWeapons().size()) + ") to replace: ", 1, player.getWeapons().size());
+                player.replaceWeapon((int)slot-1, newWeapon);
                 cout << "The new weapon has replaced the old one in slot " << slot << "." << endl;
                 cout << endl;
             }

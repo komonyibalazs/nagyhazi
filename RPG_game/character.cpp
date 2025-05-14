@@ -105,114 +105,133 @@ unsigned Character::getMaxExperience() const
 
 void Character::gainXp(unsigned gained)
 {
-	xp += gained;
-	levelUp();
+	try 
+	{
+		if (gained == 0) {
+			throw invalid_argument("Gained XP cannot be zero!");
+		}
+		if (gained > 10000) 
+		{
+			throw out_of_range("Gained XP is unrealistically high!");
+		}
+
+		xp += gained;
+		cout << "Gained XP: " << gained << ". Total XP: " << xp << endl;
+		levelUp();
+	}
+	catch (const invalid_argument& e) {
+		cerr << "Invalid Argument Error in gainXp: " << e.what() << endl;
+	}
+	catch (const out_of_range& e) {
+		cerr << "Out of Range Error in gainXp: " << e.what() << endl;
+	}
+	catch (...) {
+		cerr << "Unknown error occurred in gainXp." << endl;
+	}
 }
 
 void Character::levelUp()
 {
-	if (xp >= maxXp)
-	{
-		gotReward = false;
+	try {
+		if (xp < maxXp) {
+			throw logic_error("Not enough XP to level up!");
+		}
+
+		// Szintlépés logikája
 		level++;
 		xp -= maxXp;
-		maxXp = level*100;
+		maxXp = level * 100;
+		maxHp += 50; // Példa: növeljük az életerõt
+		hp = maxHp;
+
+		cout << "Level up! New level: " << level << ". Max HP: " << maxHp << endl;
+	}
+	catch (const logic_error& e) {
+		cerr << "Logic Error in levelUp: " << e.what() << endl;
+	}
+	catch (...) {
+		cerr << "Unknown error occurred in levelUp." << endl;
 	}
 }
 
 void Character::selectWeapon(unsigned index)
 {
-	try
-	{
-
+	try {
 		if (index >= weapons.size()) {
-			throw out_of_range("Invalid weapon index!");
+			throw std::out_of_range("Invalid weapon index!");
 		}
 		selectedWeaponIndex = index;
-		system("cls");
-		cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << endl;
+		std::cout << "Selected weapon: " << weapons[selectedWeaponIndex]->getName() << std::endl;
 	}
-	catch (const out_of_range& e)
-	{
-		cout << e.what() << endl;
+	catch (const std::out_of_range& e) {
+		std::cerr << "Out of Range Error in selectWeapon: " << e.what() << std::endl;
 	}
-	catch (...)
-	{
-		cout << "An unknown error occurred." << endl;
+	catch (...) {
+		std::cerr << "Unknown error occurred in selectWeapon." << std::endl;
 	}
 }
 
 void Character::takeWeapon(Weapon* weapon)
 {
-	try 
-	{
+	try {
 		if (!weapon) {
-			throw invalid_argument("Invalid weapon!");
+			throw std::invalid_argument("Weapon pointer is null!");
 		}
 		if (weapons.size() >= maxWeaponCount) {
-			throw overflow_error("Weapon vector is bigger than the maximum weapon count!");
+			throw std::overflow_error("Weapon vector exceeds max weapon count!");
 		}
-		if (weapons.size() == maxWeaponCount) 
-		{
-			cout << "Inventory is full! Cannot take more weapons." << endl;
-		}
-		else 
-			weapons.push_back(unique_ptr<Weapon>(weapon));
+		weapons.push_back(std::unique_ptr<Weapon>(weapon));
+		std::cout << "Weapon added successfully." << std::endl;
 	}
-	catch (const invalid_argument & e)
-	{
-		cout << e.what() << endl;
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Invalid Argument Error in takeWeapon: " << e.what() << std::endl;
 	}
-	catch (const overflow_error& e)
-	{
-		cout << e.what() << endl;
+	catch (const std::overflow_error& e) {
+		std::cerr << "Overflow Error in takeWeapon: " << e.what() << std::endl;
 	}
-	catch (...)
-	{
-		cout << "An unknown error occurred." << endl;
+	catch (...) {
+		std::cerr << "Unknown error occurred in takeWeapon." << std::endl;
 	}
 }
 
 void Character::repairSelected()
 {
-	try 
-	{
-		if (selectedWeaponIndex >= weapons.size())
-		{
-			throw out_of_range("Invalid weapon index!");
-		}
-		if (weapons.empty())
-		{
-			cout << "No weapon selected to repair!" << endl;
-			return;
+	try {
+		if (selectedWeaponIndex >= weapons.size()) {
+			throw std::out_of_range("Invalid weapon index!");
 		}
 
 		Weapon* weapon = weapons[selectedWeaponIndex].get();
-		if (!weapon) 
-		{
-			cout << "No weapon selected!" << endl;
-			return;
+		if (!weapon) {
+			throw std::runtime_error("No weapon selected to repair!");
 		}
+
 		Melee* repairableWeapon = dynamic_cast<Melee*>(weapon);
 		if (!repairableWeapon) {
-			cout << "There is no need to repair this weapon!" << endl;
-			return;
+			throw std::invalid_argument("Selected weapon is not repairable!");
 		}
 
 		if (repairableWeapon->isFullyRepaired()) {
-			cout << "This weapon is already fully repaired!" << endl;
-			return;
+			throw std::logic_error("Weapon is already fully repaired!");
 		}
 
 		repairableWeapon->repair();
+		std::cout << "Weapon repaired successfully." << std::endl;
 	}
-	catch (const out_of_range& e)
-	{
-		cout << e.what() << endl;
+	catch (const std::out_of_range& e) {
+		std::cerr << "Out of Range Error in repairSelected: " << e.what() << std::endl;
 	}
-	catch (...)
-	{
-		cout << "An unknown error occurred." << endl;
+	catch (const std::runtime_error& e) {
+		std::cerr << "Runtime Error in repairSelected: " << e.what() << std::endl;
+	}
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Invalid Argument Error in repairSelected: " << e.what() << std::endl;
+	}
+	catch (const std::logic_error& e) {
+		std::cerr << "Logic Error in repairSelected: " << e.what() << std::endl;
+	}
+	catch (...) {
+		std::cerr << "Unknown error occurred in repairSelected." << std::endl;
 	}
 }
 
@@ -250,23 +269,22 @@ void Character::replaceWeapon(int index, Weapon* newWeapon)
 {
 	try {
 		if (index < 0 || index >= weapons.size()) {
-			throw out_of_range("Invalid weapon index!");
+			throw std::out_of_range("Invalid weapon index!");
 		}
-		if (!newWeapon) 
-		{
-			throw invalid_argument("Invalid weapon!");
+		if (!newWeapon) {
+			throw std::invalid_argument("New weapon pointer is null!");
 		}
 		weapons[index].reset(newWeapon);
+		std::cout << "Weapon replaced successfully." << std::endl;
 	}
-	catch (const out_of_range& e) {
-		cout << e.what() << endl;
+	catch (const std::out_of_range& e) {
+		std::cerr << "Out of Range Error in replaceWeapon: " << e.what() << std::endl;
 	}
-	catch (const invalid_argument& e) {
-		cout << e.what() << endl;
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Invalid Argument Error in replaceWeapon: " << e.what() << std::endl;
 	}
-	catch (...)
-	{
-		cout << "An unknown error occurred." << endl;
+	catch (...) {
+		std::cerr << "Unknown error occurred in replaceWeapon." << std::endl;
 	}
 }
 

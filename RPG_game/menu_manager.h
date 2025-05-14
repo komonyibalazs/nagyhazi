@@ -29,7 +29,11 @@ public:
 
     // Érvénytelen választás hibaüzenet
     static void displayInvalidChoice();
-
+    
+    //Vereség esetén 
     static void displayDefeatMenu();
+
+    //
+
 };
 

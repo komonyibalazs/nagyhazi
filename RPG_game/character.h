@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-
 #include "weapon.h"
 #include "melee.h"
 #include "magic.h"
