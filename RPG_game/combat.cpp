@@ -11,53 +11,77 @@
 
 using namespace std;
 
-void Combat::start(Character& player, Character& enemy) {
-    cout << "The battle begins!" << endl;
-    cout << endl;
-    while (true) {
-        // Ellenõrizzük, hogy a játékos vagy az ellenség meghalt-e
-        if (!player.isAlive()) {
-            displayDefeatMessage(player);
-            delete& enemy;
-            (void)getchar();
-			system("cls");
-            Game::handleGameOver(&player);
-        }
-
-        if (!enemy.isAlive()) {
-            player.wonTheBattle(enemy);
-            displayVictoryMessage(player, enemy);
-            (void)getchar();
-			system("cls");
-            if (player.getLevel() == 20)
-			{
-                cout << "Congratulations, you have completed the game, there are no enemies left in the wilderness!";
+void Combat::start(Character& player, Character& enemy) 
+{
+    try
+    {
+        cout << "The battle begins!" << endl;
+        cout << endl;
+        while (true) {
+            // Ellenõrizzük, hogy a játékos vagy az ellenség meghalt-e
+            if (!player.isAlive()) {
+                displayDefeatMessage(player);
+                if (&enemy == nullptr) 
+                { // Ellenõrizzük, hogy az enemy pointer érvényes-e
+                    throw runtime_error("Enemy pointer is null during combat cleanup.");
+                }
                 delete& enemy;
+                (void)getchar();
+                system("cls");
                 Game::handleGameOver(&player);
-                
             }
-            if (player.checkLevelUp())
-            {
-                manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
-            }
-            delete& enemy;
-            Game::wander(player);
-            return;
-        }
 
-        // Játékos köre
-        playerTurn(player, enemy);
-		if (player.getFleeing()) {
-			player.setFleeing(false);
-            return;
-		}
-        // Ellenség köre, ha még él
-        if (enemy.isAlive()) {
-			system("cls");
-            enemyTurn(enemy, player);
-            (void)getchar();
-			system("cls");
+            if (!enemy.isAlive()) {
+                player.wonTheBattle(enemy);
+                displayVictoryMessage(player, enemy);
+                (void)getchar();
+                system("cls");
+                if (player.getLevel() == 20)
+                {
+                    cout << "Congratulations, you have completed the game, there are no enemies left in the wilderness!";
+                    if (&enemy == nullptr)
+                    { // Ellenõrizzük, hogy az enemy pointer érvényes-e
+                        throw runtime_error("Enemy pointer is null during combat cleanup.");
+                    }
+                    delete& enemy;
+                    Game::handleGameOver(&player);
+
+                }
+                if (player.checkLevelUp())
+                {
+                    manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
+                }
+                delete& enemy;
+                Game::wander(player);
+                return;
+            }
+
+            // Játékos köre
+            playerTurn(player, enemy);
+            if (player.getFleeing()) {
+                player.setFleeing(false);
+                return;
+            }
+            // Ellenség köre, ha még él
+            if (enemy.isAlive()) {
+                system("cls");
+                enemyTurn(enemy, player);
+                (void)getchar();
+                system("cls");
+            }
         }
+    }
+    catch (const runtime_error& e) 
+    {
+		cerr << "Runtime Error in Combat::start: " << e.what() << endl;
+	}
+	catch (const exception& e)
+	{
+		cerr << "Exception in Combat::start: " << e.what() << endl;
+	}
+	catch (...)
+	{
+		cerr << "Unknown error occurred in Combat::start." << endl;
     }
 }
 

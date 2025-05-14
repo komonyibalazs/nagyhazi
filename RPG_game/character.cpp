@@ -116,7 +116,6 @@ void Character::gainXp(unsigned gained)
 		}
 
 		xp += gained;
-		cout << "Gained XP: " << gained << ". Total XP: " << xp << endl;
 		levelUp();
 	}
 	catch (const invalid_argument& e) {
@@ -138,13 +137,13 @@ void Character::levelUp()
 		}
 
 		// Szintlépés logikája
+		setReward(false);
 		level++;
 		xp -= maxXp;
 		maxXp = level * 100;
-		maxHp += 50; // Példa: növeljük az életerõt
+		maxHp += 50;
 		hp = maxHp;
-
-		cout << "Level up! New level: " << level << ". Max HP: " << maxHp << endl;
+		cout << "Level up! New level: " << level << endl;
 	}
 	catch (const logic_error& e) {
 		cerr << "Logic Error in levelUp: " << e.what() << endl;
@@ -181,7 +180,6 @@ void Character::takeWeapon(Weapon* weapon)
 			throw std::overflow_error("Weapon vector exceeds max weapon count!");
 		}
 		weapons.push_back(std::unique_ptr<Weapon>(weapon));
-		std::cout << "Weapon added successfully." << std::endl;
 	}
 	catch (const std::invalid_argument& e) {
 		std::cerr << "Invalid Argument Error in takeWeapon: " << e.what() << std::endl;
@@ -216,7 +214,6 @@ void Character::repairSelected()
 		}
 
 		repairableWeapon->repair();
-		std::cout << "Weapon repaired successfully." << std::endl;
 	}
 	catch (const std::out_of_range& e) {
 		std::cerr << "Out of Range Error in repairSelected: " << e.what() << std::endl;
@@ -275,7 +272,6 @@ void Character::replaceWeapon(int index, Weapon* newWeapon)
 			throw std::invalid_argument("New weapon pointer is null!");
 		}
 		weapons[index].reset(newWeapon);
-		std::cout << "Weapon replaced successfully." << std::endl;
 	}
 	catch (const std::out_of_range& e) {
 		std::cerr << "Out of Range Error in replaceWeapon: " << e.what() << std::endl;

@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\character.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,22 +36,9 @@
               "RelativeDocumentMoniker": "RPG_game\\combat.cpp",
               "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
               "RelativeToolTip": "RPG_game\\combat.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAYwEUAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-14T13:23:59.982Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "character.cpp",
-              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp",
-              "RelativeDocumentMoniker": "RPG_game\\character.cpp",
-              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\character.cpp",
-              "RelativeToolTip": "RPG_game\\character.cpp",
-              "ViewState": "AgIAADwBAAAAAAAAAAAAwFcBAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-14T13:16:11.495Z",
               "EditorCaption": ""
             }
           ]
