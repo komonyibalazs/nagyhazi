@@ -116,7 +116,7 @@ void Character::gainXp(unsigned gained)
 		}
 
 		xp += gained;
-		levelUp();
+		if (xp >= maxXp ) levelUp();
 	}
 	catch (const invalid_argument& e) {
 		cerr << "Invalid Argument Error in gainXp: " << e.what() << endl;
@@ -135,7 +135,6 @@ void Character::levelUp()
 		if (xp < maxXp) {
 			throw logic_error("Not enough XP to level up!");
 		}
-
 		// Szintlépés logikája
 		setReward(false);
 		level++;

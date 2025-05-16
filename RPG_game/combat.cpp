@@ -21,9 +21,9 @@ void Combat::start(Character& player, Character& enemy)
             // Ellenõrizzük, hogy a játékos vagy az ellenség meghalt-e
             if (!player.isAlive()) {
                 displayDefeatMessage(player);
-                if (&enemy == nullptr) 
-                { // Ellenõrizzük, hogy az enemy pointer érvényes-e
-                    throw runtime_error("Enemy pointer is null during combat cleanup.");
+                if (!enemy.isAlive()) 
+                {
+                    throw logic_error("Enemy is in an invalid state during combat cleanup.");
                 }
                 delete& enemy;
                 (void)getchar();
@@ -31,18 +31,19 @@ void Combat::start(Character& player, Character& enemy)
                 Game::handleGameOver(&player);
             }
 
-            if (!enemy.isAlive()) {
-                player.wonTheBattle(enemy);
+            if (!enemy.isAlive()) 
+            {
+                if (!player.isAlive())
+                {
+                    throw logic_error("Player is in an invalid state during combat cleanup.");
+                }
                 displayVictoryMessage(player, enemy);
+                player.wonTheBattle(enemy);
                 (void)getchar();
                 system("cls");
                 if (player.getLevel() == 20)
                 {
                     cout << "Congratulations, you have completed the game, there are no enemies left in the wilderness!";
-                    if (&enemy == nullptr)
-                    { // Ellenõrizzük, hogy az enemy pointer érvényes-e
-                        throw runtime_error("Enemy pointer is null during combat cleanup.");
-                    }
                     delete& enemy;
                     Game::handleGameOver(&player);
 
@@ -51,8 +52,6 @@ void Combat::start(Character& player, Character& enemy)
                 {
                     manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
                 }
-                delete& enemy;
-                Game::wander(player);
                 return;
             }
 
@@ -71,9 +70,9 @@ void Combat::start(Character& player, Character& enemy)
             }
         }
     }
-    catch (const runtime_error& e) 
+    catch (const logic_error& e) 
     {
-		cerr << "Runtime Error in Combat::start: " << e.what() << endl;
+		cerr << "Logic Error in Combat::start: " << e.what() << endl;
 	}
 	catch (const exception& e)
 	{
@@ -260,115 +259,128 @@ bool Combat::changeWeapon(Character& player) {
 
 void Combat::manageLevelUpRewards(Character& player)
 {
-	system("cls");
-    cout << "Congratulations! You've reached level " << player.getLevel() << " and found a new weapon!" << endl;
-    cout << endl;
-	player.setReward(true);
-    Weapon* newWeapon = nullptr;
-    string name = "Weapon";
-    if (dynamic_cast<Warrior*>(&player))
-    {
-        int weaponName = rand() % 3;
-        switch (weaponName)
+    try {
+        system("cls");
+        cout << "Congratulations! You've reached level " << player.getLevel() << " and found a new weapon!" << endl;
+        cout << endl;
+        player.setReward(true);
+        Weapon* newWeapon = nullptr;
+        string name = "Weapon";
+        if (dynamic_cast<Warrior*>(&player))
         {
-        case 0:
-            name = "Excalibur Sword";
-            break;
-        case 1:
-            name = "Stormbringer Axe";
-            break;
-        case 2:
-            name = "Mighty Spear";
-            break;
-        default:
-            name = "Unknown Weapon";
-            break;
-        }
-        name += " (Level " + to_string(player.getLevel()) + ")";
-        newWeapon = new Melee(name, 20 + (player.getLevel() - 1) * 10, 6 + player.getLevel() - 1);
-    }
-    else if (dynamic_cast<Wizard*>(&player))
-    {
-        int weaponName = rand() % 3;
-        switch (weaponName)
-        {
-        case 0:
-            name = "Fire Staff";
-            break;
-        case 1:
-            name = "Ice Wand";
-            break;
-        case 2:
-            name = "Lightning Rod";
-            break;
-        default:
-            name = "Unknown Weapon";
-            break;
-        }
-        name += " (Level " + to_string(player.getLevel()) + ")";
-        newWeapon = new Magic(name, 20 + (player.getLevel() - 1) * 10, 20 + (player.getLevel() - 1) * 10);
-    }
-    else if (dynamic_cast<Archer*>(&player))
-    {
-        int weaponName = rand() % 3;
-        switch (weaponName)
-        {
-        case 0:
-            name = "Longbow of the Ancients";
-            break;
-        case 1:
-            name = "Crossbow of Shadows";
-            break;
-        case 2:
-            name = "Swift Bow";
-            break;
-        default:
-            name = "Unknown Weapon";
-            break;
-        }
-        name += " (Level " + to_string(player.getLevel()) + ")";
-        newWeapon = new Ranged(name, 20 + (player.getLevel() - 1) * 10, 4 + player.getLevel() - 1);
-    }
-
-    if (newWeapon == nullptr)
-    {
-        cout << "Error: Unable to determine weapon type for this character." << endl;
-        return;
-    }
-
-    cout << "New weapon: " << newWeapon->getName() << endl;
-    cout << "Weapon damage: " << newWeapon->getDamage() << endl;
-    cout << endl;
-    while (true)
-    {
-        if (InputHandler::getYesNoInput("Do you want to add this weapon to your inventory?"))
-        {
-			system("cls");
-            if (player.getWeapons().size() < player.getMaxWeaponCount())
+            int weaponName = rand() % 3;
+            switch (weaponName)
             {
-                player.takeWeapon(newWeapon);
-                cout << "The new weapon has been added to your inventory." << endl;
-                cout << endl;
+            case 0:
+                name = "Excalibur Sword";
+                break;
+            case 1:
+                name = "Stormbringer Axe";
+                break;
+            case 2:
+                name = "Mighty Spear";
+                break;
+            default:
+                name = "Unknown Weapon";
+                break;
+            }
+            name += " (Level " + to_string(player.getLevel()) + ")";
+            newWeapon = new Melee(name, 20 + (player.getLevel() - 1) * 10, 6 + player.getLevel() - 1);
+        }
+        else if (dynamic_cast<Wizard*>(&player))
+        {
+            int weaponName = rand() % 3;
+            switch (weaponName)
+            {
+            case 0:
+                name = "Fire Staff";
+                break;
+            case 1:
+                name = "Ice Wand";
+                break;
+            case 2:
+                name = "Lightning Rod";
+                break;
+            default:
+                name = "Unknown Weapon";
+                break;
+            }
+            name += " (Level " + to_string(player.getLevel()) + ")";
+            newWeapon = new Magic(name, 20 + (player.getLevel() - 1) * 10, 20 + (player.getLevel() - 1) * 10);
+        }
+        else if (dynamic_cast<Archer*>(&player))
+        {
+            int weaponName = rand() % 3;
+            switch (weaponName)
+            {
+            case 0:
+                name = "Longbow of the Ancients";
+                break;
+            case 1:
+                name = "Crossbow of Shadows";
+                break;
+            case 2:
+                name = "Swift Bow";
+                break;
+            default:
+                name = "Unknown Weapon";
+                break;
+            }
+            name += " (Level " + to_string(player.getLevel()) + ")";
+            newWeapon = new Ranged(name, 20 + (player.getLevel() - 1) * 10, 4 + player.getLevel() - 1);
+        }
+
+        if (newWeapon == nullptr)
+        {
+            throw bad_alloc();
+        }
+
+        cout << "New weapon: " << newWeapon->getName() << endl;
+        cout << "Weapon damage: " << newWeapon->getDamage() << endl;
+        cout << endl;
+        while (true)
+        {
+            if (InputHandler::getYesNoInput("Do you want to add this weapon to your inventory?"))
+            {
+                system("cls");
+                if (player.getWeapons().size() < player.getMaxWeaponCount())
+                {
+                    player.takeWeapon(newWeapon);
+                    cout << "The new weapon has been added to your inventory." << endl;
+                    cout << endl;
+                }
+                else
+                {
+                    cout << "Your weapon slots are full. Choose a weapon to replace: " << endl;
+                    player.displayWeapons();
+                    cout << endl;
+                    size_t slot = InputHandler::getIntInput("Enter the slot number (1-" + to_string(player.getWeapons().size()) + ") to replace: ", 1, player.getWeapons().size());
+                    player.replaceWeapon((int)slot - 1, newWeapon);
+                    cout << "The new weapon has replaced the old one in slot " << slot << "." << endl;
+                    cout << endl;
+                }
+                return;
             }
             else
             {
-                cout << "Your weapon slots are full. Choose a weapon to replace: " << endl;
-                player.displayWeapons();
+                system("cls");
+                cout << "You chose not to add the new weapon." << endl;
                 cout << endl;
-                size_t slot = InputHandler::getIntInput("Enter the slot number (1-" + to_string(player.getWeapons().size()) + ") to replace: ", 1, player.getWeapons().size());
-                player.replaceWeapon((int)slot-1, newWeapon);
-                cout << "The new weapon has replaced the old one in slot " << slot << "." << endl;
-                cout << endl;
+                delete newWeapon; // Clean up memory
+                return;
             }
-            return;
-        }
-        else
-        {
-			system("cls");
-            cout << "You chose not to add the new weapon." << endl;
-            cout << endl;
-            delete newWeapon; // Clean up memory
-            return;
         }
     }
+	catch (const bad_alloc& e)
+	{
+		cerr << "Memory allocation error in manageLevelUpRewards: " << e.what() << endl;
+	}
+	catch (const exception& e)
+	{
+		cerr << "Exception in manageLevelUpRewards: " << e.what() << endl;
+	}
+	catch (...)
+	{
+		cerr << "Unknown error occurred in manageLevelUpRewards." << endl;
+	}
 }
