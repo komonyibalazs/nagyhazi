@@ -2,10 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include "weapon.h"
-#include "melee.h"
-#include "magic.h"
-#include "ranged.h"
+
 
 class Character
 {

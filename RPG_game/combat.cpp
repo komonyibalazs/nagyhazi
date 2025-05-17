@@ -86,96 +86,99 @@ void Combat::start(Character& player, Character& enemy)
 
 void Combat::playerTurn(Character& player, Character& enemy) {
 
-    while (true) {
-        displayCombatInfo(player, enemy);
-        MenuManager::displayCombatMenu();
-        int choice = InputHandler::getIntInput("Select action: ", 1, 7);
+    try {
+        while (true) {
+            displayCombatInfo(player, enemy);
+            MenuManager::displayCombatMenu();
+            int choice = InputHandler::getIntInput("Select action: ", 1, 7);
 
-        switch (choice) {
-        case 1: // Támadás
-			system("cls");
-            player.attack(enemy);
-            (void)getchar();
-            return;
-
-        case 2: // "Heal shield (warrior) és mana regen (wizard)"
-			system("cls");
-            if (needHeal(player)) {
-                player.regenerate();
-                cout << "You healed yourself!" << endl;
+            switch (choice) {
+            case 1: // Támadás
+                system("cls");
+                player.attack(enemy);
                 (void)getchar();
-				system("cls");
                 return;
-            }
-            else {
-                cout << "You don't need to heal!" << endl;
-                (void)getchar();
-            }
-			system("cls");
-            break;
 
-
-        case 3: // "Repair or reload"
-			system("cls");
-            if (needRepair(player)) {
-                player.repairSelected();
-                cout << "Your weapon has been repaired!" << endl;
-                (void)getchar();
-				system("cls");
-                return;
-            }
-            else {
-                cout << "Your weapon doesn't need repairs!" << endl;
-                (void)getchar();
-			    system("cls");
+            case 2: // "Heal shield (warrior) és mana regen (wizard)"
+                system("cls");
+                if (needHeal(player)) {
+                    player.regenerate();
+                    cout << "You healed yourself!" << endl;
+                    (void)getchar();
+                    system("cls");
+                    return;
+                }
+                else {
+                    cout << "You don't need to heal!" << endl;
+                    (void)getchar();
+                }
+                system("cls");
                 break;
-            }
 
-        case 4: // "Flee"
-			system("cls");
-            if (flee(player)) {
-				system("cls");
-                cout << player.getName() << " fled from the battle!" << endl;
+
+            case 3: // "Repair or reload"
+                system("cls");
+                if (needRepair(player)) {
+                    player.repairSelected();
+                    cout << "Your weapon has been repaired!" << endl;
+                    (void)getchar();
+                    system("cls");
+                    return;
+                }
+                else {
+                    cout << "Your weapon doesn't need repairs!" << endl;
+                    (void)getchar();
+                    system("cls");
+                    break;
+                }
+
+            case 4: // "Flee"
+                system("cls");
+                if (flee(player)) {
+                    system("cls");
+                    cout << player.getName() << " fled from the battle!" << endl;
+                    (void)getchar();
+                    system("cls");
+                    player.setFleeing(true);
+                    return;
+                }
+                system("cls");
+                break;
+
+            case 5: // "Change weapon"
+                system("cls");
+                if (changeWeapon(player)) {
+                    cout << "Choose a new weapon:" << endl;
+                    player.displayWeapons();
+                    size_t index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
+                    player.selectWeapon((unsigned)--index);
+                    (void)getchar();
+                }
+                else {
+                    cout << "You cannot change weapons right now!" << endl;
+                    (void)getchar();
+                }
+                system("cls");
+                break;
+
+            case 6: // "Display info"
+                system("cls");
+                cout << "---------------------------------" << endl;
+                cout << endl;
+                Game::displayCharacterInfo(player);
+                Game::displayWeaponInfo(player);
+                Game::displayEnemyInfo(enemy);
+                cout << "---------------------------------" << endl;
                 (void)getchar();
-				system("cls");
-				player.setFleeing(true);
+                system("cls");
+                break;
+
+            case 7: // "Skip turn"
                 return;
             }
-			system("cls");
-            break;
-
-        case 5: // "Change weapon"
-			system("cls");
-            if (changeWeapon(player)) {
-                cout << "Choose a new weapon:" << endl;
-                player.displayWeapons();
-                size_t index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
-                player.selectWeapon((unsigned)--index);
-                (void)getchar();
-            }
-            else {
-                cout << "You cannot change weapons right now!" << endl;
-                (void)getchar();
-            }
-			system("cls");
-            break;
-
-		case 6: // "Display info"
-			system("cls");
-			cout << "---------------------------------" << endl;
-            cout << endl;
-			Game::displayCharacterInfo(player);
-			Game::displayWeaponInfo(player);
-			Game::displayEnemyInfo(enemy);
-			cout << "---------------------------------" << endl;
-            (void)getchar();
-			system("cls");
-            break;
-
-        case 7: // "Skip turn"
-            return;
         }
     }
+    catch () {}
 }
 
 void Combat::enemyTurn(Character& enemy, Character& player) {

@@ -1,5 +1,6 @@
 #pragma once
 #include "character.h"
+#include "ranged.h"
 
 class Archer : public Character
 {

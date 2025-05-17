@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\combat.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F0E6A602-CC50-45A4-9B0B-AA4A5FDC1806}|RPG_game\\RPG_game.vcxproj|solutionrelative:RPG_game\\game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,27 +30,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "game.cpp",
-              "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\game.cpp",
-              "RelativeDocumentMoniker": "RPG_game\\game.cpp",
-              "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\game.cpp",
-              "RelativeToolTip": "RPG_game\\game.cpp",
-              "ViewState": "AgIAAN4AAAAAAAAAAAAIwPAAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-16T16:34:08.256Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "combat.cpp",
               "DocumentMoniker": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
               "RelativeDocumentMoniker": "RPG_game\\combat.cpp",
               "ToolTip": "C:\\Users\\Win11\\Documents\\GitHub\\nagyhazi\\RPG_game\\combat.cpp",
               "RelativeToolTip": "RPG_game\\combat.cpp",
-              "ViewState": "AgIAAFYBAAAAAAAAAAAgwHABAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAAAFgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-16T16:34:03.816Z",
+              "WhenOpened": "2025-05-17T09:05:23.187Z",
               "EditorCaption": ""
             }
           ]

@@ -1,4 +1,7 @@
 #include "character.h"
+#include "melee.h"
+#include "magic.h"
+#include "ranged.h"
 
 using namespace std;
 
@@ -316,29 +319,38 @@ void Character::regenerate()
 
 void Character::attack(Character& target)
 {
-	Weapon* weapon = getSelectedWeapon();
-	if (!weapon) 
-	{
-		cout << name << " has no weapon selected to attack!" << endl;
-		return;
-	}
-	if (auto rangedWeapon = dynamic_cast<Ranged*>(weapon))
-	{
-		if (rangedWeapon->isOutOfAmmo())
+	try {
+		Weapon* weapon = getSelectedWeapon();
+		if (!weapon)
 		{
-			cout << "Out of ammo!" << endl;
-			return;
+			throw logic_error("No weapon selected to attack with!");
 		}
-	}
-	else if (auto meleeWeapon = dynamic_cast<Melee*>(weapon))
-	{
-		if (meleeWeapon->isBroken())
+		if (auto rangedWeapon = dynamic_cast<Ranged*>(weapon))
 		{
-			cout << "Weapon is broken!" << endl;
-			return;
+			if (rangedWeapon->isOutOfAmmo())
+			{
+				cout << "Out of ammo!" << endl;
+				return;
+			}
 		}
+		else if (auto meleeWeapon = dynamic_cast<Melee*>(weapon))
+		{
+			if (meleeWeapon->isBroken())
+			{
+				cout << "Weapon is broken!" << endl;
+				return;
+			}
+		}
+		unsigned damage = weapon->getDamage();
+		target.changeHealth(-(int)damage);
+		weapon->use();
 	}
-	unsigned damage = weapon->getDamage();
-	target.changeHealth(-(int)damage);
-	weapon->use();
+	catch (const logic_error& e) {
+		cerr << "Logic Error in attack: " << e.what() << endl;
+	}
+	catch (const exception& e) {
+		cerr << "Exception in attack: " << e.what() << endl;
+	}
+	catch (...) {
+		cerr << "Unknown error occurred in attack." << endl;
 }
