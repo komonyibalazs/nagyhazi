@@ -3,18 +3,50 @@
 using namespace std;
 
 Ranged::Ranged(string name, unsigned damage, unsigned maxAmmo) : Weapon(name, damage), maxAmmo(maxAmmo), ammo(maxAmmo)
-{}
+{
+	try 
+	{
+		if (maxAmmo == 0) {
+			throw invalid_argument("Ranged weapon max ammo cannot be zero!");
+		}
+	}
+	catch (const invalid_argument& e)
+	{
+		cerr << "Error: " << e.what() << endl;
+		maxAmmo = 1;
+	}
+	catch (const exception& e)
+	{
+		cerr << "Exception in Ranged::Ranged: " << e.what() << endl;
+	}
+	catch (...)
+	{
+		cerr << "An unknown error occurred." << endl;
+	}
+}
+
 
 void Ranged::use()
 {
-	if (!isOutOfAmmo())
-	{
+	try {
+		if (isOutOfAmmo())
+		{
+			throw logic_error("Out of ammo!");
+		}
 		cout << "Using " << getName() << " with damage: " << getDamage() << endl;
 		ammo--;
 	}
-	else
+	catch (const logic_error& e)
 	{
-		cout << "Out of ammo!" << endl;
+		cerr << e.what() << endl;
+	}
+	catch (const exception& e)
+	{
+		cerr << "Exception in Ranged::use: " << e.what() << endl;
+	}
+	catch (...)
+	{
+		cerr << "An unknown error occurred." << endl;
 	}
 }
 
@@ -35,12 +67,24 @@ bool Ranged::isOutOfAmmo() const
 
 void Ranged::reload()
 {
-	if (ammo < maxAmmo)
-	{
-		ammo = maxAmmo;
+	try {
+		if (ammo < maxAmmo)
+		{
+			ammo = maxAmmo;
+		}
+		else
+		{
+			throw logic_error(getName() + " is already full!");
+		}
 	}
-	else
+	catch (const logic_error& e)
 	{
-		cout << getName() << " is already full!" << endl;
+		cerr << e.what() << endl;
 	}
+	catch (const exception& e) {
+		cerr << "Exception in Ranged::reload: " << e.what() << endl;
+	}
+	catch (...)
+	{
+		cerr << "An unknown error occurred." << endl;
 }

@@ -4,7 +4,23 @@ using namespace std;
 
 Melee::Melee(string name, unsigned damage, unsigned durability)
 	: Weapon(name, damage), durability(durability), maxDurability(durability)
-{}
+{
+	try {
+		if (durability == 0) {
+			throw invalid_argument("Melee weapon durability cannot be zero!");
+		}
+	}
+	catch (const invalid_argument& e) {
+		cout << e.what() << endl;
+		durability = 1;
+	}
+	catch (const exception& e) {
+		cout << "Exception in Melee::Melee: " << e.what() << endl;
+	}
+	catch (...) {
+		cout << "An unknown error occurred!" << endl;
+	}
+}
 
 Melee::~Melee()
 {
@@ -12,14 +28,26 @@ Melee::~Melee()
 
 void Melee::use()
 {
-	if (!isBroken()) 
-	{
-		durability--;
-		cout << "Using " << getName() << " with damage: " << getDamage() << endl;
+	try {
+		if (!isBroken())
+		{
+			durability--;
+			cout << "Using " << getName() << " with damage: " << getDamage() << endl;
+		}
+		else
+		{
+			throw logic_error("Weapon is broken!");
+		}
 	}
-	else 
+	catch (const logic_error& e) {
+		cout << e.what() << endl;
+	}
+	catch (const exception& e) {
+		cout << "An error occurred: " << e.what() << endl;
+	}
+	catch (...)
 	{
-		cout << name << " is broken and cannot be used!" << endl;
+		cout << "An unknown error occurred!" << endl;
 	}
 }
 
@@ -45,12 +73,24 @@ bool Melee::isFullyRepaired() const
 
 void Melee::repair()
 {
-	if (!isFullyRepaired())
+	try 
 	{
-		durability = maxDurability;
+		if (!isFullyRepaired())
+		{
+			durability = maxDurability;
+		}
+		else
+		{
+			throw logic_error("Weapon is already fully repaired!");
+		}
 	}
-	else
+	catch (const logic_error& e) {
+		cout << e.what() << endl;
+	}
+	catch (const exception& e) {
+		cout << "An error occurred: " << e.what() << endl;
+	}
+	catch (...)
 	{
-		cout << name << " does not need any repair!" << endl;
-	}
+		cout << "An unknown error occurred!" << endl;
 }

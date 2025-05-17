@@ -113,7 +113,7 @@ void Character::gainXp(unsigned gained)
 		if (gained == 0) {
 			throw invalid_argument("Gained XP cannot be zero!");
 		}
-		if (gained > 10000) 
+		if (gained > 2000) 
 		{
 			throw out_of_range("Gained XP is unrealistically high!");
 		}
