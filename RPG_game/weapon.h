@@ -9,7 +9,7 @@ protected:
 	
 public:
 	// Konstruktor, destruktor
-	Weapon(std::string name, int damage = 10);
+	Weapon(std::string name, int damage = 20);
 	virtual ~Weapon() = default;
 	// getter
 	std::string getName() const;

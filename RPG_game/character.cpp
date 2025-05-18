@@ -288,7 +288,7 @@ bool Character::checkLevelUp() const
 
 void Character::regenerate()
 {
-	if (hp < maxHp && hp+maxHp*0.5 <maxHp)
+	if (hp < maxHp && hp+maxHp*0.5 < maxHp)
 	{
 		hp += static_cast<unsigned>(maxHp*0.5);
 	}
