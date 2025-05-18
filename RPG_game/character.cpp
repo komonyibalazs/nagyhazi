@@ -113,7 +113,7 @@ void Character::gainXp(unsigned gained)
 		if (gained == 0) {
 			throw invalid_argument("Gained XP cannot be zero!");
 		}
-		if (gained > 2000) 
+		if (gained > 5000) 
 		{
 			throw out_of_range("Gained XP is unrealistically high!");
 		}
@@ -126,9 +126,6 @@ void Character::gainXp(unsigned gained)
 	}
 	catch (const out_of_range& e) {
 		cerr << "Out of Range Error in gainXp: " << e.what() << endl;
-	}
-	catch (...) {
-		cerr << "Unknown error occurred in gainXp." << endl;
 	}
 }
 
@@ -189,9 +186,6 @@ void Character::takeWeapon(Weapon* weapon)
 	catch (const std::overflow_error& e) {
 		std::cerr << "Overflow Error in takeWeapon: " << e.what() << std::endl;
 	}
-	catch (...) {
-		std::cerr << "Unknown error occurred in takeWeapon." << std::endl;
-	}
 }
 
 void Character::repairSelected()
@@ -208,11 +202,11 @@ void Character::repairSelected()
 
 		Melee* repairableWeapon = dynamic_cast<Melee*>(weapon);
 		if (!repairableWeapon) {
-			throw std::invalid_argument("Selected weapon is not repairable!");
+			cout << "Selected weapon is not repairable!" << endl;
 		}
 
 		if (repairableWeapon->isFullyRepaired()) {
-			throw std::logic_error("Weapon is already fully repaired!");
+			cout << "Weapon is already fully repaired!" << endl;
 		}
 
 		repairableWeapon->repair();
@@ -222,15 +216,6 @@ void Character::repairSelected()
 	}
 	catch (const std::runtime_error& e) {
 		std::cerr << "Runtime Error in repairSelected: " << e.what() << std::endl;
-	}
-	catch (const std::invalid_argument& e) {
-		std::cerr << "Invalid Argument Error in repairSelected: " << e.what() << std::endl;
-	}
-	catch (const std::logic_error& e) {
-		std::cerr << "Logic Error in repairSelected: " << e.what() << std::endl;
-	}
-	catch (...) {
-		std::cerr << "Unknown error occurred in repairSelected." << std::endl;
 	}
 }
 
@@ -281,9 +266,6 @@ void Character::replaceWeapon(int index, Weapon* newWeapon)
 	catch (const std::invalid_argument& e) {
 		std::cerr << "Invalid Argument Error in replaceWeapon: " << e.what() << std::endl;
 	}
-	catch (...) {
-		std::cerr << "Unknown error occurred in replaceWeapon." << std::endl;
-	}
 }
 
 void Character::displayWeapons() const
@@ -309,7 +291,7 @@ void Character::regenerate()
 {
 	if (hp < maxHp && hp+maxHp*0.5 <maxHp)
 	{
-		hp += maxHp*0.5;
+		hp += static_cast<unsigned>(maxHp*0.5);
 	}
 	else
 	{
@@ -350,8 +332,5 @@ void Character::attack(Character& target)
 	}
 	catch (const exception& e) {
 		cerr << "Exception in attack: " << e.what() << endl;
-	}
-	catch (...) {
-		cerr << "Unknown error occurred in attack." << endl;
 	}
 }

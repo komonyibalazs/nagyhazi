@@ -93,7 +93,6 @@ void Game::chooseCharacter(Character*& player, const string& playerName) {
 
 void Game::wander(Character& player) {
     // Generáljunk egy random ellenséget
-    // Pre-combat menu
     Character* enemy = generateRandomEnemy(player.getLevel());
     while (true)
     {
@@ -252,6 +251,11 @@ void Game::changeWeapon(Character& player)
         cout << "Error: " << e.what() << endl;
         system("cls");
     }
+	catch (const exception& e)
+	{
+		cout << "An unexpected error occurred: " << e.what() << endl;
+		system("cls");
+	}
 }
 
 void Game::watchEnemy(Character& player, Character& enemy) {

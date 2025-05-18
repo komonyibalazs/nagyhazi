@@ -202,7 +202,6 @@ bool Combat::flee(Character& player) {
 
 bool Combat::needHeal(Character& player)
 {
-    try {
         if (auto* warrior = dynamic_cast<Warrior*>(&player))
         {
             return player.getHealth() < player.getMaxHp() || warrior->getShield() < warrior->getMaxShield();
@@ -215,12 +214,10 @@ bool Combat::needHeal(Character& player)
         {
             return player.getHealth() < player.getMaxHp();
         }
-        else throw logic_error("");
-    }
-    catch (const logic_error& e)
-    {
-        e.what();
-    }
+        else 
+		{
+			return false;
+		}
 }
 
 bool Combat::needRepair(Character& player)
@@ -361,9 +358,5 @@ void Combat::manageLevelUpRewards(Character& player)
 	catch (const exception& e)
 	{
 		cerr << "Exception in manageLevelUpRewards: " << e.what() << endl;
-	}
-	catch (...)
-	{
-		cerr << "Unknown error occurred in manageLevelUpRewards." << endl;
 	}
 }
