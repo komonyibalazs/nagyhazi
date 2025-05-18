@@ -4,7 +4,21 @@ using namespace std;
 
 Wizard::Wizard(string name) : Character(name), mana(100), maxMana(100)
 {
-	takeWeapon(new Magic("Wand"));
+	try 
+	{
+		takeWeapon(new Magic("Wand"));
+	}
+	catch (const bad_alloc& e)
+	{
+		cerr << "Wizard constructor: Memory allocation failed for weapon " << endl;
+		cerr << e.what() << endl;
+	}
+	catch (const exception& e) {
+		cerr << "Exception in Wizard constructor: " << e.what() << endl;
+	}
+	catch (...) {
+		cerr << "Unknown error occurred in Wizard constructor." << endl;
+	}
 }
 
 Wizard::Wizard(string name, unsigned level) : Character(name, level)
@@ -33,7 +47,7 @@ void Wizard::changeMana(int amount)
 {
 	int mana = this->mana;
 	mana += amount;
-	if (mana >= maxMana)
+	if (mana >= (int)maxMana)
 		this->mana = maxMana;
 	else if (mana <= 0)
 		this->mana = 0;
@@ -58,7 +72,7 @@ void Wizard::regenerate()
 	Character::regenerate();
 	if (mana < maxMana && mana+maxMana*0.5 < maxMana)
 	{
-		mana += maxMana*0.5;
+		mana += static_cast<unsigned>(maxMana * 0.5);
 	}
 	else
 	{

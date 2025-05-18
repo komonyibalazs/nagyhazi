@@ -8,16 +8,14 @@ Archer::Archer(const string& name) : Character(name)
         takeWeapon(new Ranged("Bow"));
     }
     catch (const bad_alloc& e) {
-        cerr << "Archer constructor: Memory allocation failed for weapon " << e.what() << endl;
-        throw; // Re-throw the exception after logging
+        cerr << "Archer constructor: Memory allocation failed for weapon " << endl;
+		cerr << e.what() << endl;
     }
     catch (const exception& e) {
         cerr << "Exception in Archer constructor: " << e.what() << endl;
-        throw;
     }
     catch (...) {
         cerr << "Unknown error occurred in Archer constructor." << endl;
-        throw;
     }
 }
 
@@ -28,15 +26,15 @@ Archer::Archer(const string& name, unsigned level) : Character(name, level)
     }
     catch (const bad_alloc& e) {
         cerr << "Archer constructor 2: Memory allocation failed for weapon: " << e.what() << endl;
-        throw;
+
     }
     catch (const exception& e) {
         cerr << "Exception in Archer constructor 2: " << e.what() << endl;
-        throw;
+
     }
     catch (...) {
-        cerr << "Unknown error occurred in Archer constructor." << endl;
-        throw;
+        cerr << "Unknown error occurred in Archer constructor 2." << endl;
+
     }
 }
 

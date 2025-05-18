@@ -3,7 +3,7 @@
 using namespace std;
 
 Melee::Melee(string name, unsigned damage, unsigned durability)
-	: Weapon(name, damage), durability(durability), maxDurability(durability)
+	: Weapon(name, damage), durability(durability), maxDurability(durability), sharpness(100)
 {
 	try {
 		if (durability == 0) {
@@ -31,8 +31,9 @@ void Melee::use()
 	try {
 		if (!isBroken())
 		{
-			durability--;
 			cout << "Using " << getName() << " with damage: " << getDamage() << endl;
+			sharpness = (sharpness > 0) ? sharpness - 10 : 0;
+			durability--;
 		}
 		else
 		{
@@ -51,6 +52,11 @@ void Melee::use()
 	}
 }
 
+unsigned Melee::getDamage() const
+{
+	return damage*sharpness/100;
+}
+
 unsigned Melee::getDurability() const
 {
 	return durability;
@@ -59,6 +65,11 @@ unsigned Melee::getDurability() const
 unsigned Melee::getMaxDurability() const
 {
 	return maxDurability;
+}
+
+unsigned Melee::getSharpness() const
+{
+	return sharpness;
 }
 
 bool Melee::isBroken() const
@@ -73,11 +84,12 @@ bool Melee::isFullyRepaired() const
 
 void Melee::repair()
 {
-	try 
+	try
 	{
 		if (!isFullyRepaired())
 		{
 			durability = maxDurability;
+			sharpness = 100;
 		}
 		else
 		{
@@ -93,4 +105,5 @@ void Melee::repair()
 	catch (...)
 	{
 		cout << "An unknown error occurred!" << endl;
+	}
 }

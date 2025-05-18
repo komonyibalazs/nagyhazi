@@ -4,19 +4,55 @@ using namespace std;
 
 Warrior::Warrior(string name) : Character(name), shield(100), maxShield(100)
 {
-	takeWeapon(new Melee("Sword"));
+	try 
+	{
+		takeWeapon(new Melee("Sword"));
+	}
+	catch (const bad_alloc& e)
+	{
+		cerr << "Warrior constructor: Memory allocation failed for weapon " << endl;
+		cerr << e.what() << endl;
+	}
+	catch (const exception& e) {
+		cerr << "Exception in Warrior constructor: " << e.what() << endl;
+	}
+	catch (...) {
+		cerr << "Unknown error occurred in Warrior constructor." << endl;
+	}
 }
 
 Warrior::Warrior(string name, unsigned level) : Character(name, level), shield(100), maxShield(100)
 {
-	this->maxShield = 100 + (level - 1) * 50;
-	this->shield = maxShield;
-	takeWeapon(new Melee("Sword", 20+(level-1)*10, 6+level-1));
+	try
+	{
+		this->maxShield = 100 + (level - 1) * 50;
+		this->shield = maxShield;
+		takeWeapon(new Melee("Sword", 25 + (level - 1) * 10, 6 + level - 1));
+	}
+	catch (const bad_alloc& e)
+	{
+		cerr << "Warrior constructor 2: Memory allocation failed for weapon" << endl;
+		cerr << e.what() << endl;
+	}
+	catch (const exception& e) {
+		cerr << "Exception in Warrior constructor 2: " << e.what() << endl;
+	}
+	catch (...) {
+		cerr << "Unknown error occurred in Warrior constructor 2." << endl;
+	}
 }
 
 Warrior::~Warrior()
 {
-	clearWeapons();
+	try {
+		clearWeapons();
+	}
+	catch (const exception& e) {
+		cerr << "Exception in Warrior destructor: " << e.what() << endl;
+	}
+	catch (...) {
+		cerr << "Unknown error occurred in Warrior destructor." << endl;
+	}
 }
 
 unsigned Warrior::getShield() const
@@ -51,7 +87,7 @@ void Warrior::regenerate()
 	Character::regenerate();
 	if (shield < maxShield && shield+maxShield*0.5 <= maxShield)
 	{
-		shield += maxShield*0.5;
+		shield += static_cast<unsigned>(maxShield*0.5);
 	}
     else
 	{
@@ -62,12 +98,12 @@ void Warrior::regenerate()
 void Warrior::changeHealth(int amount)
 {
 	int fullHp = hp + shield + amount;
-	if (fullHp < maxHp)
+	if (fullHp < (int)maxHp)
 	{
 		hp = fullHp;
 		shield = 0;
 	}
-	else if(fullHp >= maxHp)
+	else if(fullHp >= (int)maxHp)
 	{
 		hp = maxHp;
 		shield = fullHp - maxHp;

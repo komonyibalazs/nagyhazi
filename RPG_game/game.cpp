@@ -69,21 +69,21 @@ void Game::chooseCharacter(Character*& player, const string& playerName) {
 			system("cls");
             player = new Warrior(playerName);
             cout << "You have chosen the Warrior!" << endl;
-            getchar();
+            (void)getchar();
             system("cls");
             return;
         case 2:
 			system("cls");
             player = new Wizard(playerName);
             cout << "You have chosen the Wizard!" << endl;
-            getchar();
+            (void)getchar();
             system("cls");
             return;
         case 3:
 			system("cls");
             player = new Archer(playerName);
             cout << "You have chosen the Archer!" << endl;
-            getchar();
+            (void)getchar();
             system("cls");
             return;
         }
@@ -211,7 +211,7 @@ void Game::managePlayerRepair(Character*& player)
 		}
 	}
 	cout << endl;
-    getchar();
+    (void)getchar();
 	system("cls");
 }
 
@@ -233,12 +233,12 @@ void Game::changeWeapon(Character& player)
             player.displayWeapons();
             int index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
             player.selectWeapon(--index);
-            getchar();
+            (void)getchar();
         }
         else
         {
             cout << "You cannot change weapons right now!" << endl;
-            getchar();
+            (void)getchar();
         }
         system("cls");
     }
@@ -336,6 +336,7 @@ void Game::displayWeaponInfo(const Character& player) {
     cout << "Damage: " << player.getSelectedWeapon()->getDamage() << endl;
     if (auto* melee = dynamic_cast<Melee*>(player.getSelectedWeapon())) {
         cout << "Durability: " << melee->getDurability() << "/" << melee->getMaxDurability() << endl;
+		cout << "Sharpness: " << melee->getSharpness() << "/" << 100 << endl;
     }
     if (auto* magic = dynamic_cast<Magic*>(player.getSelectedWeapon())) {
         cout << "Mana cost: " << magic->getManaCost() << endl;

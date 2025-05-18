@@ -87,4 +87,5 @@ void Ranged::reload()
 	catch (...)
 	{
 		cerr << "An unknown error occurred." << endl;
+	}
 }

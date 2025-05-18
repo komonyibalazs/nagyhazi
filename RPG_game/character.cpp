@@ -353,4 +353,5 @@ void Character::attack(Character& target)
 	}
 	catch (...) {
 		cerr << "Unknown error occurred in attack." << endl;
+	}
 }

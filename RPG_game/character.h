@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-
+#include "weapon.h"
 
 class Character
 {

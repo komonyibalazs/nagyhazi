@@ -6,7 +6,6 @@ public:
     // A játék elindítása
     static void start();
 	// combat.cpp meghívja csata vége után
-    static void wander(Character& player); 
 	static void handleGameOver(Character* player);
     // Játék vége
     static void end(Character* player);
@@ -24,6 +23,7 @@ private:
     static Character* generateRandomEnemy(int playerLevel);
 	// Deep Dark pre-combat
     static void watchEnemy(Character& player, Character& enemy);
+    static void wander(Character& player); 
 	// Karakter funkciók
     static void chooseInformation(Character& player);
 	static void managePlayerRepair(Character*& player);
