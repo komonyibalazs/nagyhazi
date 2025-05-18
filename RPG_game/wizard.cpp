@@ -16,16 +16,21 @@ Wizard::Wizard(string name) : Character(name), mana(100), maxMana(100)
 	catch (const exception& e) {
 		cerr << "Exception in Wizard constructor: " << e.what() << endl;
 	}
-	catch (...) {
-		cerr << "Unknown error occurred in Wizard constructor." << endl;
-	}
 }
 
 Wizard::Wizard(string name, unsigned level) : Character(name, level)
 {
-	this->maxMana = 100 + (level - 1) * 50;
-	this->mana = maxMana;
-	takeWeapon(new Magic("Wand", 20+(level-1)*10, 20+(level-1)*10));
+	try 
+	{
+		this->maxMana = 100 + (level - 1) * 50;
+		this->mana = maxMana;
+		takeWeapon(new Magic("Wand", 20 + (level - 1) * 10, 20 + (level - 1) * 10));
+	}
+	catch (const bad_alloc& e)
+	{
+		cerr << "Wizard constructor 2: Memory allocation failed for weapon " << endl;
+		cerr << e.what() << endl;
+	}
 }
 
 Wizard::~Wizard()

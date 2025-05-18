@@ -14,9 +14,6 @@ Archer::Archer(const string& name) : Character(name)
     catch (const exception& e) {
         cerr << "Exception in Archer constructor: " << e.what() << endl;
     }
-    catch (...) {
-        cerr << "Unknown error occurred in Archer constructor." << endl;
-    }
 }
 
 Archer::Archer(const string& name, unsigned level) : Character(name, level)
@@ -32,45 +29,23 @@ Archer::Archer(const string& name, unsigned level) : Character(name, level)
         cerr << "Exception in Archer constructor 2: " << e.what() << endl;
 
     }
-    catch (...) {
-        cerr << "Unknown error occurred in Archer constructor 2." << endl;
-
-    }
 }
 
 Archer::~Archer()
 {
-    try 
-    {
-        clearWeapons();
-    }
-    catch (const exception& e) {
-        cerr << "Exception in Archer destructor: " << e.what() << endl;
-    }
-    catch (...) {
-        cerr << "Unknown error occurred in Archer destructor." << endl;
-    }
+    clearWeapons();
 }
 
 void Archer::regenerate()
 {
-    try 
+    Character::regenerate();
+    Ranged* weapon = dynamic_cast<Ranged*>(getSelectedWeapon());
+    if (weapon) {
+        weapon->reload();
+    }
+    else 
     {
-        Character::regenerate();
-        Ranged* weapon = dynamic_cast<Ranged*>(getSelectedWeapon());
-        if (weapon) {
-            weapon->reload();
-        }
-        else 
-        {
-			throw runtime_error("Selected weapon is not a ranged weapon.");
-        }
-    }
-    catch (const runtime_error& e) {
-        cerr << "Exception in Archer::regenerate: " << e.what() << endl;
-    }
-    catch (...) {
-        cerr << "Unknown error occurred in Archer::regenerate." << endl;
+        cout << "Selected weapon is not a ranged weapon." << endl;
     }
 }
 

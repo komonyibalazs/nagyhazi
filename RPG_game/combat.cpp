@@ -10,76 +10,54 @@
 
 using namespace std;
 
-void Combat::start(Character& player, Character& enemy) 
+void Combat::start(Character& player, Character& enemy)
 {
-    try
+    cout << "The battle begins!" << endl;
+    cout << endl;
+    while (true)
     {
-        cout << "The battle begins!" << endl;
-        cout << endl;
-        while (true) {
-            // Ellenõrizzük, hogy a játékos vagy az ellenség meghalt-e
-            if (!player.isAlive()) {
-                displayDefeatMessage(player);
-                if (!enemy.isAlive()) 
-                {
-                    throw logic_error("Enemy is in an invalid state during combat cleanup.");
-                }
-                delete& enemy;
-                (void)getchar();
-                system("cls");
-                Game::handleGameOver(&player);
-            }
-
-            if (!enemy.isAlive()) 
-            {
-                if (!player.isAlive())
-                {
-                    throw logic_error("Player is in an invalid state during combat cleanup.");
-                }
-                displayVictoryMessage(player, enemy);
-                player.wonTheBattle(enemy);
-                (void)getchar();
-                system("cls");
-                if (player.getLevel() == 20)
-                {
-                    cout << "Congratulations, you have completed the game, there are no enemies left in the wilderness!";
-                    delete& enemy;
-                    Game::handleGameOver(&player);
-
-                }
-                if (player.checkLevelUp())
-                {
-                    manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
-                }
-                return;
-            }
-
-            // Játékos köre
-            playerTurn(player, enemy);
-            if (player.getFleeing()) {
-                player.setFleeing(false);
-                return;
-            }
-            // Ellenség köre, ha még él
-            if (enemy.isAlive()) {
-                system("cls");
-                enemyTurn(enemy, player);
-                (void)getchar();
-                system("cls");
-            }
+        // Ellenõrizzük, hogy a játékos vagy az ellenség meghalt-e
+        if (!player.isAlive()) {
+            displayDefeatMessage(player);
+            delete& enemy;
+            (void)getchar();
+            system("cls");
+            Game::handleGameOver(&player);
         }
-    }
-    catch (const logic_error& e) 
-    {
-		cerr << "Logic Error in Combat::start: " << e.what() << endl;
-	}
-	catch (const exception& e)
-	{
-		cerr << "Exception in Combat::start: " << e.what() << endl;
-	}
-	catch (...)
-	{
-		cerr << "Unknown error occurred in Combat::start." << endl;
+
+        if (!enemy.isAlive())
+        {
+            displayVictoryMessage(player, enemy);
+            player.wonTheBattle(enemy);
+            (void)getchar();
+            system("cls");
+            if (player.getLevel() == 10)
+            {
+                cout << "Congratulations, you have completed the game, there are no enemies left in the wilderness!";
+                delete& enemy;
+                Game::handleGameOver(&player);
+
+            }
+            if (player.checkLevelUp())
+            {
+                manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
+            }
+            return;
+        }
+
+        // Játékos köre
+        playerTurn(player, enemy);
+        if (player.getFleeing()) {
+            player.setFleeing(false);
+            return;
+        }
+        // Ellenség köre, ha még él
+        if (enemy.isAlive()) {
+            system("cls");
+            enemyTurn(enemy, player);
+            (void)getchar();
+            system("cls");
+        }
     }
 }
 
@@ -147,7 +125,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             if (changeWeapon(player)) {
                 cout << "Choose a new weapon:" << endl;
                 player.displayWeapons();
-                unsigned index = (unsigned)InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
+                unsigned index = InputHandler::getIntInput("Select weapon slot: ", 1, static_cast<unsigned>(player.getWeapons().size()));
                 player.selectWeapon(--index);
                 (void)getchar();
             }
@@ -222,19 +200,26 @@ bool Combat::flee(Character& player) {
     return InputHandler::getYesNoInput("Do you want to flee the battle?");
 }
 
-bool Combat::needHeal(Character& player) 
+bool Combat::needHeal(Character& player)
 {
-    if (auto* warrior = dynamic_cast<Warrior*>(&player))
-    {
-        return player.getHealth() < player.getMaxHp() || warrior->getShield() < warrior->getMaxShield();
+    try {
+        if (auto* warrior = dynamic_cast<Warrior*>(&player))
+        {
+            return player.getHealth() < player.getMaxHp() || warrior->getShield() < warrior->getMaxShield();
+        }
+        else if (auto* wizard = dynamic_cast<Wizard*>(&player))
+        {
+            return player.getHealth() < player.getMaxHp() || wizard->getMana() < wizard->getMaxMana();
+        }
+        else if (auto* archer = dynamic_cast<Archer*>(&player))
+        {
+            return player.getHealth() < player.getMaxHp();
+        }
+        else throw logic_error("");
     }
-    else if (auto* wizard = dynamic_cast<Wizard*>(&player))
+    catch (const logic_error& e)
     {
-        return player.getHealth() < player.getMaxHp() || wizard->getMana() < wizard->getMaxMana();
-    }
-    else if (auto* archer = dynamic_cast<Archer*>(&player))
-    {
-        return player.getHealth() < player.getMaxHp();
+        e.what();
     }
 }
 
@@ -352,8 +337,8 @@ void Combat::manageLevelUpRewards(Character& player)
                     cout << "Your weapon slots are full. Choose a weapon to replace: " << endl;
                     player.displayWeapons();
                     cout << endl;
-                    size_t slot = InputHandler::getIntInput("Enter the slot number (1-" + to_string(player.getWeapons().size()) + ") to replace: ", 1, player.getWeapons().size());
-                    player.replaceWeapon((int)slot - 1, newWeapon);
+                    int slot = InputHandler::getIntInput("Enter the slot number (1-" + to_string(static_cast<int>(player.getWeapons().size())) + ") to replace: ", 1, static_cast<int>(player.getWeapons().size()));
+                    player.replaceWeapon(slot - 1, newWeapon);
                     cout << "The new weapon has replaced the old one in slot " << slot << "." << endl;
                     cout << endl;
                 }

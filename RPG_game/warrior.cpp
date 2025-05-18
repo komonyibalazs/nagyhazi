@@ -16,12 +16,9 @@ Warrior::Warrior(string name) : Character(name), shield(100), maxShield(100)
 	catch (const exception& e) {
 		cerr << "Exception in Warrior constructor: " << e.what() << endl;
 	}
-	catch (...) {
-		cerr << "Unknown error occurred in Warrior constructor." << endl;
-	}
 }
 
-Warrior::Warrior(string name, unsigned level) : Character(name, level), shield(100), maxShield(100)
+Warrior::Warrior(string name, unsigned level) : Character(name, level)
 {
 	try
 	{
@@ -37,22 +34,12 @@ Warrior::Warrior(string name, unsigned level) : Character(name, level), shield(1
 	catch (const exception& e) {
 		cerr << "Exception in Warrior constructor 2: " << e.what() << endl;
 	}
-	catch (...) {
-		cerr << "Unknown error occurred in Warrior constructor 2." << endl;
-	}
 }
 
 Warrior::~Warrior()
 {
-	try {
-		clearWeapons();
-	}
-	catch (const exception& e) {
-		cerr << "Exception in Warrior destructor: " << e.what() << endl;
-	}
-	catch (...) {
-		cerr << "Unknown error occurred in Warrior destructor." << endl;
-	}
+	
+	clearWeapons();
 }
 
 unsigned Warrior::getShield() const

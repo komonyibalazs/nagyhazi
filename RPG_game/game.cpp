@@ -231,7 +231,7 @@ void Game::changeWeapon(Character& player)
         {
             cout << "Choose a new weapon:" << endl;
             player.displayWeapons();
-            int index = InputHandler::getIntInput("Select weapon slot: ", 1, player.getWeapons().size());
+            int index = InputHandler::getIntInput("Select weapon slot: ", 1, static_cast<int>(player.getWeapons().size()));
             player.selectWeapon(--index);
             (void)getchar();
         }
@@ -250,11 +250,6 @@ void Game::changeWeapon(Character& player)
     catch (const invalid_argument& e)
     {
         cout << "Error: " << e.what() << endl;
-        system("cls");
-    }
-    catch (...)
-    {
-        cout << "An unknown error occurred." << endl;
         system("cls");
     }
 }
