@@ -38,8 +38,6 @@ void Warrior::levelUp()
 {
 	if (xp >= maxXp)
 	{
-		maxHp = 100 + level * 50;
-		hp = maxHp;
 		maxShield = 100 + level * 50;
 		shield = maxShield;
 	}

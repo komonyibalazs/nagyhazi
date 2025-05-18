@@ -1,13 +1,5 @@
-﻿  archer.cpp
-  character.cpp
-  combat.cpp
+﻿  combat.cpp
   game.cpp
-  magic.cpp
-  main.cpp
-  melee.cpp
-  ranged.cpp
-  warrior.cpp
-  weapon.cpp
-  wizard.cpp
+  menu_manager.cpp
   Generating Code...
   RPG_game.vcxproj -> C:\Users\Win11\Documents\GitHub\nagyhazi\x64\Debug\RPG_game.exe
