@@ -4,47 +4,24 @@ using namespace std;
 
 Warrior::Warrior(string name) : Character(name), shield(100), maxShield(100)
 {
-	try 
-	{
-		takeWeapon(new Melee("Sword"));
-	}
-	catch (const bad_alloc& e)
-	{
-		cerr << "Warrior constructor: Memory allocation failed for weapon " << endl;
-		cerr << e.what() << endl;
-	}
-	catch (const exception& e) {
-		cerr << "Exception in Warrior constructor: " << e.what() << endl;
-	}
+	takeWeapon(new Melee("Sword"));
 }
 
-Warrior::Warrior(string name, unsigned level) : Character(name, level)
+Warrior::Warrior(string name, unsigned level) : Character(name, level), shield(100), maxShield(100)
 {
-	try
-	{
-		this->maxShield = 100 + (level - 1) * 50;
-		this->shield = maxShield;
-		takeWeapon(new Melee("Sword", 25 + (level - 1) * 10, 6 + level - 1));
-	}
-	catch (const bad_alloc& e)
-	{
-		cerr << "Warrior constructor 2: Memory allocation failed for weapon" << endl;
-		cerr << e.what() << endl;
-	}
-	catch (const exception& e) {
-		cerr << "Exception in Warrior constructor 2: " << e.what() << endl;
-	}
+	this->maxShield = 100 + (level - 1) * 50;
+	this->shield = maxShield;
+	takeWeapon(new Melee("Sword", 25 + (level - 1) * 10, 6 + level - 1));
 }
 
 Warrior::~Warrior()
 {
-	
 	clearWeapons();
 }
 
 unsigned Warrior::getShield() const
 {
-    return shield;
+	return shield;
 }
 
 unsigned Warrior::getMaxShield() const
@@ -72,11 +49,11 @@ void Warrior::levelUp()
 void Warrior::regenerate()
 {
 	Character::regenerate();
-	if (shield < maxShield && shield+maxShield*0.5 <= maxShield)
+	if (shield < maxShield && shield + maxShield * 0.5 <= maxShield)
 	{
-		shield += static_cast<unsigned>(maxShield*0.5);
+		shield += static_cast<unsigned>(maxShield * 0.5);
 	}
-    else
+	else
 	{
 		shield = maxShield;
 	}
@@ -90,7 +67,7 @@ void Warrior::changeHealth(int amount)
 		hp = fullHp;
 		shield = 0;
 	}
-	else if(fullHp >= (int)maxHp)
+	else if (fullHp >= (int)maxHp)
 	{
 		hp = maxHp;
 		shield = fullHp - maxHp;
@@ -106,5 +83,3 @@ void Warrior::wonTheBattle(const Character& enemy)
 	shield = maxShield;
 	Character::wonTheBattle(enemy);
 }
-
-
