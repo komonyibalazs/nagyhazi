@@ -67,7 +67,7 @@ void MenuManager::displayInvalidChoice() {
     cout << "Invalid choice. Please try again." << endl;
 }
 
-void MenuManager::displayDefeatMenu() {
+void MenuManager::displayGameOverMenu() {
     cout << "What would you like to do?" << endl;
     cout << "1. Start again" << endl;
     cout << "2. Quit the game" << endl;

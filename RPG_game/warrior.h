@@ -8,15 +8,20 @@ class Warrior : public Character
 	unsigned maxShield;
 
 public:
+	// Konstruktorok
 	Warrior(std::string name);
 	Warrior(std::string name, unsigned level);
+	// Destruktor
 	~Warrior();
+	// getterek
 	unsigned getShield() const;
 	unsigned getMaxShield() const;
+	// setter
 	void setShield(unsigned shield);
-	void levelUp();
-	void regenerate();
-	void changeHealth(int amount);
+	// Character virtuális metódusok
+	void regenerate() override;
+	void levelUp() override;
 	void wonTheBattle(const Character&) override;
+	void changeHealth(int amount) override;
 };
 

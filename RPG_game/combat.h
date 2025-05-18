@@ -11,12 +11,12 @@ private:
     static void playerTurn(Character& player, Character& enemy);
     static void enemyTurn(Character& enemy, Character& player);
 
-    // Segédmetódusok a harc során
+    // Információ kiírás a harc során
     static void displayCombatInfo(const Character& player, const Character& enemy);
     static void displayVictoryMessage(const Character& player, const Character& enemy);
     static void displayDefeatMessage(const Character& player);
 
-    // Harci döntések
+    // Harci döntések ellenõrzése
     static bool flee(Character& player);
     static bool needHeal(Character& player);
     static bool needRepair(Character& player);

@@ -49,7 +49,7 @@ bool Melee::isBroken() const
 
 bool Melee::isFullyRepaired() const
 {
-	return durability == maxDurability;
+	return durability == maxDurability && sharpness == 100;
 }
 
 void Melee::repair()

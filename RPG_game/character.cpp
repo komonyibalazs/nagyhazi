@@ -135,7 +135,6 @@ void Character::levelUp()
 		if (xp < maxXp) {
 			throw logic_error("Not enough XP to level up!");
 		}
-		// Szintlépés logikája
 		setReward(false);
 		level++;
 		xp -= maxXp;

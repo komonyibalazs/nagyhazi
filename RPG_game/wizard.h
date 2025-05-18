@@ -8,15 +8,20 @@ class Wizard : public Character
 	unsigned maxMana;
 
 public:
+	// Konstruktorok
 	Wizard(std::string name);
 	Wizard(std::string name, unsigned level);
+	// Destruktor
 	~Wizard();
+	// Getterek
 	unsigned getMana() const;
 	unsigned getMaxMana() const;
+	// Mana kezelés
 	void changeMana(int amount);
-	void levelUp();
-	void regenerate();
-	void attack(Character& target);
+	// Character virtuális metódusok
+	void regenerate() override;
+	void attack(Character& target) override;
+	void levelUp() override;
 	void wonTheBattle(const Character&) override;
 };
 

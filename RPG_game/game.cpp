@@ -364,6 +364,7 @@ void Game::displayEnemyInfo(Character& enemy)
     if (auto* melee = dynamic_cast<Melee*>(enemy.getSelectedWeapon()))
     {
         cout << "Durability: " << melee->getDurability() << "/" << melee->getMaxDurability() << endl;
+		cout << "Sharpness: " << melee->getSharpness() << "/" << 100 << endl;
     }
     if (auto* magic = dynamic_cast<Magic*>(enemy.getSelectedWeapon()))
     {
@@ -380,7 +381,7 @@ void Game::handleGameOver(Character* player) {
     while (true) 
     {
         
-        MenuManager::displayDefeatMenu();
+        MenuManager::displayGameOverMenu();
         int choice = InputHandler::getIntInput("Choice: ", 1, 2);
         switch (choice) 
         {

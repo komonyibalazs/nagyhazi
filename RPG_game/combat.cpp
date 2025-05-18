@@ -40,7 +40,7 @@ void Combat::start(Character& player, Character& enemy)
             }
             if (player.checkLevelUp())
             {
-                manageLevelUpRewards(player);       // Szintlépés utáni jutalmak kezelése
+                manageLevelUpRewards(player); // Szintlépés utáni jutalmak kezelése
             }
             return;
         }
@@ -74,7 +74,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             (void)getchar();
             return;
     
-        case 2: // "Heal shield (warrior) és mana regen (wizard)"
+        case 2: // Gyógyulás, pajzs regenerálás (warrior) és mana regenerálás (wizard)
             system("cls");
             if (needHeal(player)) {
                 player.regenerate();
@@ -91,7 +91,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             break;
     
     
-        case 3: // "Repair or reload"
+        case 3: // Javítás vagy újratöltés
             system("cls");
             if (needRepair(player)) {
                 player.repairSelected();
@@ -107,7 +107,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
                 break;
             }
     
-        case 4: // "Flee"
+        case 4: // Menekülés
             system("cls");
             if (flee(player)) {
                 system("cls");
@@ -120,7 +120,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             system("cls");
             break;
     
-        case 5: // "Change weapon"
+		case 5: // Fegyver csere
             system("cls");
             if (changeWeapon(player)) {
                 cout << "Choose a new weapon:" << endl;
@@ -136,7 +136,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             system("cls");
             break;
     
-        case 6: // "Display info"
+		case 6: // Információk megtekintése
             system("cls");
             cout << "---------------------------------" << endl;
             cout << endl;
@@ -148,7 +148,7 @@ void Combat::playerTurn(Character& player, Character& enemy) {
             system("cls");
             break;
     
-        case 7: // "Skip turn"
+		case 7: // Kör kihagyása
             return;
         }
     }
@@ -346,7 +346,7 @@ void Combat::manageLevelUpRewards(Character& player)
                 system("cls");
                 cout << "You chose not to add the new weapon." << endl;
                 cout << endl;
-                delete newWeapon; // Clean up memory
+				delete newWeapon; // Memória felszabadítás
                 return;
             }
         }

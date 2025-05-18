@@ -31,9 +31,7 @@ public:
     static void displayInvalidChoice();
     
     //Vereség esetén 
-    static void displayDefeatMenu();
-
-    //
+    static void displayGameOverMenu();
 
 };
 
