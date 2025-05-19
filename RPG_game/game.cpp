@@ -60,35 +60,45 @@ string Game::getPlayerName() {
 }
 
 void Game::chooseCharacter(Character*& player, const string& playerName) {
-    while (true) {
-        MenuManager::displayCharacterSelectionMenu(playerName);
-        int choice = InputHandler::getIntInput("Choice: ", 1, 3);
+    try {
+        while (true) {
+            MenuManager::displayCharacterSelectionMenu(playerName);
+            int choice = InputHandler::getIntInput("Choice: ", 1, 3);
 
-        switch (choice) {
-        case 1:
-			system("cls");
-            player = new Warrior(playerName);
-            cout << "You have chosen the Warrior!" << endl;
-            (void)getchar();
-            system("cls");
-            return;
-        case 2:
-			system("cls");
-            player = new Wizard(playerName);
-            cout << "You have chosen the Wizard!" << endl;
-            (void)getchar();
-            system("cls");
-            return;
-        case 3:
-			system("cls");
-            player = new Archer(playerName);
-            cout << "You have chosen the Archer!" << endl;
-            (void)getchar();
-            system("cls");
-            return;
+            switch (choice) {
+            case 1:
+                system("cls");
+                player = new Warrior(playerName);
+                cout << "You have chosen the Warrior!" << endl;
+                (void)getchar();
+                system("cls");
+                return;
+            case 2:
+                system("cls");
+                player = new Wizard(playerName);
+                cout << "You have chosen the Wizard!" << endl;
+                (void)getchar();
+                system("cls");
+                return;
+            case 3:
+                system("cls");
+                player = new Archer(playerName);
+                cout << "You have chosen the Archer!" << endl;
+                (void)getchar();
+                system("cls");
+                return;
+            }
+
         }
-        
     }
+	catch (const bad_alloc& e) {
+		cout << "Player memory allocation failed: " << e.what() << endl;
+		system("cls");
+	}
+	catch (const exception& e) {
+		cout << "An unexpected error occurred: " << e.what() << endl;
+		system("cls");
+	}
 }
 
 void Game::wander(Character& player) {
@@ -280,24 +290,36 @@ void Game::watchEnemy(Character& player, Character& enemy) {
 
 Character* Game::generateRandomEnemy(int playerLevel)
 {
-    int enemyLevel = rand() % playerLevel + 1; // Enemy level between 1 and player's level
-    int enemyType = rand() % 3; // Random enemy type
-    string enemyName = "Enemy"; // Default name
-    switch (enemyType)
-    {
-    case 0:
-        enemyName = "Fallen Warrior";
-        return new Warrior(enemyName, enemyLevel);
-    case 1:
-        enemyName = "Dark Wizard";
-        return new Wizard(enemyName, enemyLevel);
-    case 2:
-        enemyName = "Shadow Archer";
-        return new Archer(enemyName, enemyLevel);
-    default:
-        enemyName = "Unknown Enemy";
-        return new Warrior(enemyName, enemyLevel);
+    try {
+		int enemyLevel = rand() % playerLevel + 1; // Ellenség szintje 1 és a játékos szintje között
+		int enemyType = rand() % 3; // Random ellenség típus (0: Warrior, 1: Wizard, 2: Archer)
+        string enemyName = "Enemy"; // Default név
+        switch (enemyType)
+        {
+        case 0:
+            enemyName = "Fallen Warrior";
+            return new Warrior(enemyName, enemyLevel);
+        case 1:
+            enemyName = "Dark Wizard";
+            return new Wizard(enemyName, enemyLevel);
+        case 2:
+            enemyName = "Shadow Archer";
+            return new Archer(enemyName, enemyLevel);
+        default:
+            enemyName = "Unknown Enemy";
+            return new Warrior(enemyName, enemyLevel);
+        }
     }
+    catch (const bad_alloc& e) {
+        cout << "Enemy memory allocation failed: " << e.what() << endl;
+        system("cls");
+    }
+    catch (const exception& e) {
+        cout << "An unexpected error occurred: " << e.what() << endl;
+        system("cls");
+    }
+    //exception esetén
+    return new Warrior("Fallback Warrior", 1);
 }
 
 void Game::displayCharacterInfo(Character& player) {
